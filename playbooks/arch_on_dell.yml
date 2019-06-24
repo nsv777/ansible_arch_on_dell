@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - role: usb_mouse_on_boot

@@ -1,0 +1,9 @@
+[Unit]
+After=systemd-user-sessions.service lightdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/scripts/usb_mouse_fix.sh
+
+[Install]
+WantedBy=default.target
