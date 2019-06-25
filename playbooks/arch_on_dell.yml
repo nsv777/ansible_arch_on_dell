@@ -1,4 +1,6 @@
 ---
 - hosts: localhost
   roles:
-    - role: usb_mouse_on_boot
+    - usb_mouse_on_boot
+    - configure_pacman
+    - install_packages

@@ -1,0 +1,41 @@
+---
+- name: mirrorlist
+  replace:
+    path: /etc/pacman.d/mirrorlist
+    regexp: '^#Server = http\:\/\/mirrors\.niyawe\.de\/archlinux\/\$repo\/os\/\$arch$'
+    replace: Server = http://mirrors.niyawe.de/archlinux/$repo/os/$arch
+  become: yes
+  tags:
+    - pacman
+    - config
+
+
+- name: pacman.conf
+#  lineinfile:
+#    path: /etc/pacman.conf
+#    regexp: "{{ item.regexp }}"
+#    line: "{{ item.line }}"
+#  with_items: lines
+#  vars:
+#    lines:
+#      - regexp: '^#CleanMethod = KeepInstalled$'
+#        line: 'CleanMethod = KeepInstalled & KeepCurrent'
+#      - regexp: '^#UseDelta    = 0\.7$'
+#        line: 'UseDelta    = 0.7'
+#      - regexp: '^#Color$'
+#        line: 'Color'
+#      - regexp: '^#TotalDownload$'
+#        line: 'TotalDownload'
+#      - regexp: '^#\[multilib\]$'
+#        line: '[multilib]'
+#      - regexp:
+  copy:
+    src: files/etc/pacman.conf
+    dest: /etc/pacman.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: yes
+  tags:
+    - pacman
+    - config
