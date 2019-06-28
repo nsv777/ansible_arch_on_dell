@@ -4,3 +4,7 @@
     - usb_mouse_on_boot
     - configure_pacman
     - install_packages
+    - role: install_yay
+      vars:
+        user: stas
+    - pulseaudio_hdmi_fix

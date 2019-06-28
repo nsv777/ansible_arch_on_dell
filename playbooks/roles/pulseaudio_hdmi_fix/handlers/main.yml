@@ -1,0 +1,7 @@
+---
+- name: stop pulseaudio
+  command: pulseaudio --kill
+
+
+- name: start pulseaudio
+  command: pulseaudio --start

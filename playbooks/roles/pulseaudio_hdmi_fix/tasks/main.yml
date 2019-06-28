@@ -1,0 +1,16 @@
+---
+# Set default sample rate to 48000 instead of 44100 to fix sound resampling/encoding issues with Yamaha receivers
+- name: Configure pulseaudio
+  lineinfile:
+    path: /etc/pulse/daemon.conf
+    regexp: '^default-sample-rate = 48000$'
+    insertafter: '^; default-sample-rate = .*'
+    line: default-sample-rate = 48000
+  become: yes
+  notify:
+    - stop pulseaudio
+    - start pulseaudio
+  tags:
+    - pulseaudio
+    - config
+

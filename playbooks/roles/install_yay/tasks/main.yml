@@ -1,0 +1,25 @@
+---
+- name: clone git repo
+  git:
+    repo: 'https://aur.archlinux.org/yay.git'
+    dest: /tmp/yay_git
+  tags:
+    - yay
+
+
+- name: make package
+  command: makepkg --noconfirm --clean --install --cleanbuild --syncdeps
+  args:
+    chdir: /tmp/yay_git
+  become: yes
+  become_user: "{{ user }}"
+  tags:
+    - yay
+
+
+- name: remove temp dir
+  file:
+    path: /tmp/yay_git
+    state: absent
+  tags:
+    - yay
