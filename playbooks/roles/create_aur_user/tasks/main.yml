@@ -1,0 +1,27 @@
+---
+- name: Create the user
+  user:
+    name: "{{ aur_user }}"
+    group: wheel
+  become: yes
+  tags:
+    - aur_builder
+
+- name: Install sudo
+  pacman:
+    name: sudo
+    state: present
+  become: yes
+  tags:
+    - aur_builder
+
+
+- name: Add the user to sudo
+  lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "{{ aur_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    validate: 'visudo -cf %s'
+  become: yes
+  tags:
+    - aur_builder

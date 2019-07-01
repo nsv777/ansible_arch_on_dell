@@ -2,9 +2,9 @@
 - hosts: localhost
   roles:
     - usb_mouse_on_boot
-    - role: install_yay
-      vars:
-        user: stas
-    - configure_pacman
-    - install_packages
     - pulseaudio_hdmi_fix
+    - install_ansible_aur
+    - install_yay
+    - configure_pacman
+#    - install_packages
+    - guake
