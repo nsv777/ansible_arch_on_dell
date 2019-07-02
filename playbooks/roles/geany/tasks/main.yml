@@ -1,0 +1,31 @@
+---
+- name: Install geany
+  aur:
+    name:
+      - geany
+      - geany-themes
+      - ttf-hack
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install
+    - geany
+
+
+- name: Create config directory
+  file:
+    path: $HOME/.config/geany
+    state: directory
+  tags:
+    - configure
+    - geany
+
+
+- name: Copy config
+  copy:
+    src: geany/geany.conf
+    dest: $HOME/.config/geany/
+  tags:
+    - configure
+    - geany

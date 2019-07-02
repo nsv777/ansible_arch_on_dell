@@ -8,4 +8,5 @@
     - configure_pacman
 #    - install_packages
     - cinnamon
+    - geany
     - guake
