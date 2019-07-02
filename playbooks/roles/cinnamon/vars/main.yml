@@ -16,10 +16,16 @@ cinnamon_config:
     value: 'true'
   - key: /org/cinnamon/desktop/interface/clock-use-24h
     value: 'true'
+  - key: /org/cinnamon/desktop/interface/first-day-of-week
+    value: 1
   - key: /org/cinnamon/desktop/interface/gtk-theme
     value: "'Adwaita'"
   - key: /org/cinnamon/desktop/interface/icon-theme
     value: "'Faenza-Darkest'"
+  - key: /org/cinnamon/desktop/interface/cursor-size
+    value: 22
+  - key: /org/cinnamon/desktop/interface/cursor-theme
+    value: "'capitaine-cursors'"
   - key: /org/cinnamon/desktop/interface/keyboard-layout-prefer-variant-names
     value: 'true'
   - key: /org/cinnamon/desktop/interface/keyboard-layout-use-upper

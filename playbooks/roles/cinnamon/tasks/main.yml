@@ -9,6 +9,7 @@
       - cinnamon-theme-numix-git
       - faenza-icon-theme
       - adwaita-icon-theme
+      - capitaine-cursors
     skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
