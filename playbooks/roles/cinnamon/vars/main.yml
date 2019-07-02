@@ -1,0 +1,94 @@
+---
+cinnamon_config:
+  - key: /org/cinnamon/alttab-switcher-delay
+    value: 100
+  - key: /org/cinnamon/desktop-effects
+    value: 'false'
+  - key: /org/cinnamon/desktop-effects-on-dialogs
+    value: 'false'
+  - key: /org/cinnamon/desktop-effects-on-menus
+    value: 'false'
+  - key: /org/cinnamon/show-media-keys-osd
+    value: "'small'"
+  - key: /org/cinnamon/startup-animation
+    value: 'false'
+  - key: /org/cinnamon/desktop/interface/clock-show-date
+    value: 'true'
+  - key: /org/cinnamon/desktop/interface/clock-use-24h
+    value: 'true'
+  - key: /org/cinnamon/desktop/interface/gtk-theme
+    value: "'Adwaita'"
+  - key: /org/cinnamon/desktop/interface/icon-theme
+    value: "'Faenza-Darkest'"
+  - key: /org/cinnamon/desktop/interface/keyboard-layout-prefer-variant-names
+    value: 'true'
+  - key: /org/cinnamon/desktop/interface/keyboard-layout-use-upper
+    value: 'true'
+  - key: /org/cinnamon/desktop/privacy/recent-files-max-age
+    value: -1
+  - key: /org/cinnamon/desktop/privacy/remember-recent-files
+    value: 'true'
+  - key: /org/cinnamon/desktop/wm/preferences/action-scroll-titlebar
+    value: "'shade'"
+  - key: /org/cinnamon/desktop/wm/preferences/min-window-opacity
+    value: 30
+  - key: /org/cinnamon/desktop/wm/preferences/titlebar-font
+    value: "'Sans Bold 8'"
+  - key: /org/cinnamon/muffin/desktop-effects
+    value: 'false'
+  - key: /org/cinnamon/muffin/unredirect-fullscreen-windows
+    value: 'true'
+  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
+    value: 'true'
+  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
+    value: 'true'
+  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-acceleration
+    value: 1.0
+  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
+    value: 1
+  - key: /org/cinnamon/settings-daemon/plugins/xsettings/menus-have-icons
+    value: 'true'
+  - key: /org/cinnamon/sounds/login-enabled
+    value: 'false'
+  - key: /org/cinnamon/sounds/logout-enabled
+    value: 'false'
+  - key: /org/cinnamon/sounds/notification-enabled
+    value: 'true'
+  - key: /org/cinnamon/theme/name
+    value: "'Numix-Cinnamon'"
+  - key: /org/gnome/libgnomekbd/desktop/default-group
+    value: 0
+  - key: /org/gnome/libgnomekbd/desktop/group-per-window
+    value: 'true'
+  - key: /org/gnome/libgnomekbd/keyboard/layouts
+    value: "['us', 'ru']"
+  - key: /org/gnome/libgnomekbd/keyboard/options
+    value: "['grp\tgrp:alt_shift_toggle']"
+  - key: /org/nemo/compact-view/default-zoom-level
+    value: "'small'"
+  - key: /org/nemo/icon-view/default-zoom-level
+    value: "'small'"
+  - key: /org/nemo/desktop/computer-icon-visible
+    value: 'true'
+  - key: /org/nemo/desktop/home-icon-visible
+    value: 'true'
+  - key: /org/nemo/desktop/trash-icon-visible
+    value: 'true'
+  - key: /org/nemo/desktop/volumes-visible
+    value: 'true'
+  - key: /org/nemo/preferences/confirm-trash
+    value: 'false'
+  - key: /org/nemo/preferences/default-folder-viewer
+    value: "'list-view'"
+  - key: /org/nemo/preferences/executable-text-activation
+    value: "'display'"
+  - key: /org/nemo/preferences/show-home-icon-toolbar
+    value: 'true'
+  - key: /org/nemo/preferences/show-location-entry
+    value: 'true'
+  - key: /org/nemo/preferences/show-new-folder-icon-toolbar
+    value: 'true'
+  - key: /org/nemo/preferences/show-open-in-terminal-toolbar
+    value: 'true'
+  - key: /org/nemo/preferences/show-reload-icon-toolbar
+    value: 'true'

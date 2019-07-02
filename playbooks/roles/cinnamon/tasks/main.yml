@@ -1,0 +1,28 @@
+---
+- name: Install cinnamon
+  aur:
+    name:
+      - cinnamon
+      - nemo
+      - nemo-fileroller
+      - cinnamon-sound-effects
+      - cinnamon-theme-numix-git
+      - faenza-icon-theme
+      - adwaita-icon-theme
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install
+    - cinnamon
+
+
+- name: Configure cinnamon
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  with_items: "{{ cinnamon_config }}"
+  tags:
+    - configure
+    - cinnamon

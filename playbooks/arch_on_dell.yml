@@ -7,4 +7,5 @@
     - install_yay
     - configure_pacman
 #    - install_packages
+    - cinnamon
     - guake
