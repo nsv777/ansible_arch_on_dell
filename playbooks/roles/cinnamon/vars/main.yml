@@ -98,3 +98,21 @@ cinnamon_config:
     value: 'true'
   - key: /org/nemo/preferences/show-reload-icon-toolbar
     value: 'true'
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding
+    value: "['<Shift><Super>g']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command
+    value: "'geany'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name
+    value: "'geany'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
+    value: "['<Shift><Super>c']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
+    value: "'steam-native steam://rungameid/730'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
+    value: "'CS GO'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
+    value: "['<Primary><Shift><Super>m']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/command
+    value: "'$HOME/scripts/monitor_is_back.sh'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/name
+    value: "'Monitor is back'"
