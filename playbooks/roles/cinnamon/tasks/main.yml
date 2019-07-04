@@ -11,6 +11,7 @@
       - adwaita-icon-theme
       - capitaine-cursors
       - xclip
+      - galculator
     skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
@@ -50,6 +51,7 @@
   tags:
     - configure
     - cinnamon
+    - dconf
 
 
 - name: Create cinnamon config directory

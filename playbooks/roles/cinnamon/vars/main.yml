@@ -116,3 +116,17 @@ cinnamon_config:
     value: "'$HOME/scripts/monitor_is_back.sh'"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/name
     value: "'Monitor is back'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/binding
+    value: "['<Shift><Super>b']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/command
+    value: "'tor-browser'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/name
+    value: "'Tor Browser'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/binding
+    value: "['Calculator']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/command
+    value: "'galculator'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/name
+    value: "'calc'"
+  - key: /org/cinnamon/desktop/keybindings/custom-list
+    value: "['custom0', 'custom1', 'custom2', 'custom3', 'custom4']"
