@@ -67,7 +67,7 @@
 - name: Copy cinnamon configs
   copy:
     src: cinnamon_configs/
-    dest: $HOME/.connamon/configs
+    dest: $HOME/.cinnamon/configs/
   tags:
     - configure
     - cinnamon
