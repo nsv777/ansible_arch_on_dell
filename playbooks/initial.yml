@@ -3,4 +3,3 @@
   roles:
     - configure_pacman
     - install_ansible_aur
-    - install_yay
