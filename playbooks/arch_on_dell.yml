@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   roles:
+    - systemd
     - usb_mouse_on_boot
     - pulseaudio_hdmi_fix
     - install_ansible_aur

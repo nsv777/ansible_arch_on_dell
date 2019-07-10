@@ -1,0 +1,25 @@
+---
+- name: Limit systemd log size
+  include_role:
+    name: linux-regexp-replace
+#  register: systemd_logsize
+  vars:
+    items:
+      - path: /etc/systemd/journald.conf
+        regexp1: '^#SystemMaxUse=$'
+        replace: 'SystemMaxUse=75M'
+  tags:
+    - systemd
+    - journald
+
+
+- name: Restart journald
+  service:
+    name: systemd-journald
+    state: restarted
+#  when: systemd_logsize.changed
+  become: yes
+  ignore_errors: yes
+  tags:
+    - systemd
+    - journald
