@@ -6,6 +6,7 @@
     replace: Server = http://mirrors.niyawe.de/archlinux/$repo/os/$arch
   become: yes
   tags:
+    - configure_pacman
     - pacman
     - config
 
@@ -37,5 +38,6 @@
     mode: "0644"
   become: yes
   tags:
+    - configure_pacman
     - pacman
     - config
