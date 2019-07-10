@@ -11,7 +11,7 @@
     - config
 
 
-- name: pacman.conf
+#- name: pacman.conf
 #  lineinfile:
 #    path: /etc/pacman.conf
 #    regexp: "{{ item.regexp }}"
@@ -30,12 +30,22 @@
 #      - regexp: '^#\[multilib\]$'
 #        line: '[multilib]'
 #      - regexp:
+- name: pacman.conf
   copy:
     src: files/etc/pacman.conf
     dest: /etc/pacman.conf
     owner: root
     group: root
     mode: "0644"
+  become: yes
+  tags:
+    - configure_pacman
+    - pacman
+    - config
+
+- name: Run the equivalent of "pacman -Sy" as a separate step
+  pacman:
+    update_cache: yes
   become: yes
   tags:
     - configure_pacman
