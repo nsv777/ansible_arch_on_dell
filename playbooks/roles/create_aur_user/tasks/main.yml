@@ -3,7 +3,7 @@
   user:
     name: "{{ aur_user }}"
     group: wheel
-    create_home: no
+    home: "/var/tmp/{{ aur_user }}"
   become: yes
   tags:
     - aur_builder

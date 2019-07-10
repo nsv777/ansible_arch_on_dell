@@ -43,6 +43,7 @@
     - pacman
     - config
 
+
 - name: Run the equivalent of "pacman -Sy" as a separate step
   pacman:
     update_cache: yes
