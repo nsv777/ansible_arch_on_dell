@@ -1,0 +1,32 @@
+---
+- name: Install vim
+  aur:
+    name:
+      - vim
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_vim
+    - vim
+
+
+- name: Copy vim config
+  copy:
+    src: vim_config/vimrc.local
+    dest: /etc/
+  become: yes
+  tags:
+    - configure_vim
+    - vim
+
+
+- name: Update vim config
+  lineinfile:
+    path: /etc/vimrc
+    regexp: '^source.*\/vimrc\.local$'
+    line:  'source /etc/vimrc.local'
+  become: yes
+  tags:
+    - configure_vim
+    - vim
