@@ -1,12 +1,13 @@
 ---
 - hosts: localhost
   roles:
+    - configure_pacman
     - systemd
     - usb_mouse_on_boot
     - pulseaudio_hdmi_fix
     - install_ansible_aur
     - install_yay
-    - configure_pacman
+    - paccache
 #    - install_packages
     - cinnamon
     - geany

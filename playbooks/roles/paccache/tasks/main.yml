@@ -1,0 +1,7 @@
+---
+- name: Install paccache and hook to cleanup packages
+  aur:
+    name:
+      - paccache-hook
+  tags:
+    - paccache
