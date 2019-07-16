@@ -4,8 +4,8 @@ cli_add_playlist_name Default
 cli_add_to_specific_playlist 1
 deadbeef_version 0.7.2
 filechooser.lastdir file:///home/stas/ownCloud/Music/music
-gtkui.color.bar_background 54227 55255 53199
-gtkui.color.bar_foreground 30069 20560 31611
+gtkui.color.bar_background 47802 48573 46774
+gtkui.color.bar_foreground 21845 22359 21331
 gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"717","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"107","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=806 {} }
 gtkui.mmb_delete_playlist 1
