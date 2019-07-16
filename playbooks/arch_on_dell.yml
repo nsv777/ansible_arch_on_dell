@@ -9,7 +9,8 @@
     - install_yay
     - paccache
 #    - install_packages
+    - vim
     - cinnamon
     - geany
     - guake
-    - vim
+    - deadbeef
