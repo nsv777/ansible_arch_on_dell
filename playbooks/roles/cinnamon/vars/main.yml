@@ -64,6 +64,8 @@ cinnamon_config:
     value: 'false'
   - key: /org/cinnamon/sounds/notification-enabled
     value: 'true'
+  - key: /org/cinnamon/desktop/notifications/bottom-notifications
+    value: 'true'
   - key: /org/cinnamon/theme/name
     value: "'Numix-Cinnamon'"
   - key: /org/gnome/libgnomekbd/desktop/default-group
