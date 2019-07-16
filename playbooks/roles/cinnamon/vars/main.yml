@@ -1,5 +1,7 @@
 ---
 cinnamon_config:
+  - key: /org/cinnamon/active-display-scale
+    value: 1
   - key: /org/cinnamon/alttab-switcher-delay
     value: 100
   - key: /org/cinnamon/desktop-effects
@@ -40,6 +42,8 @@ cinnamon_config:
     value: 30
   - key: /org/cinnamon/desktop/wm/preferences/titlebar-font
     value: "'Sans Bold 8'"
+  - key: /org/cinnamon/muffin/sync-method
+    value: "'none'"
   - key: /org/cinnamon/muffin/desktop-effects
     value: 'false'
   - key: /org/cinnamon/muffin/unredirect-fullscreen-windows
