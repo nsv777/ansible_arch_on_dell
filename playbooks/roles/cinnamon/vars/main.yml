@@ -56,6 +56,18 @@ cinnamon_config:
     value: 1.0
   - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
     value: 1
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-acceleration
+    value: 'true'
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-threshold
+    value: 'false'
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/disable-while-typing
+    value: 'false'
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/horizontal-scrolling
+    value: 'true'
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-acceleration
+    value: 6.5696721311475406
+  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-threshold
+    value: 1
   - key: /org/cinnamon/settings-daemon/plugins/xsettings/menus-have-icons
     value: 'true'
   - key: /org/cinnamon/sounds/login-enabled
