@@ -1,0 +1,38 @@
+---
+- name: Create scripts directory
+  file:
+    path: $HOME/scripts
+    state: directory
+    mode: 0700
+  tags:
+    - wallpaper
+
+
+- name: Clone the python script repo
+  git:
+    repo: 'https://github.com/nsv777/random_wallpaper_url.git'
+    dest: $HOME/scripts/random_wallpaper_url
+  tags:
+    - wallpaper
+
+
+- name: Install required packages
+  pacman:
+    name:
+      - feh
+      - python-beautifulsoup4
+      - python-requests
+      - wget
+    update_cache: yes
+  become: yes
+  tags:
+    - wallpaper
+
+
+- name: Add cron job
+  cron:
+    name: Wallpaper random changer
+    special_time: hourly
+    job: 'wget -q --limit-rate=20k -O /tmp/background.jpg $(python $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py) && DISPLAY=":0" feh --bg-fill /tmp/background.jpg'
+  tags:
+    - wallpaper
