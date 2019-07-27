@@ -37,3 +37,13 @@
     job: 'wget -q --limit-rate=20k -O /tmp/background.jpg $(python $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py) && DISPLAY=":0" feh --bg-fill /tmp/background.jpg'
   tags:
     - wallpaper
+
+
+- name: Enable and start cronie daemon
+  service:
+    name: cronie
+    state: started
+    enabled: yes
+  become: yes
+  tags:
+    - wallpaper

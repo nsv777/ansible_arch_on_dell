@@ -1,5 +1,5 @@
 ---
-- name: Install base-delev pkg group
+- name: Install base-devel pkg group
   pacman:
     name: base-devel
   become: yes
