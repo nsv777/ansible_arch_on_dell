@@ -26,3 +26,11 @@
   become: yes
   tags:
     - aur_builder
+
+
+- name: Add Tor Browser gpg key
+  command: gpg --keyserver hkp://pgp.mit.edu:11371 --recv-keys 0x4E2C6E8793298290
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - aur_builder
