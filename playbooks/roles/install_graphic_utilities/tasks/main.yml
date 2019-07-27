@@ -1,0 +1,17 @@
+---
+- name: Install utilities
+  aur:
+    name:
+      - skypeforlinux-stable-bin
+      - tor-browser
+      - pinta
+      - popcorntime-bin
+      - transmission-qt
+      - slack-desktop
+      - teamviewer
+      - gnome-screenshot
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_graphic_utilities

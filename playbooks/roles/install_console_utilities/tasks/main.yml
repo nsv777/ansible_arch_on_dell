@@ -1,0 +1,12 @@
+---
+- name: Install utilities
+  aur:
+    name:
+      - htop
+      - mc
+      - lshw
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_console_utilities

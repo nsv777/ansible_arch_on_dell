@@ -12,6 +12,10 @@
       - capitaine-cursors
       - xclip
       - galculator
+      - file-roller
+      - nemo-fileroller
+      - p7zip
+      - unrar
     skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
