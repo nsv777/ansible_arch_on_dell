@@ -5,6 +5,17 @@
       - htop
       - mc
       - lshw
+      - docker
+      - docker-compose
+      - man-db
+      - nmap
+      - ntfs-3g
+      - powertop
+      - python2
+      - rsync
+      - samba
+      - wget
+      - xz
     skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"

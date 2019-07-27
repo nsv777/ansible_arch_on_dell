@@ -16,6 +16,11 @@
       - nemo-fileroller
       - p7zip
       - unrar
+      - network-manager-applet
+      - networkmanager-openconnect
+      - networkmanager-openvpn
+      - networkmanager-pptp
+      - bluez
     skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
