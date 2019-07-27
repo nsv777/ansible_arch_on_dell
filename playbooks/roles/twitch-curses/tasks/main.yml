@@ -1,0 +1,30 @@
+---
+- name: Install packages
+  aur:
+    name:
+      - twitch-curses
+      - mpv
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_twitch_curses
+    - twitch_curses
+
+
+- name: Create streamlink config directory
+  file:
+    path: $HOME/.config/streamlink
+    state: directory
+  tags:
+    - configure_streamlink
+    - twitch_curses
+
+
+- name: Update streamlink config
+  copy:
+    content: "player=mpv --cache 30480\n"
+    dest: $HOME/.config/streamlink/config
+  tags:
+    - configure_streamlink
+    - twitch_curses
