@@ -1,4 +1,12 @@
 ---
+- name: Install base-delev pkg group
+  pacman:
+    name: base-devel
+  become: yes
+  tags:
+    - ansible_aur
+
+
 - name: Create aur user
   include_role:
     name: create_aur_user
