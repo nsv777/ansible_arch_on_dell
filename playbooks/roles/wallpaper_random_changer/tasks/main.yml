@@ -24,6 +24,7 @@
       - python-requests
       - wget
       - cronie
+      - python-lxml
     update_cache: yes
   become: yes
   tags:
