@@ -59,7 +59,10 @@
     "worldclocks": {
         "type": "generic",
         "default": [
-            "Coordinated Universal Time|UTC"
+            "Moscow|Europe/Moscow",
+            "UTC|UTC",
+            "Eastern|America/New_York",
+            "Pacific|America/Los_Angeles"
         ],
         "value": [
             "Moscow|Europe/Moscow",
