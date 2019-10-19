@@ -61,6 +61,8 @@
       - virtualbox-guest-iso
       - virtualbox-host-modules-arch
       - wget
+      - wqy-bitmapfont
+      - wqy-zenhei
       - xz
     state: present
   tags:
