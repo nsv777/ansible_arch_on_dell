@@ -54,7 +54,8 @@
       - remmina
       - rsync
       - samba
-      - smplayer
+      - smplayer-svn
+      - smplayer-themes
       - tigervnc
       - vim
       - virtualbox
