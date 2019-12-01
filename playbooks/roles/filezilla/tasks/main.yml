@@ -1,0 +1,29 @@
+---
+- name: Install filezilla
+  aur:
+    name:
+      - filezilla
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_filezilla
+    - filezilla
+
+
+- name: Create config directory
+  file:
+    path: $HOME/.config/filezilla
+    state: directory
+  tags:
+    - configure_filezilla
+    - filezilla
+
+
+- name: Copy config
+  copy:
+    src: sitemanager.xml
+    dest: $HOME/.config/filezilla/
+  tags:
+    - configure_filezilla
+    - filezilla
