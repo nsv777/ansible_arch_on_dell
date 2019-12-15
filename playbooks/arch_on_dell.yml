@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   roles:
+    - locale
     - configure_pacman
     - systemd
     - usb_mouse_on_boot

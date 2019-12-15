@@ -1,0 +1,12 @@
+---
+- debug:
+    msg: "Setting locale to {{ locale }}"
+  tags:
+    - locale
+
+
+- name: Set locale
+  command: localectl set-locale LANG="{{ locale }}"
+  become: yes
+  tags:
+    - locale
