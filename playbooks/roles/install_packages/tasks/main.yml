@@ -46,7 +46,7 @@
       - networkmanager-pptp
       - nmap
       - ntfs-3g
-      - owncloud-client
+      - nextcloud-client
       - p7zip
       - powertop
       - python2
@@ -54,7 +54,7 @@
       - remmina
       - rsync
       - samba
-      - smplayer-svn
+      - smplayer
       - smplayer-themes
       - tigervnc
       - vim
