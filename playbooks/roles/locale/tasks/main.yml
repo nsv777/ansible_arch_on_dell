@@ -1,11 +1,22 @@
 ---
-- debug:
-    msg: "Setting locale to {{ locale }}"
+- name: Uncomment locale {{ locale }} from /etc/locale.gen
+  lineinfile:
+    dest: /etc/locale.gen
+    regexp: '^#{{ locale }} UTF-8.*$'
+    line: '{{ locale }} UTF-8'
+  become: yes
   tags:
     - locale
 
 
-- name: Set locale
+- name: Generate locales
+  command: locale-gen
+  become: yes
+  tags:
+    - locale
+
+
+- name: Setting locale to {{ locale }}
   command: localectl set-locale LANG="{{ locale }}"
   become: yes
   tags:

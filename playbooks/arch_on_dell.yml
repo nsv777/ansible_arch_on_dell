@@ -1,22 +1,24 @@
 ---
 - hosts: localhost
   roles:
-    - locale
-    - configure_pacman
-    - systemd
-    - usb_mouse_on_boot
-    - pulseaudio_hdmi_fix
-    - install_ansible_aur
-    - install_yay
-    - paccache
-#    - install_packages
-    - vim
-    - cinnamon
-    - geany
-    - guake
-    - deadbeef
-    - filezilla
-    - wallpaper_random_changer
-    - twitch-curses
-    - install_console_utilities
-    - install_graphic_utilities
+    - role: locale
+      vars:
+        locale: pl_PL.UTF-8
+    - role: configure_pacman
+    - role: systemd
+    - role: usb_mouse_on_boot
+    - role: pulseaudio_hdmi_fix
+    - role: install_ansible_aur
+    - role: install_yay
+    - role: paccache
+#    - role: install_packages
+    - role: vim
+    - role: cinnamon
+    - role: geany
+    - role: guake
+    - role: deadbeef
+    - role: filezilla
+    - role: wallpaper_random_changer
+    - role: twitch-curses
+    - role: install_console_utilities
+    - role: install_graphic_utilities

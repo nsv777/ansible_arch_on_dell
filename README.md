@@ -3,11 +3,11 @@
 
 Configure pacman and install ansible_aur:
 ```
-ansible-playbook playbooks/initial.yml -i hosts.yml
+ansible-playbook playbooks/initial.yml
 ```
 Then the do the rest of the config:
 ```
-ansible-playbook playbooks/arch_on_dell.yml -i hosts.yml
+ansible-playbook playbooks/arch_on_dell.yml
 ```
 i915.enable_psr must be turned off since 5.2 kernel
 ```
