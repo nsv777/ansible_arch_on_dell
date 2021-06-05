@@ -1,0 +1,2 @@
+---
+conf_d_path: /etc/systemd/journald.conf.d
