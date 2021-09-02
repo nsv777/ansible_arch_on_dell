@@ -1,0 +1,10 @@
+---
+- name: Install packages
+  apt:
+    name: '{{ Ubuntu.apt }}'
+    state: latest
+    update_cache: yes
+  become: yes
+  when: Ubuntu.apt is defined
+  tags:
+    - wallpaper

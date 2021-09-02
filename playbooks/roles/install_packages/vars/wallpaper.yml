@@ -1,0 +1,15 @@
+---
+Ubuntu:
+  apt:
+    - python3-bs4
+    - python3-requests
+    - python3-lxml
+    - wget
+Arch:
+  aur:
+    - feh
+    - python-beautifulsoup4
+    - python-requests
+    - wget
+    - cronie
+    - python-lxml

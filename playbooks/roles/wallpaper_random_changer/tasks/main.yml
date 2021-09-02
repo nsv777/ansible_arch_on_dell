@@ -16,26 +16,15 @@
     - wallpaper
 
 
-- name: Install required packages
-  pacman:
-    name:
-      - feh
-      - python-beautifulsoup4
-      - python-requests
-      - wget
-      - cronie
-      - python-lxml
-    update_cache: yes
-  become: yes
+- include_role:
+    name: install_packages
+    vars_from: wallpaper
   tags:
     - wallpaper
 
 
-- name: Add cron job
-  cron:
-    name: Wallpaper random changer
-    special_time: hourly
-    job: 'wget -q --limit-rate=20k -O /tmp/background.jpg $(python $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py) && DISPLAY=":0" feh --bg-fill /tmp/background.jpg'
+- include_tasks:
+    file: "do_add_cron_job_{{ ansible_distribution }}.yml"
   tags:
     - wallpaper
 
@@ -46,5 +35,6 @@
     state: started
     enabled: yes
   become: yes
+  when: ansible_distribution == "Arch"
   tags:
     - wallpaper

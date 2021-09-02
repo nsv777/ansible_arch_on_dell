@@ -1,0 +1,7 @@
+- name: Add cron job
+  cron:
+    name: Wallpaper random changer
+    special_time: hourly
+    job: wget -q --limit-rate=20k -O /tmp/background.jpg $(python3 $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py) && PID=$(pgrep -f 'gnome-session' | head -n1); export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ|cut -d= -f2-); gsettings set org.gnome.desktop.background picture-uri /tmp/background.jpg
+  tags:
+    - wallpaper

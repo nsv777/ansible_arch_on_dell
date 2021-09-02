@@ -1,11 +1,7 @@
 ---
-- name: Install vim
-  aur:
-    name:
-      - vim
-    skip_installed: yes
-  become: yes
-  become_user: "{{ aur_user }}"
+- include_tasks:
+    file: do_install_vim.yml
+  when: arch in ansible_distribution
   tags:
     - install_vim
     - vim

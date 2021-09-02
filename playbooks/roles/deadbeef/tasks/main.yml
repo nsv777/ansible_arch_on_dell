@@ -1,11 +1,7 @@
 ---
-- name: Install deadbeef
-  aur:
-    name:
-      - deadbeef
-    skip_installed: yes
-  become: yes
-  become_user: "{{ aur_user }}"
+- include_tasks:
+    file: do_install_deadbeef.yml
+  when: arch in ansible_distribution
   tags:
     - install_deadbeef
     - deadbeef

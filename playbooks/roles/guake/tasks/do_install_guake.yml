@@ -1,0 +1,10 @@
+---
+- name: Install guake
+  aur:
+    name:
+      - guake
+      - adwaita-icon-theme
+      - ttf-hack
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"

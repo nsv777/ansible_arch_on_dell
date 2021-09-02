@@ -1,7 +1,6 @@
 ---
-- name: Install paccache and hook to cleanup packages
-  aur:
-    name:
-      - paccache-hook
+- include_tasks:
+    file: do_install_paccache.yml
+  when: arch in ansible_distribution
   tags:
     - paccache

@@ -1,10 +1,6 @@
 ---
-- name: Install yay
-  aur:
-    name: yay
-    use: makepkg
-    skip_installed: true
-  become: yes
-  become_user: "{{ aur_user }}"
+- include_tasks:
+    file: do_install_yay.yml
+  when: arch in ansible_distribution
   tags:
     - yay

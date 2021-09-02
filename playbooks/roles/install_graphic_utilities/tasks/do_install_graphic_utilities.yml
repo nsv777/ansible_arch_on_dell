@@ -1,0 +1,24 @@
+---
+- name: Install graphic utilities
+  aur:
+    name:
+      - skypeforlinux-stable-bin
+      - tor-browser
+      - pinta
+      - transmission-qt
+      - slack-desktop
+      - teamviewer
+      - gnome-screenshot
+      - libreoffice-fresh
+      - gpicview-gtk3
+      - owncloud-client
+      - rdesktop
+      - remmina
+      - freerdp
+      - tigervnc
+      - virtualbox
+      - virtualbox-guest-iso
+      - virtualbox-host-modules-arch
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"

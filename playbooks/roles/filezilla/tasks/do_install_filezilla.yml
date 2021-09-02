@@ -1,0 +1,11 @@
+---
+- name: Install filezilla
+  aur:
+    name:
+      - filezilla
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_filezilla
+    - filezilla

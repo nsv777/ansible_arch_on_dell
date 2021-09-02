@@ -1,0 +1,11 @@
+---
+- name: Install deadbeef
+  aur:
+    name:
+      - deadbeef
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  tags:
+    - install_deadbeef
+    - deadbeef

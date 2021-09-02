@@ -1,13 +1,7 @@
 ---
-- name: Install geany
-  aur:
-    name:
-      - geany
-      - geany-themes
-      - ttf-hack
-    skip_installed: yes
-  become: yes
-  become_user: "{{ aur_user }}"
+- include_tasks:
+    file: do_install_geany.yml
+  when: arch in ansible_distribution
   tags:
     - install
     - geany

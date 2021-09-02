@@ -1,30 +1,7 @@
 ---
-- name: Install cinnamon
-  aur:
-    name:
-      - cinnamon
-      - nemo
-      - nemo-fileroller
-      - cinnamon-sound-effects
-      - cinnamon-theme-numix-git
-      - faenza-icon-theme
-      - adwaita-icon-theme
-      - capitaine-cursors
-      - xclip
-      - galculator
-      - file-roller
-      - nemo-fileroller
-      - p7zip
-      - unrar
-      - network-manager-applet
-      - networkmanager-openconnect
-      - networkmanager-openvpn
-      - networkmanager-pptp
-      - bluez
-      - python2-gobject
-    skip_installed: yes
-  become: yes
-  become_user: "{{ aur_user }}"
+- include_tasks:
+    file: do_install_cinnamon.yml
+  when: arch in ansible_distribution
   tags:
     - install
     - cinnamon

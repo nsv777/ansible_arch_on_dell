@@ -1,0 +1,20 @@
+---
+#- name: Run the equivalent of "pacman -Syu" as a separate step
+#  pacman:
+#    update_cache: yes
+#    upgrade: yes
+#  become: yes
+#  tags:
+#    - update
+#    - upgrade
+
+
+- name: Install packages
+  aur:
+    name: '{{ Arch.aur }}'
+    skip_installed: yes
+  become: yes
+  become_user: "{{ aur_user }}"
+  when: Arch.aur is defined
+  tags:
+    - wallpaper
