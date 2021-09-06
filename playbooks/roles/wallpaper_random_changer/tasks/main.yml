@@ -23,8 +23,25 @@
     - wallpaper
 
 
-- include_tasks:
-    file: "do_add_cron_job_{{ ansible_distribution }}.yml"
+#- include_tasks:
+#    file: "do_add_cron_job_{{ ansible_distribution }}.yml"
+#  tags:
+#    - wallpaper
+
+- name: Generate script from template
+  template:
+    src: random_wallpaper.sh.j2
+    dest: $HOME/scripts/random_wallpaper.sh
+    mode: "0700"
+  tags:
+    - wallpaper
+
+
+- name: Add cron job
+  cron:
+    name: Wallpaper random changer
+    special_time: hourly
+    job: $HOME/scripts/random_wallpaper.sh
   tags:
     - wallpaper
 

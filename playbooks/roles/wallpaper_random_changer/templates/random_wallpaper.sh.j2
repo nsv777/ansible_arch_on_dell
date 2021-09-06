@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+tempfile=$(mktemp)
+wallpaper_file="/tmp/background.jpg"
+
+wget -q --limit-rate=30k -O ${tempfile} $(python3 $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py)
+
+if [[ $? != 0 ]]; then
+    exit 1
+fi
+
+mv ${tempfile} ${wallpaper_file}
+
+{% if ansible_distribution == "Ubuntu" %}
+PID=$(pgrep -f 'gnome-session' | head -n1)
+export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | cut -d= -f2-)
+gsettings set org.gnome.desktop.background picture-uri ${wallpaper_file}
+{% elif ansible_distribution == "Arch" %}
+DISPLAY=":0" feh --bg-fill ${wallpaper_file}
+{% endif %}
