@@ -1,7 +1,0 @@
-- name: Add cron job
-  cron:
-    name: Wallpaper random changer
-    special_time: hourly
-    job: 'wget -q --limit-rate=20k -O /tmp/background.jpg $(python3 $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py) && DISPLAY=":0" feh --bg-fill /tmp/background.jpg'
-  tags:
-    - wallpaper
