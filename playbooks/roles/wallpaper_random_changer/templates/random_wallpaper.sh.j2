@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 tempfile=$(mktemp)
-wallpaper_file="/tmp/background.jpg"
+wallpaper_file="/var/tmp/background.jpg"
 
 wget -q --limit-rate=30k -O ${tempfile} $(python3 $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py)
 
