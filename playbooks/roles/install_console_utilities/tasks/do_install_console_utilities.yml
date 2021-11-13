@@ -16,6 +16,5 @@
       - samba
       - wget
       - xz
-    skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"

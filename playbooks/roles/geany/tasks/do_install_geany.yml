@@ -5,7 +5,6 @@
       - geany
       - geany-themes
       - ttf-hack
-    skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
   tags:

@@ -7,7 +7,6 @@
       - adwaita-icon-theme
       - faenza-icon-theme
       - gnome-backgrounds
-    skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
   tags:

@@ -19,6 +19,5 @@
       - virtualbox
       - virtualbox-guest-iso
       - virtualbox-host-modules-arch
-    skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"

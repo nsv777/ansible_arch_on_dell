@@ -5,7 +5,7 @@ Configure pacman and install ansible_aur:
 ```
 ansible-playbook playbooks/initial.yml
 ```
-Then the do the rest of the config:
+Then do the rest of the config:
 ```
 ansible-playbook playbooks/arch_on_dell.yml
 ```

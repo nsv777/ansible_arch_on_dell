@@ -12,7 +12,6 @@
 - name: Install packages
   aur:
     name: '{{ Arch.aur }}'
-    skip_installed: yes
   become: yes
   become_user: "{{ aur_user }}"
   when: Arch.aur is defined
