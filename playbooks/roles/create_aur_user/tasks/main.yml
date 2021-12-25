@@ -29,7 +29,7 @@
 
 
 - name: Add Tor Browser gpg key
-  command: gpg --keyserver hkp://keys.openpgp.org:11371 --recv-keys 0x4E2C6E8793298290
+  command: gpg --keyserver hkp://keys.openpgp.org:11371 --recv-keys 0xE53D989A9E2D47BF
   become: yes
   become_user: "{{ aur_user }}"
   tags:
