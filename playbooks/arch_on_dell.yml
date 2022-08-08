@@ -22,3 +22,5 @@
     - role: twitch-curses
     - role: install_console_utilities
     - role: install_graphic_utilities
+    - role: firefox
+      tags: firefox
