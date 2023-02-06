@@ -2,7 +2,7 @@
 tempfile=$(mktemp)
 wallpaper_file="/var/tmp/background.jpg"
 
-wget -q --limit-rate=30k -O ${tempfile} $(python3 $HOME/scripts/random_wallpaper_url/random_wallpaper_url.py)
+wget -q --limit-rate=30k -O ${tempfile} $({{ wallpaper_changer_venv_location }}/bin/python3 $HOME/{{ wallpaper_changer_script_location }}/random_wallpaper_url/random_wallpaper_url.py)
 
 if [[ $? != 0 ]]; then
     exit 1

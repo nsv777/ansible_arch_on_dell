@@ -18,7 +18,8 @@
     - role: guake
     - role: deadbeef
     - role: filezilla
-    - role: wallpaper_random_changer
+    - role: wallpaper_changer
+      tags: wallpaper_changer
     - role: twitch-curses
     - role: install_console_utilities
     - role: install_graphic_utilities

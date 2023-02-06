@@ -1,0 +1,11 @@
+[Unit]
+Description=Run wallpaper-changer hourly and on boot
+
+[Timer]
+OnBootSec=15min
+OnCalendar=*-*-* *:00:00
+
+Unit=wallpaper-changer.service
+
+[Install]
+WantedBy=timers.target

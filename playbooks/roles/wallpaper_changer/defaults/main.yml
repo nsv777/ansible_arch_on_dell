@@ -1,0 +1,5 @@
+---
+wallpaper_changer_script_location: "Documents/scripts/wallpaper_changer"
+wallpaper_changer_venv_location: "$HOME/{{ wallpaper_changer_script_location }}/venv"
+wallpaper_changer_systemd_service_name: "wallpaper-changer"
+wallpaper_changer_systemd_unit_dir: "$HOME/.config/systemd/user"

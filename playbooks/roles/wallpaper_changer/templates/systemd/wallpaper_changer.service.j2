@@ -1,0 +1,10 @@
+[Unit]
+Description=Download and set random wallpaper
+
+[Service]
+WorkingDirectory=%h/{{ wallpaper_changer_script_location }}
+ExecStart=%h/{{ wallpaper_changer_script_location }}/wallpaper_changer.sh
+Type=oneshot
+
+[Install]
+WantedBy=default.target
