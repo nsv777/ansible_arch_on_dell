@@ -1,0 +1,4 @@
+---
+- name: generate_locales
+  command: locale-gen
+  become: yes

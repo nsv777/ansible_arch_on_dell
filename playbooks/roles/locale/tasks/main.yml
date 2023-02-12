@@ -1,23 +1,21 @@
 ---
-- name: Uncomment locale {{ locale }} from /etc/locale.gen
-  lineinfile:
+- name: "Uncomment locale {{ locale }} in /etc/locale.gen"
+  replace:
     dest: /etc/locale.gen
     regexp: '^#{{ locale }} UTF-8.*$'
-    line: '{{ locale }} UTF-8'
+    replace: '{{ locale }} UTF-8'
   become: yes
+  notify: generate_locales
   tags:
     - locale
 
 
 - name: Generate locales
-  command: locale-gen
-  become: yes
-  tags:
-    - locale
+  meta: flush_handlers
 
 
-- name: Setting locale to {{ locale }}
-  command: localectl set-locale LANG="{{ locale }}"
+- name: "Setting locale to {{ locale }}"
+  command: 'localectl set-locale LANG="{{ locale }}"'
   become: yes
   tags:
     - locale

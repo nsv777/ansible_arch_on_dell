@@ -2,12 +2,12 @@
 - name: Install console utilities
   aur:
     name:
-      - htop
-      - mc
-      - lshw
       - docker
       - docker-compose
+      - htop
+      - lshw
       - man-db
+      - mc
       - nmap
       - ntfs-3g
       - powertop

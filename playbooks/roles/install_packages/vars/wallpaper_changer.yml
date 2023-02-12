@@ -5,8 +5,5 @@ Ubuntu:
 Arch:
   aur:
     - feh
-    - python-beautifulsoup4
-    - python-requests
+    - python-virtualenv
     - wget
-    - cronie
-    - python-lxml

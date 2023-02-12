@@ -1,9 +1,9 @@
 ---
-- name: mirrorlist
+- name: Enable Spain mirror in /etc/pacman.d/mirrorlist
   replace:
     path: /etc/pacman.d/mirrorlist
-    regexp: '^#Server = http\:\/\/mirrors\.niyawe\.de\/archlinux\/\$repo\/os\/\$arch$'
-    replace: Server = http://mirrors.niyawe.de/archlinux/$repo/os/$arch
+    regexp: '^#Server = http:\/\/mirror.librelabucm.org\/archlinux\/$repo\/os\/$arch'
+    replace: Server = http://mirror.librelabucm.org/archlinux/$repo/os/$arch
   become: yes
   tags:
     - configure_pacman
