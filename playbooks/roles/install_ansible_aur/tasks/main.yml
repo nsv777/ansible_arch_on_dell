@@ -25,10 +25,11 @@
     - ansible_aur
 
 
-- name: make package
+- name: Build and install package
   ansible.builtin.command: makepkg --noconfirm --clean --install --cleanbuild --syncdeps
   args:
     chdir: /tmp/ansible_aur_git
+  changed_when: false
   become: true
   become_user: "{{ aur_user }}"
   tags:

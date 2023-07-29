@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install geany on Arch
+  ansible.builtin.include_tasks:
     file: do_install_geany.yml
   when: arch in ansible_distribution
   tags:
@@ -11,6 +12,7 @@
   ansible.builtin.file:
     path: $HOME/.config/geany
     state: directory
+    mode: "0755"
   tags:
     - configure
     - geany
@@ -20,6 +22,7 @@
   ansible.builtin.copy:
     src: geany/geany.conf
     dest: $HOME/.config/geany/
+    mode: "0644"
   tags:
     - configure
     - geany

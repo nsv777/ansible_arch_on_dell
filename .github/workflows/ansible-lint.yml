@@ -32,5 +32,5 @@ jobs:
           sudo apt install ansible-lint
 
       # Runs a command using the runners shell
-      - name: Rune ansible-lint
+      - name: Run ansible-lint
         run: ansible-lint
