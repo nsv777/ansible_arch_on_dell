@@ -3,8 +3,8 @@
   aur:
     name: yay
     use: makepkg
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
-  ignore_errors: yes
+  ignore_errors: true
   tags:
     - yay

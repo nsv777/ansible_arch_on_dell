@@ -1,7 +1,9 @@
 ---
-- name: stop pulseaudio
-  command: pulseaudio --kill
+- name: Stop_pulseaudio
+  ansible.builtin.command: pulseaudio --kill
+  changed_when: false
 
 
-- name: start pulseaudio
-  command: pulseaudio --start
+- name: Start_pulseaudio
+  ansible.builtin.command: pulseaudio --start
+  changed_when: false

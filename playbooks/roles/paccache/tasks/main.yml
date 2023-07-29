@@ -1,5 +1,6 @@
 ---
-- include_tasks:
+- name: Install paccache on Arch
+  ansible.builtin.include_tasks:
     file: do_install_paccache.yml
   when: arch in ansible_distribution
   tags:

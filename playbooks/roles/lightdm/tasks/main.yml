@@ -7,7 +7,7 @@
       - adwaita-icon-theme
       - faenza-icon-theme
       - gnome-backgrounds
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
   tags:
     - install
@@ -15,7 +15,7 @@
 
 
 - name: Copy config
-  copy:
+  ansible.builtin.copy:
     src: etc/lightdm/
     dest: /etc/lightdm/
   tags:
@@ -24,7 +24,7 @@
 
 
 - name: Enable service and ensure it is not masked
-  systemd:
+  ansible.builtin.systemd:
     name: lightdm
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false

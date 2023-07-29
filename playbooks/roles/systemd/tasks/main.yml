@@ -1,33 +1,33 @@
 ---
 - name: Create conf.d directory
-  file:
+  ansible.builtin.file:
     path: "{{ conf_d_path }}"
     state: directory
-    owner: root
-  become: yes
+    mode: "0755"
+  become: true
   tags:
     - systemd
     - journald
 
 
 - name: Copy journald config
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ conf_d_path }}"
+    mode: "0644"
   with_fileglob:
     - files/*
-  become: yes
+  become: true
   tags:
     - systemd
     - journald
 
 
 - name: Restart journald
-  service:
+  ansible.builtin.systemd:
     name: systemd-journald
     state: restarted
-  become: yes
-  ignore_errors: yes
+  become: true
   tags:
     - systemd
     - journald

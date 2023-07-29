@@ -1,5 +1,5 @@
 ---
-- include_tasks:
+- ansible.builtin.include_tasks:
     file: do_install_deadbeef.yml
   when: arch in ansible_distribution
   tags:
@@ -8,7 +8,7 @@
 
 
 - name: Create config directory
-  file:
+  ansible.builtin.file:
     path: $HOME/.config/deadbeef
     state: directory
   tags:
@@ -17,7 +17,7 @@
 
 
 - name: Copy config
-  copy:
+  ansible.builtin.copy:
     src: deadbeef/config
     dest: $HOME/.config/deadbeef/
   tags:

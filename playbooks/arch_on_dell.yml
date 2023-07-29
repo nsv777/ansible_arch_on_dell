@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Install all the needed stuff
+  hosts: localhost
   roles:
     - role: locale
       vars:
@@ -20,7 +21,7 @@
     - role: filezilla
     - role: wallpaper_changer
       tags: wallpaper_changer
-    - role: twitch-curses
+    - role: twitch_curses
     - role: install_console_utilities
     - role: install_graphic_utilities
     - role: firefox

@@ -1,5 +1,6 @@
 ---
-- include_tasks:
+- name: Install twitch-curses on Arch
+  ansible.builtin.include_tasks:
     file: do_install_twitch-curses.yml
   when: arch in ansible_distribution
   tags:
@@ -8,18 +9,20 @@
 
 
 - name: Create streamlink config directory
-  file:
+  ansible.builtin.file:
     path: $HOME/.config/streamlink
     state: directory
+    mode: "0755"
   tags:
     - configure_streamlink
     - twitch_curses
 
 
 - name: Update streamlink config
-  copy:
+  ansible.builtin.copy:
     content: "player=mpv --cache 30480\n"
     dest: $HOME/.config/streamlink/config
+    mode: "0644"
   tags:
     - configure_streamlink
     - twitch_curses

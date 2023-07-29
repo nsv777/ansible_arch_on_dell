@@ -19,5 +19,5 @@
       - virtualbox
       - virtualbox-guest-iso
       - virtualbox-host-modules-arch
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"

@@ -1,5 +1,5 @@
 ---
-- include_tasks:
+- ansible.builtin.include_tasks:
     file: do_install_cinnamon.yml
   when: arch in ansible_distribution
   tags:
@@ -8,7 +8,7 @@
 
 
 - name: Create scripts directory
-  file:
+  ansible.builtin.file:
     path: $HOME/scripts
     state: directory
     mode: 0700
@@ -19,7 +19,7 @@
 
 
 - name: Copy user scripts
-  copy:
+  ansible.builtin.copy:
     src: user_scripts/
     dest: $HOME/scripts/
     mode: 0700
@@ -42,7 +42,7 @@
 
 
 - name: Create cinnamon config directory
-  file:
+  ansible.builtin.file:
     path: $HOME/.cinnamon/configs
     state: directory
     mode: 0755
@@ -52,7 +52,7 @@
 
 
 - name: Copy cinnamon configs
-  copy:
+  ansible.builtin.copy:
     src: cinnamon_configs/
     dest: $HOME/.cinnamon/configs/
   tags:

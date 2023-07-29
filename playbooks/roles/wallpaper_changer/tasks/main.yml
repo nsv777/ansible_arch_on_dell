@@ -1,31 +1,33 @@
 ---
-- name: "Create $HOME/{{ wallpaper_changer_script_location }} directory"
-  file:
+- name: "Create directory $HOME/{{ wallpaper_changer_script_location }}"
+  ansible.builtin.file:
     path: "$HOME/{{ wallpaper_changer_script_location }}"
     state: directory
-    mode: 0755
+    mode: "0755"
 
 
 - name: Clone the python script repo
-  git:
+  ansible.builtin.git:
     repo: 'https://github.com/nsv777/random_wallpaper_url.git'
+    version: "{{ wallpaper_changer_git_tag }}"
     dest: "$HOME/{{ wallpaper_changer_script_location }}/random_wallpaper_url"
 
 
-- include_role:
+- name: Install packages
+  ansible.builtin.include_role:
     name: install_packages
     vars_from: wallpaper_changer
 
 
 - name: Generate script from template
-  template:
+  ansible.builtin.template:
     src: wallpaper_changer.sh.j2
     dest: "$HOME/{{ wallpaper_changer_script_location }}/wallpaper_changer.sh"
     mode: "0755"
 
 
 - name: "Create venv {{ wallpaper_changer_venv_location }}"
-  pip:
+  ansible.builtin.pip:
     requirements: "$HOME/{{ wallpaper_changer_script_location }}/random_wallpaper_url/requirements.txt"
     virtualenv: "{{ wallpaper_changer_venv_location }}"
     virtualenv_python: python3
@@ -34,32 +36,34 @@
 
 
 - name: "Create systemd unit directory {{ wallpaper_changer_systemd_unit_dir }}"
-  file:
+  ansible.builtin.file:
     path: "{{ wallpaper_changer_systemd_unit_dir }}"
     state: directory
-
+    mode: "0755"
 
 - name: "Create systemd service {{ wallpaper_changer_systemd_service_name }}"
-  template:
+  ansible.builtin.template:
     src: systemd/wallpaper_changer.service.j2
     dest: "{{ wallpaper_changer_systemd_unit_dir }}/{{ wallpaper_changer_systemd_service_name }}.service"
-  notify: systemd_daemon_reload
+    mode: "0644"
+  notify: Systemd_daemon_reload
 
 
 - name: "Create systemd timer {{ wallpaper_changer_systemd_service_name }}"
-  template:
+  ansible.builtin.template:
     src: systemd/wallpaper_changer.timer.j2
     dest: "{{ wallpaper_changer_systemd_unit_dir }}/{{ wallpaper_changer_systemd_service_name }}.timer"
-  notify: systemd_daemon_reload
+    mode: "0644"
+  notify: Systemd_daemon_reload
 
 
 - name: Flush handlers to reload systemd config
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 # To list user timers: systemctl  --user list-timers --all
 # To check service status: systemctl  --user status wallpaper-changer.service
-- name: "Enable {{ wallpaper_changer_systemd_service_name }}.timer"
-  systemd:
+- name: "Enable timer {{ wallpaper_changer_systemd_service_name }}"
+  ansible.builtin.systemd:
     name: "{{ wallpaper_changer_systemd_service_name }}.timer"
-    enabled: True
+    enabled: true
     scope: user

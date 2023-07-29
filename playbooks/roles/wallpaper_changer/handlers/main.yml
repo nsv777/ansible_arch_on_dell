@@ -1,5 +1,5 @@
 ---
-- name: systemd_daemon_reload
-  systemd:
-    daemon_reload: True
+- name: Systemd_daemon_reload
+  ansible.builtin.systemd:
+    daemon_reload: true
     scope: user

@@ -3,7 +3,7 @@
   aur:
     name:
       - vim
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
   tags:
     - install_vim

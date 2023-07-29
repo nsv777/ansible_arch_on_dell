@@ -5,5 +5,5 @@
       - guake
       - adwaita-icon-theme
       - ttf-hack
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"

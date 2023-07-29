@@ -1,5 +1,5 @@
 ---
-- include_tasks:
+- ansible.builtin.include_tasks:
     file: do_install_guake.yml
   when: arch in ansible_distribution
   tags:

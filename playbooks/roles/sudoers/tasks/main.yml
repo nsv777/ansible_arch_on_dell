@@ -1,0 +1,7 @@
+---
+- name: Passwordless sudo for wheel group members
+  ansible.builtin.copy:
+    src: 01-wheel
+    dest: /etc/sudoers.d/
+    mode: "0600"
+  become: true

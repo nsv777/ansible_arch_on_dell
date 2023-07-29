@@ -1,5 +1,7 @@
 ---
-- hosts: localhost
+- name: Initial config
+  hosts: localhost
   roles:
+    - sudoers
     - configure_pacman
     - install_ansible_aur

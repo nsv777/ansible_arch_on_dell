@@ -1,5 +1,5 @@
 ---
-- include_tasks:
+- ansible.builtin.include_tasks:
     file: do_install_geany.yml
   when: arch in ansible_distribution
   tags:
@@ -8,7 +8,7 @@
 
 
 - name: Create config directory
-  file:
+  ansible.builtin.file:
     path: $HOME/.config/geany
     state: directory
   tags:
@@ -17,7 +17,7 @@
 
 
 - name: Copy config
-  copy:
+  ansible.builtin.copy:
     src: geany/geany.conf
     dest: $HOME/.config/geany/
   tags:

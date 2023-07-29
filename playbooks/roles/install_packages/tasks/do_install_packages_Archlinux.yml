@@ -1,9 +1,9 @@
 ---
 #- name: Run the equivalent of "pacman -Syu" as a separate step
 #  pacman:
-#    update_cache: yes
-#    upgrade: yes
-#  become: yes
+#    update_cache: true
+#    upgrade: true
+#  become: true
 #  tags:
 #    - update
 #    - upgrade
@@ -12,7 +12,7 @@
 - name: Install packages
   aur:
     name: '{{ Arch.aur }}'
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
   when: Arch.aur is defined
   tags:

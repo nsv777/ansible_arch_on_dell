@@ -3,20 +3,20 @@
   apt_repository:
     repo: ppa:mozillateam/ppa
     state: present
-  become: True
+  become: true
 
 
 - name: Set apt priority to install firefox from apt repo
-  copy:
+  ansible.builtin.copy:
     src: mozilla-firefox
     dest: /etc/apt/preferences.d/mozilla-firefox
-  become: True
+  become: true
 
 
 - name: Install packages
   apt:
     name: firefox
     state: latest
-    allow_downgrade: True
-    update_cache: True
-  become: True
+    allow_downgrade: true
+    update_cache: true
+  become: true

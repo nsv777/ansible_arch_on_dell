@@ -2,13 +2,13 @@
 - name: Install base-devel pkg group
   pacman:
     name: base-devel
-  become: yes
+  become: true
   tags:
     - ansible_aur
 
 
 - name: Create aur user
-  include_role:
+  ansible.builtin.include_role:
     name: create_aur_user
   tags:
     - ansible_aur
@@ -16,29 +16,29 @@
 
 
 - name: clone git repo
-  git:
+  ansible.builtin.git:
     repo: 'https://aur.archlinux.org/ansible-aur-git.git'
     dest: /tmp/ansible_aur_git
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
   tags:
     - ansible_aur
 
 
 - name: make package
-  command: makepkg --noconfirm --clean --install --cleanbuild --syncdeps
+  ansible.builtin.command: makepkg --noconfirm --clean --install --cleanbuild --syncdeps
   args:
     chdir: /tmp/ansible_aur_git
-  become: yes
+  become: true
   become_user: "{{ aur_user }}"
   tags:
     - ansible_aur
 
 
 - name: remove temp dir
-  file:
+  ansible.builtin.file:
     path: /tmp/ansible_aur_git
     state: absent
-  become: yes
+  become: true
   tags:
     - ansible_aur

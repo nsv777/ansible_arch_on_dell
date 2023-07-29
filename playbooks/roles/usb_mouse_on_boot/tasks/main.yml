@@ -1,22 +1,22 @@
 ---
 - name: Create /root/scripts directory
-  file:
+  ansible.builtin.file:
     path: /root/scripts
     state: directory
     mode: "0700"
     owner: root
     group: root
-  become: yes
+  become: true
   tags:
     - copy
 
 
 - name: Copy files
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
-    group: "{{ item.group|default(item.owner) }}"
+    group: "{{ item.group | default(item.owner) }}"
     mode: "{{ item.mode }}"
   with_items: "{{ files }}"
   vars:
@@ -30,17 +30,17 @@
         mode: "0664"
         owner: root
   notify:
-    - reload systemd
-  become: yes
+    - Reload_systemd
+  become: true
   tags:
     - copy
 
 
 - name: Enable service
-  systemd:
+  ansible.builtin.systemd:
     name: usb_mouse_fix
-    enabled: yes
-    masked: no
-  become: yes
+    enabled: true
+    masked: false
+  become: true
   tags:
     - systemd
