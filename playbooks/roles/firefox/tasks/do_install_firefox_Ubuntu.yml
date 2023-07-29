@@ -10,6 +10,7 @@
   ansible.builtin.copy:
     src: mozilla-firefox
     dest: /etc/apt/preferences.d/mozilla-firefox
+    mode: "0644"
   become: true
 
 

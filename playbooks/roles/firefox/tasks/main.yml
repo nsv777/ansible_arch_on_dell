@@ -1,3 +1,4 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install firefox
+  ansible.builtin.include_tasks:
     file: "do_install_firefox_{{ ansible_distribution }}.yml"
