@@ -12,25 +12,25 @@
     - config
 
 
-#- name: pacman.conf
-#  ansible.builtin.lineinfile:
-#    path: /etc/pacman.conf
-#    regexp: "{{ item.regexp }}"
-#    line: "{{ item.line }}"
-#  with_items: lines
-#  vars:
-#    lines:
-#      - regexp: '^#CleanMethod = KeepInstalled$'
-#        line: 'CleanMethod = KeepInstalled & KeepCurrent'
-#      - regexp: '^#UseDelta    = 0\.7$'
-#        line: 'UseDelta    = 0.7'
-#      - regexp: '^#Color$'
-#        line: 'Color'
-#      - regexp: '^#TotalDownload$'
-#        line: 'TotalDownload'
-#      - regexp: '^#\[multilib\]$'
-#        line: '[multilib]'
-#      - regexp:
+# - name: pacman.conf
+#   ansible.builtin.lineinfile:
+#     path: /etc/pacman.conf
+#     regexp: "{{ item.regexp }}"
+#     line: "{{ item.line }}"
+#   with_items: lines
+#   vars:
+#     lines:
+#       - regexp: '^#CleanMethod = KeepInstalled$'
+#         line: 'CleanMethod = KeepInstalled & KeepCurrent'
+#       - regexp: '^#UseDelta    = 0\.7$'
+#         line: 'UseDelta    = 0.7'
+#       - regexp: '^#Color$'
+#         line: 'Color'
+#       - regexp: '^#TotalDownload$'
+#         line: 'TotalDownload'
+#       - regexp: '^#\[multilib\]$'
+#         line: '[multilib]'
+#       - regexp:
 
 
 - name: pacman.conf

@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install Cinnamon on Arch
+  ansible.builtin.include_tasks:
     file: do_install_cinnamon.yml
   when: arch in ansible_distribution
   tags:
@@ -55,6 +56,7 @@
   ansible.builtin.copy:
     src: cinnamon_configs/
     dest: $HOME/.cinnamon/configs/
+    mode: "0644"
   tags:
     - configure
     - cinnamon

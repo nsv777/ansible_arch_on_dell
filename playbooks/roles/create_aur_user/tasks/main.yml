@@ -22,6 +22,7 @@
     path: /etc/sudoers.d/11-install-aur_builder
     line: "{{ aur_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: true
+    mode: "0600"
     validate: 'visudo -cf %s'
   become: true
   tags:
@@ -30,6 +31,7 @@
 
 - name: Add Tor Browser gpg key
   ansible.builtin.command: gpg --keyserver hkp://keys.openpgp.org:11371 --recv-keys 0xE53D989A9E2D47BF
+  changed_when: false
   become: true
   become_user: "{{ aur_user }}"
   tags:
