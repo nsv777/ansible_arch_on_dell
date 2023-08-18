@@ -1,6 +1,6 @@
 ---
 Ubuntu:
-  apt:
+  ansible.builtin.apt:
     - wget
 Arch:
   aur:

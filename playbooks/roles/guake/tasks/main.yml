@@ -9,7 +9,7 @@
 
 
 - name: Configure guake
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present

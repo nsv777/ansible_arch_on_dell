@@ -18,6 +18,7 @@
   ansible.builtin.copy:
     src: etc/lightdm/
     dest: /etc/lightdm/
+    mode: "0644"
   tags:
     - configure
     - lightdm

@@ -15,7 +15,7 @@
 
 
 - name: Install packages
-  apt:
+  ansible.builtin.apt:
     name: firefox
     state: latest
     allow_downgrade: true

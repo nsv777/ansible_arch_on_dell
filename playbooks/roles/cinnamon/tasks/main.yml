@@ -12,7 +12,7 @@
   ansible.builtin.file:
     path: $HOME/scripts
     state: directory
-    mode: 0700
+    mode: "0700"
   tags:
     - configure
     - cinnamon
@@ -23,7 +23,7 @@
   ansible.builtin.copy:
     src: user_scripts/
     dest: $HOME/scripts/
-    mode: 0700
+    mode: "0700"
   tags:
     - configure
     - cinnamon
@@ -31,7 +31,7 @@
 
 
 - name: Configure cinnamon
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
     state: present
@@ -46,7 +46,7 @@
   ansible.builtin.file:
     path: $HOME/.cinnamon/configs
     state: directory
-    mode: 0755
+    mode: "0755"
   tags:
     - configure
     - cinnamon

@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install packages
+  ansible.builtin.include_tasks:
     file: "do_install_packages_{{ ansible_distribution }}.yml"
   tags:
     - wallpaper

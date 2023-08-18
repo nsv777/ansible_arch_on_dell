@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install yay on Arch
+  ansible.builtin.include_tasks:
     file: do_install_yay.yml
   when: '"Archlinux" in ansible_distribution'
   tags:
