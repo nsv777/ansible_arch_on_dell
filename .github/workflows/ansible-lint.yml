@@ -26,6 +26,8 @@ jobs:
 
       - name: Install ansible to download required collections
         uses: actions/setup-python@main
+
+      - name: Install required collections
         run: |
           pip3 install ansible
           ansible-galaxy install -r requirements.yml
