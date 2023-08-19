@@ -17,7 +17,7 @@
 - name: Install packages
   ansible.builtin.apt:
     name: firefox
-    state: latest
+    state: present
     allow_downgrade: true
     update_cache: true
   become: true
