@@ -1,3 +1,4 @@
+# Looks like the role is deprecated - we can now just download the aur collection
 ---
 - name: Install base-devel pkg group
   pacman:

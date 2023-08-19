@@ -1,6 +1,6 @@
 ---
 - name: Create the user
-  user:
+  ansible.builtin.user:
     name: "{{ aur_user }}"
     group: wheel
     home: "/var/tmp/{{ aur_user }}"
