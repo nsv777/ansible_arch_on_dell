@@ -11,9 +11,9 @@
 
 - name: Install packages
   kewlfft.aur.aur:
-    name: '{{ Arch.aur }}'
+    name: '{{ arch.aur }}'
   become: true
   become_user: "{{ aur_user }}"
-  when: Arch.aur is defined
+  when: arch.aur is defined
   tags:
     - wallpaper

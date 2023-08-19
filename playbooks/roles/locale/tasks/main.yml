@@ -1,5 +1,5 @@
 ---
-- name: "Uncomment locale {{ locale }} in /etc/locale.gen"
+- name: "/etc/locale.gen: uncomment locale {{ locale }}"
   ansible.builtin.replace:
     dest: /etc/locale.gen
     regexp: '^#{{ locale }} UTF-8.*$'

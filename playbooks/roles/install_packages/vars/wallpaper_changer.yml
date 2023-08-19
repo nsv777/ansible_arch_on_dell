@@ -1,9 +1,9 @@
 ---
-Ubuntu:
-  ansible.builtin.apt:
+ubuntu:
+  apt:
     - wget
-Arch:
-  kewlfft.aur.aur:
+arch:
+  aur:
     - feh
     - python-virtualenv
     - wget

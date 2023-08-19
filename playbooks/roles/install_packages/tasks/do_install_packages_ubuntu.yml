@@ -1,10 +1,10 @@
 ---
 - name: Install packages
   ansible.builtin.apt:
-    name: '{{ Ubuntu.apt }}'
+    name: '{{ ubuntu.apt }}'
     state: latest
     update_cache: true
   become: true
-  when: Ubuntu.apt is defined
+  when: ubuntu.apt is defined
   tags:
     - wallpaper
