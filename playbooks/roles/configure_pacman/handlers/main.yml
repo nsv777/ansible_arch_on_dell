@@ -1,5 +1,5 @@
 ---
 - name: update_pacman_cache
-  pacman:
+  community.general.pacman:
     update_cache: true
   become: true

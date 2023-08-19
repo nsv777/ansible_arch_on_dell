@@ -1,7 +1,7 @@
 # Looks like the role is deprecated - we can now just download the aur collection
 ---
 - name: Install base-devel pkg group
-  pacman:
+  community.general.pacman:
     name: base-devel
   become: true
   tags:
