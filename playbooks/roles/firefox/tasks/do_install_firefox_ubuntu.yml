@@ -1,6 +1,6 @@
 ---
 - name: Add firefox PPA repository into sources list
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: ppa:mozillateam/ppa
     state: present
   become: true

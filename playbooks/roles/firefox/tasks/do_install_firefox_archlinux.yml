@@ -1,1 +1,5 @@
 ---
+- name: Install firefox on Arch
+  kewlfft.aur.aur:
+    name: firefox
+  become: true
