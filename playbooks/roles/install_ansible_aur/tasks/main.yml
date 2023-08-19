@@ -16,10 +16,12 @@
     - aur_builder
 
 
-- name: clone git repo
+- name: Clone git repo
   ansible.builtin.git:
     repo: 'https://aur.archlinux.org/ansible-aur-git.git'
     dest: /tmp/ansible_aur_git
+    version: master
+    depth: 1
   become: true
   become_user: "{{ aur_user }}"
   tags:

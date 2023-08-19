@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks:
+- name: Install graphic utilities on Arch
+  ansible.builtin.include_tasks:
     file: do_install_graphic_utilities.yml
   when: arch in ansible_distribution
   tags:

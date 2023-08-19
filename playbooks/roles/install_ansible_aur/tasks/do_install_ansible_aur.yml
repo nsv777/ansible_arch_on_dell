@@ -5,6 +5,5 @@
     use: makepkg
   become: true
   become_user: "{{ aur_user }}"
-  ignore_errors: true
   tags:
     - yay

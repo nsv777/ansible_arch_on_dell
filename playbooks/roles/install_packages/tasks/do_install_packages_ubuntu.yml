@@ -2,7 +2,7 @@
 - name: Install packages
   ansible.builtin.apt:
     name: '{{ ubuntu.apt }}'
-    state: latest
+    state: present
     update_cache: true
   become: true
   when: ubuntu.apt is defined
