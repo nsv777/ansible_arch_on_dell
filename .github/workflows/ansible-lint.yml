@@ -22,7 +22,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
+
+      - name: Install ansible to download required collections
+        uses: actions/setup-python@main
+        run: |
+          pip3 install ansible
+          ansible-galaxy install -r requirements.yml
 
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main # or version tag instead of 'main'
+        with:
+          ansiblelint_flags: '-s --show-relpath'
