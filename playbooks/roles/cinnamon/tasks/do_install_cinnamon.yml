@@ -1,6 +1,6 @@
 ---
 - name: Install cinnamon
-  aur:
+  kewlfft.aur.aur:
     name:
       - cinnamon
       - nemo

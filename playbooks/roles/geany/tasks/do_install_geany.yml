@@ -1,6 +1,6 @@
 ---
 - name: Install geany
-  aur:
+  kewlfft.aur.aur:
     name:
       - geany
       - geany-themes

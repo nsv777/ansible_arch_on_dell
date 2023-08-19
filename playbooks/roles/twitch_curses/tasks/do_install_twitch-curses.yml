@@ -1,6 +1,6 @@
 ---
 - name: Install packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - twitch-curses
       - mpv

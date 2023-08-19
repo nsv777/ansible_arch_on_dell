@@ -10,7 +10,7 @@
 
 
 - name: Install packages
-  aur:
+  kewlfft.aur.aur:
     name: '{{ Arch.aur }}'
   become: true
   become_user: "{{ aur_user }}"

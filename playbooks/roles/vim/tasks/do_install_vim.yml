@@ -1,6 +1,6 @@
 ---
 - name: Install vim
-  aur:
+  kewlfft.aur.aur:
     name:
       - vim
   become: true

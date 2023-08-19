@@ -1,6 +1,6 @@
 ---
 - name: Install graphic utilities
-  aur:
+  kewlfft.aur.aur:
     name:
       - freerdp
       - gnome-screenshot

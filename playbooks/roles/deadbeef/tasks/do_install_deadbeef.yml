@@ -1,6 +1,6 @@
 ---
 - name: Install deadbeef
-  aur:
+  kewlfft.aur.aur:
     name:
       - deadbeef
   become: true

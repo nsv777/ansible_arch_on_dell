@@ -1,6 +1,6 @@
 ---
 - name: Install yay
-  aur:
+  kewlfft.aur.aur:
     name: yay
     use: makepkg
   become: true

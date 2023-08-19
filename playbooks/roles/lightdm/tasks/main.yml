@@ -1,6 +1,6 @@
 ---
 - name: Install lightdm
-  aur:
+  kewlfft.aur.aur:
     name:
       - lightdm
       - lightdm-gtk-greeter

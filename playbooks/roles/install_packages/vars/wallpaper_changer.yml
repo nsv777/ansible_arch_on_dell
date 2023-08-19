@@ -3,7 +3,7 @@ Ubuntu:
   ansible.builtin.apt:
     - wget
 Arch:
-  aur:
+  kewlfft.aur.aur:
     - feh
     - python-virtualenv
     - wget

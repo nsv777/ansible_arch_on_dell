@@ -1,6 +1,6 @@
 ---
 - name: Install console utilities
-  aur:
+  kewlfft.aur.aur:
     name:
       - docker
       - docker-compose
