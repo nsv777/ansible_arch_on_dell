@@ -1,7 +1,7 @@
 ---
 - name: Create conf.d directory
   ansible.builtin.file:
-    path: "{{ conf_d_path }}"
+    path: "{{ systemd_journald_conf_d_path }}"
     state: directory
     mode: "0755"
   become: true
@@ -13,7 +13,7 @@
 - name: Copy journald config
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ conf_d_path }}"
+    dest: "{{ systemd_journald_conf_d_path }}"
     mode: "0644"
   with_fileglob:
     - files/*

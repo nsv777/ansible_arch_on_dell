@@ -4,7 +4,7 @@
   roles:
     - role: locale
       vars:
-        locale: pl_PL.UTF-8
+        locale_locale: pl_PL.UTF-8
     - role: configure_pacman
     - role: systemd
     - role: usb_mouse_on_boot
