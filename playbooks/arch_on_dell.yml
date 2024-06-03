@@ -26,3 +26,10 @@
     - role: install_graphic_utilities
     - role: firefox
       tags: firefox
+
+- name: Configure ip forward
+  hosts: localhost
+  become: true
+  roles:
+    - role: sysctl_ip_forward
+      tags: sysctl_ip_forward

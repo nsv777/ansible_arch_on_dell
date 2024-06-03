@@ -1,0 +1,4 @@
+---
+sysctl_ip_forward_script_location: "Documents/scripts/sysctl_ip_forward"
+sysctl_ip_forward_systemd_service_name: "sysctl-ip-forward"
+sysctl_ip_forward_systemd_unit_dir: "/etc/systemd/system"

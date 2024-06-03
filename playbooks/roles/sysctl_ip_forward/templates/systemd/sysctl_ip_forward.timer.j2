@@ -1,0 +1,11 @@
+[Unit]
+Description=Run wallpaper-changer hourly and on boot
+
+[Timer]
+OnBootSec=5min
+OnCalendar=*-*-* *:*:00
+
+Unit=systemctl-ip-forward.service
+
+[Install]
+WantedBy=timers.target

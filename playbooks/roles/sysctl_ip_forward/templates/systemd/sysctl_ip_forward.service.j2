@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable IPv4 forward
+
+[Service]
+WorkingDirectory=%h/{{ sysctl_ip_forward_script_location }}
+ExecStart=%h/{{ sysctl_ip_forward_script_location }}/sysctl_ip_forward.sh
+Type=oneshot
+
+[Install]
+WantedBy=default.target
