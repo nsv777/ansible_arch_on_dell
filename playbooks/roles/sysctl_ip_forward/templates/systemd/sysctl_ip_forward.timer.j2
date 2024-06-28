@@ -1,11 +1,11 @@
 [Unit]
-Description=Run wallpaper-changer hourly and on boot
+Description=Run sysctl-ip-forward.service on schedule
 
 [Timer]
 OnBootSec=5min
 OnCalendar=*-*-* *:*:00
 
-Unit=systemctl-ip-forward.service
+Unit=sysctl-ip-forward.service
 
 [Install]
 WantedBy=timers.target
