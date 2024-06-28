@@ -32,7 +32,8 @@
 - name: Flush handlers to reload systemd config
   ansible.builtin.meta: flush_handlers
 
-- name: "Enable timer {{ sysctl_ip_forward_systemd_service_name }}"
+- name: "Enable and start timer {{ sysctl_ip_forward_systemd_service_name }}"
   ansible.builtin.systemd:
     name: "{{ sysctl_ip_forward_systemd_service_name }}.timer"
     enabled: true
+    state: started
