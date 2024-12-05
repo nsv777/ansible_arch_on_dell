@@ -7,7 +7,26 @@
 #   tags:
 #     - update
 #     - upgrade
+- name: Create yay cache directory
+  file:
+    path: /var/tmp/aur_builder/.cache
+    mode: "0755"
+    owner: aur_builder
 
+- name: Mount tmpfs to yay cache directory
+  ansible.posix.mount:
+    path: /var/tmp/aur_builder/.cache
+    src: none
+    fstype: tmpfs
+    state: ephemeral
+
+- name: Mount tmpfs to pacman cache directory
+  ansible.posix.mount:
+    path: /var/cache/pacman/pkg
+    src: none
+    fstype: tmpfs
+    state: ephemeral
+  become: true
 
 - name: Install packages
   kewlfft.aur.aur:
@@ -17,3 +36,13 @@
   when: arch.aur is defined
   tags:
     - wallpaper
+
+- name: Unmount tmpfs from yay cache directory
+  ansible.posix.mount:
+    path: /var/tmp/aur_builder/.cache
+    state: unmounted
+
+- name: Unmount tmpfs from pacman cache directory
+  ansible.posix.mount:
+    path: /var/cache/pacman/pkg
+    state: unmounted

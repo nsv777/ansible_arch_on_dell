@@ -1,6 +1,6 @@
 ---
 - name: Initial config
-  hosts: localhost
+  hosts: all
   roles:
     - sudoers
     - configure_pacman

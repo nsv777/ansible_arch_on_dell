@@ -18,10 +18,7 @@
       - unrar
       - network-manager-applet
       - networkmanager-openconnect
-      - networkmanager-openvpn
-      - networkmanager-pptp
       - bluez
-      - python2-gobject
   become: true
   become_user: "{{ aur_user }}"
   tags:

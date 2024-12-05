@@ -1,6 +1,6 @@
 ---
 - name: Install all the needed stuff
-  hosts: localhost
+  hosts: all
   roles:
     - role: locale
       vars:
@@ -11,6 +11,7 @@
     - role: pulseaudio_hdmi_fix
     - role: install_ansible_aur
     - role: install_yay
+      tags: yay
     - role: paccache
 #    - role: install_packages
     - role: vim
@@ -28,7 +29,7 @@
       tags: firefox
 
 - name: Configure ip forward
-  hosts: localhost
+  hosts: all
   become: true
   roles:
     - role: sysctl_ip_forward
