@@ -1,20 +1,33 @@
 ---
-- name: Install all the needed stuff
+- name: Common part
   hosts: all
+  tags: common
   roles:
+    - role: create_aur_user
     - role: locale
-      vars:
-        locale_locale: pl_PL.UTF-8
     - role: configure_pacman
     - role: systemd
+    - role: install_yay
+    - role: paccache
+    - role: vim
+    - role: console_utilities
+    - role: docker
+      become: true
+
+- name: server part
+  hosts: server
+  become: true
+  tags: server
+  roles:
+    - role: minikube
+
+- name: laptop part
+  hosts: laptop
+  roles:
     - role: usb_mouse_on_boot
     - role: pulseaudio_hdmi_fix
-    - role: install_ansible_aur
-    - role: install_yay
-      tags: yay
-    - role: paccache
+#    - role: install_ansible_aur
 #    - role: install_packages
-    - role: vim
     - role: cinnamon
     - role: geany
     - role: guake
@@ -23,13 +36,12 @@
     - role: wallpaper_changer
       tags: wallpaper_changer
     - role: twitch_curses
-    - role: install_console_utilities
     - role: install_graphic_utilities
     - role: firefox
       tags: firefox
 
 - name: Configure ip forward
-  hosts: all
+  hosts: laptop
   become: true
   roles:
     - role: sysctl_ip_forward

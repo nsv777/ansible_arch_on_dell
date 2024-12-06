@@ -1,0 +1,8 @@
+---
+- name: Install docker
+  pacman:
+    name:
+      - docker
+      - docker-compose
+    update_cache: true
+  notify: start_docker

@@ -1,7 +1,0 @@
----
-- name: Install paccache and hook to cleanup packages
-  kewlfft.aur.aur:
-    name:
-      - paccache-hook
-  tags:
-    - paccache

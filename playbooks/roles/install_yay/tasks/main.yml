@@ -1,7 +1,22 @@
 ---
-- name: Install yay on Arch
-  ansible.builtin.include_tasks:
-    file: do_install_yay.yml
-  when: '"Archlinux" in ansible_distribution'
-  tags:
-    - yay
+- name: Install required packages
+  pacman:
+    name:
+      - fakeroot
+      - base-devel
+  become: true
+
+- name: 'makepkg: disable debug packages'
+  copy:
+    src: disable_debug.conf
+    dest: /etc/makepkg.conf.d/
+    mode: "0644"
+    owner: root
+  become: true
+
+- name: Install yay
+  kewlfft.aur.aur:
+    name: yay
+    use: makepkg
+  become: true
+  become_user: "{{ aur_user }}"

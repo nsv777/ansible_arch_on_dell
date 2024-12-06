@@ -2,8 +2,7 @@
 - name: Create the user
   ansible.builtin.user:
     name: "{{ aur_user }}"
-    group: wheel
-    home: "/var/tmp/{{ aur_user }}"
+    system: true
   become: true
   tags:
     - aur_builder

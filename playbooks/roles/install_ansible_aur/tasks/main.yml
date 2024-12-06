@@ -7,15 +7,6 @@
   tags:
     - ansible_aur
 
-
-- name: Create aur user
-  ansible.builtin.include_role:
-    name: create_aur_user
-  tags:
-    - ansible_aur
-    - aur_builder
-
-
 - name: Clone git repo
   ansible.builtin.git:
     repo: 'https://aur.archlinux.org/ansible-aur-git.git'
@@ -27,7 +18,6 @@
   tags:
     - ansible_aur
 
-
 - name: Build and install package
   ansible.builtin.command: makepkg --noconfirm --clean --install --cleanbuild --syncdeps
   args:
@@ -37,7 +27,6 @@
   become_user: "{{ aur_user }}"
   tags:
     - ansible_aur
-
 
 - name: remove temp dir
   ansible.builtin.file:

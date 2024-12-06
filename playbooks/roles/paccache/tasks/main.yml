@@ -1,7 +1,7 @@
 ---
-- name: Install paccache on Arch
-  ansible.builtin.include_tasks:
-    file: do_install_paccache.yml
-  when: arch in ansible_distribution
-  tags:
-    - paccache
+- name: Install paccache and hook to cleanup packages
+  kewlfft.aur.aur:
+    name:
+      - paccache-hook
+  become: true
+  become_user: "{{ aur_user }}"

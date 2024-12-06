@@ -1,12 +1,7 @@
 ---
 - name: Install vim on Arch
   ansible.builtin.include_tasks:
-    file: do_install_vim.yml
-  when: arch in ansible_distribution
-  tags:
-    - install_vim
-    - vim
-
+    file: "{{ ansible_distribution | lower }}_install_vim.yml"
 
 - name: Copy vim config
   ansible.builtin.copy:
@@ -14,10 +9,6 @@
     dest: /etc/
     mode: "0644"
   become: true
-  tags:
-    - configure_vim
-    - vim
-
 
 - name: Update vim config
   ansible.builtin.lineinfile:
@@ -25,6 +16,3 @@
     regexp: '^source.*\/vimrc\.local$'
     line: 'source /etc/vimrc.local'
   become: true
-  tags:
-    - configure_vim
-    - vim

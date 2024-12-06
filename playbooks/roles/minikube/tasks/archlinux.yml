@@ -1,0 +1,9 @@
+---
+- name: Install required packages
+  pacman:
+    name:
+      - containerd
+      - minikube
+  notify:
+    - start_minikube
+    - download_kubectl

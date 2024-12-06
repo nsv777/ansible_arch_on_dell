@@ -1,6 +1,6 @@
 ---
 - name: Install console utilities
-  kewlfft.aur.aur:
+  pacman:
     name:
       - docker
       - docker-compose
@@ -9,12 +9,7 @@
       - man-db
       - mc
       - nmap
-      - ntfs-3g
-      - powertop
-      - python2
       - rsync
-      - samba
       - wget
       - xz
   become: true
-  become_user: "{{ aur_user }}"

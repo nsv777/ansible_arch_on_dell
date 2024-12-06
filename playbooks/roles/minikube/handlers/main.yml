@@ -1,0 +1,10 @@
+---
+- name: start_minikube
+  command: 'minikube start --container-runtime=containerd'
+  become: true
+  become_user: "{{ minikube_user }}"
+
+- name: download_kubectl
+  command: 'minikube kubectl -- get pods -A'
+  become: true
+  become_user: "{{ minikube_user }}"
