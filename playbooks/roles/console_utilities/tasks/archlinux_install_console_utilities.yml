@@ -10,6 +10,7 @@
       - mc
       - nmap
       - rsync
+      - screen
       - wget
       - xz
   become: true
