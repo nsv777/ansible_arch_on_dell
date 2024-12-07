@@ -2,8 +2,8 @@
 - name: Enable Spain mirror in /etc/pacman.d/mirrorlist
   ansible.builtin.replace:
     path: /etc/pacman.d/mirrorlist
-    regexp: '^#Server = https:\/\/mirror.librelabucm.org\/archlinux\/\$repo\/os\/\$arch'
-    replace: Server = https://mirror.librelabucm.org/archlinux/$repo/os/$arch
+    regexp: '^#Server = https:\/\/nox\.panibrez\.com\/archlinux\/\$repo\/os\/\$arch'
+    replace: Server = https://nox.panibrez.com/archlinux/$repo/os/$arch
   become: true
   notify: update_pacman_cache
   tags:

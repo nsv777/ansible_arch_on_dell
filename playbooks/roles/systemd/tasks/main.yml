@@ -15,3 +15,6 @@
     - files/*
   become: true
   notify: restart_journald
+
+- name: Flush handlers
+  meta: flush_handlers
