@@ -1,6 +1,6 @@
 ---
 - name: Install required packages
-  pacman:
+  community.general.pacman:
     name:
       - containerd
       - minikube

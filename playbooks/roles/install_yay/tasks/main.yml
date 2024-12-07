@@ -1,13 +1,13 @@
 ---
 - name: Install required packages
-  pacman:
+  community.general.pacman:
     name:
       - fakeroot
       - base-devel
   become: true
 
 - name: 'makepkg: disable debug packages'
-  copy:
+  ansible.builtin.copy:
     src: disable_debug.conf
     dest: /etc/makepkg.conf.d/
     mode: "0644"

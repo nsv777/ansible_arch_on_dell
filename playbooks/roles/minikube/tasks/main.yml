@@ -1,13 +1,13 @@
 ---
 - name: Create minikube user
-  user:
+  ansible.builtin.user:
     name: "{{ minikube_user }}"
     system: true
     shell: /usr/bin/bash
     groups: docker
 
 - name: Add kubectl alias
-  lineinfile:
+  ansible.builtin.lineinfile:
     regexp: "^alias k="
     line: "alias k='minikube kubectl --'"
     path: "$HOME/.bashrc"

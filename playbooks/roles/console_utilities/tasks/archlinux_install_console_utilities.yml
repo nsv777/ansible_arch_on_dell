@@ -1,6 +1,6 @@
 ---
 - name: Install console utilities
-  pacman:
+  community.general.pacman:
     name:
       - docker
       - docker-compose

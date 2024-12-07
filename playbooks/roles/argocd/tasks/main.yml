@@ -1,0 +1,12 @@
+---
+- name: Install required packages
+  community.general.pacman:
+    name: python-kubernetes
+
+- name: Create argocd namespace
+  kubernetes.core.k8s:
+    name: argocd
+    kind: Namespace
+    state: present
+  become: true
+  become_user: minikube

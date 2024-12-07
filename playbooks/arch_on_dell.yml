@@ -20,6 +20,8 @@
   tags: server
   roles:
     - role: minikube
+    - role: argocd
+      tags: argocd
 
 - name: laptop part
   hosts: laptop

@@ -1,6 +1,6 @@
 ---
 - name: Install docker
-  pacman:
+  community.general.pacman:
     name:
       - docker
       - docker-compose
