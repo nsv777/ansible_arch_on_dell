@@ -3,7 +3,16 @@
   user:
     name: "{{ minikube_user }}"
     system: true
+    shell: /usr/bin/bash
     groups: docker
+
+- name: Add kubectl alias
+  lineinfile:
+    regexp: "^alias k="
+    line: "alias k='minikube kubectl --'"
+    path: "$HOME/.bashrc"
+  become: true
+  become_user: "{{ minikube_user }}"
 
 - name: Install minikube
   ansible.builtin.include_tasks:

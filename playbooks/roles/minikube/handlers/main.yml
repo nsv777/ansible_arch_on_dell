@@ -8,3 +8,4 @@
   command: 'minikube kubectl -- get pods -A'
   become: true
   become_user: "{{ minikube_user }}"
+  changed_when: false
