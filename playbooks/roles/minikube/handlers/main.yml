@@ -1,6 +1,9 @@
 ---
 - name: start_minikube
-  ansible.builtin.command: 'minikube start --container-runtime=containerd'
+  ansible.builtin.command: >
+    minikube start --container-runtime=containerd --listen-address=0.0.0.0 --addons=ingress --cpus='3'
+    --apiserver-names={{ ansible_hostname }}.{{ domain }}
+    --apiserver-ips={{ ansible_default_ipv4.address }},{{ ansible_default_ipv6.address }}
   changed_when: false
   become: true
   become_user: "{{ minikube_user }}"
