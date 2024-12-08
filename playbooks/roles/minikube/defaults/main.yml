@@ -1,2 +1,6 @@
 ---
 minikube_user: minikube
+minikube_start_cmdline: >
+  minikube start --container-runtime=containerd
+  --addons=ingress
+  --cpus='3'

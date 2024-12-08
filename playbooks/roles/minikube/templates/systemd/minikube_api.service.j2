@@ -1,0 +1,14 @@
+[Unit]
+Description=minikube_api
+After=network.target
+
+[Service]
+WorkingDirectory=%h
+ExecStart=socat TCP4-LISTEN:8443,fork TCP4:192.168.49.2:8443 &
+Type=simple
+Restart=always
+RestartSec=20s
+User={{ minikube_user }}
+
+[Install]
+WantedBy=default.target
