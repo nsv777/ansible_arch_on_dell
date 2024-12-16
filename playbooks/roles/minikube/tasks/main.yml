@@ -28,14 +28,6 @@
   become: true
   become_user: "{{ minikube_user }}"
 
-- name: Create systemd unit dir
-  ansible.builtin.file:
-    path: "$HOME/.config/systemd/user"
-    state: directory
-    mode: "0755"
-  become: true
-  become_user: "{{ minikube_user }}"
-
 - name: Render systemd service
   ansible.builtin.template:
     src: systemd/minikube_api.service.j2
@@ -47,7 +39,7 @@
   ansible.builtin.meta: flush_handlers
 
 - name: Start minikube_api service
-  systemd:
+  systemd_service:
     name: minikube_api
     state: started
     enabled: true

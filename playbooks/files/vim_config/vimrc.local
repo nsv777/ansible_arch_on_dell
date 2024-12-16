@@ -1,4 +1,4 @@
-set background=dark
+set background=light
 if has("autocmd")
     filetype plugin indent on
 endif

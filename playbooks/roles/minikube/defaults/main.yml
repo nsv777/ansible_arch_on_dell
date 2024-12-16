@@ -4,3 +4,4 @@ minikube_start_cmdline: >
   minikube start --container-runtime=containerd
   --addons=ingress
   --cpus='3'
+  --apiserver-ips={{ ansible_default_ipv4.address }}
