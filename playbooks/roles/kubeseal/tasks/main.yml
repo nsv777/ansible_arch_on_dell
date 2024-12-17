@@ -1,0 +1,10 @@
+---
+- name: Download kubeseal
+  ansible.builtin.unarchive:
+    src: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+    dest: /usr/local/bin
+    extra_opts: kubeseal
+    remote_src: true
+    mode: 0755
+    owner: root
+    group: root

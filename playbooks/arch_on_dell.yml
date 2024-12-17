@@ -41,6 +41,9 @@
     - role: install_graphic_utilities
     - role: firefox
       tags: firefox
+    - role: kubeseal
+      tags: kubeseal
+      become: true
 
 - name: Configure ip forward
   hosts: laptop
