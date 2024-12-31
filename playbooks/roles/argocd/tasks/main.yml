@@ -36,7 +36,7 @@
   become_user: minikube
 
 - name: Get admin password
-  shell: 'minikube kubectl -- -n {{ role_name }} get secret {{ role_name }}-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d'
+  shell: 'kubectl -n {{ role_name }} get secret {{ role_name }}-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d'
   changed_when: false
   register: argocd_admin_password
   become: true
