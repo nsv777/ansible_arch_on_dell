@@ -6,6 +6,12 @@
     shell: /usr/bin/bash
     groups: docker
 
+- name: Add minikube user to sudoers
+  community.general.sudoers:
+    name: "{{ role_name }}_{{ minikube_user }}"
+    user: "{{ minikube_user }}"
+    commands: ALL
+
 - name: Add kubectl alias
   ansible.builtin.lineinfile:
     regexp: "^alias k="
