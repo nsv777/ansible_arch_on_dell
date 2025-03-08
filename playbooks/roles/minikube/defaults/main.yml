@@ -1,8 +1,10 @@
 ---
 minikube_user: minikube
+# mount-string hardcoded because I am lazy. Future will have to take care of it
 minikube_start_cmdline: >
   minikube start --container-runtime=containerd
   --cpus='3'
   --apiserver-ips={{ ansible_default_ipv4.address }}
+  --mount=true --mount-string='/home/transmission-daemon/downloads:/home/transmission-daemon/downloads'
 # Experimental, as it contains TCPRoute
 minikube_gateway_api_crds_url: https://github.com/kubernetes-sigs/gateway-api/releases/latest/download/experimental-install.yaml
