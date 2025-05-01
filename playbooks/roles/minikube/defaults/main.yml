@@ -1,6 +1,6 @@
 ---
 minikube_user: minikube
-# mount-string hardcoded because I am lazy. Future will have to take care of it
+# mount-string hardcoded because I am lazy. Future me will have to take care of it
 minikube_start_cmdline: >
   minikube start --container-runtime=containerd
   --cpus='3'

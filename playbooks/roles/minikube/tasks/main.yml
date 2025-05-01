@@ -45,7 +45,7 @@
   ansible.builtin.meta: flush_handlers
 
 - name: Start minikube_api service
-  systemd_service:
+  ansible.builtin.systemd_service:
     name: minikube_api
     state: started
     enabled: true
@@ -53,5 +53,6 @@
 - name: Install Gateway API CRDs
   ansible.builtin.command:
     cmd: "kubectl apply -f {{ minikube_gateway_api_crds_url }}"
+  changed_when: false
   become: true
   become_user: "{{ minikube_user }}"

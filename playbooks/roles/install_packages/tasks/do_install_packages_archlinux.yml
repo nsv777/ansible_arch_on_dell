@@ -8,7 +8,7 @@
 #     - update
 #     - upgrade
 - name: Create yay cache directory
-  file:
+  ansible.builtin.file:
     path: /var/tmp/aur_builder/.cache
     mode: "0755"
     owner: aur_builder
@@ -30,7 +30,7 @@
 
 - name: Install packages
   kewlfft.aur.aur:
-    name: '{{ arch.aur }}'
+    name: '{{ install_packages_arch.aur }}'
   become: true
   become_user: "{{ aur_user }}"
   when: arch.aur is defined

@@ -1,8 +1,8 @@
 ---
-ubuntu:
+install_packages_ubuntu:
   apt:
     - wget
-arch:
+install_packages_arch:
   aur:
     - feh
     - python-virtualenv

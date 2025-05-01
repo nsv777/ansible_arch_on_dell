@@ -1,7 +1,7 @@
 ---
 - name: Install packages
   ansible.builtin.apt:
-    name: '{{ ubuntu.apt }}'
+    name: '{{ install_packages_ubuntu.apt }}'
     state: present
     update_cache: true
   become: true

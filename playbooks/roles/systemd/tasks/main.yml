@@ -17,4 +17,4 @@
   notify: restart_journald
 
 - name: Flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers

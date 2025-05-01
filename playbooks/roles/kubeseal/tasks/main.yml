@@ -5,6 +5,6 @@
     dest: /usr/local/bin
     extra_opts: kubeseal
     remote_src: true
-    mode: 0755
+    mode: "0755"
     owner: root
     group: root

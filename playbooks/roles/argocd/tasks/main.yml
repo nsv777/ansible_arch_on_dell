@@ -12,7 +12,7 @@
   become_user: minikube
 
 - name: Create manifests directory
-  file:
+  ansible.builtin.file:
     path: "$HOME/manifests/{{ role_name }}"
     state: directory
     mode: "0700"
@@ -20,7 +20,7 @@
   become_user: minikube
 
 - name: Download manifest
-  get_url:
+  ansible.builtin.get_url:
     dest: "$HOME/manifests/{{ role_name }}/install.yaml"
     url: "https://raw.githubusercontent.com/argoproj/argo-cd/v{{ argocd_version }}/manifests/install.yaml"
     mode: "0600"
@@ -36,12 +36,14 @@
   become_user: minikube
 
 - name: Get admin password
-  shell: 'kubectl -n {{ role_name }} get secret {{ role_name }}-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d'
+  ansible.builtin.shell: >
+    set -o pipefail
+    && kubectl -n {{ role_name }} get secret {{ role_name }}-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
   changed_when: false
   register: argocd_admin_password
   become: true
   become_user: minikube
 
 - name: Show admin password
-  debug:
+  ansible.builtin.debug:
     var: argocd_admin_password.stdout
