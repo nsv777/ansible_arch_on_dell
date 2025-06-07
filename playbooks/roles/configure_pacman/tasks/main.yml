@@ -34,8 +34,8 @@
 
 
 - name: pacman.conf
-  ansible.builtin.copy:
-    src: files/etc/pacman.conf
+  ansible.builtin.template:
+    src: etc/pacman.conf.j2
     dest: /etc/pacman.conf
     owner: root
     group: root

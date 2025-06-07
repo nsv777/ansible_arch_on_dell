@@ -89,8 +89,13 @@ Include = /etc/pacman.d/mirrorlist
 #[multilib-testing]
 #Include = /etc/pacman.d/mirrorlist
 
+{% if configure_pacman_multilib_enabled %}
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+{% else %}
 #[multilib]
 #Include = /etc/pacman.d/mirrorlist
+{% endif %}
 
 # An example of a custom package repository.  See the pacman manpage for
 # tips on creating your own repositories.
