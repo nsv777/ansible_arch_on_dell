@@ -34,10 +34,17 @@
   become: true
   become_user: "{{ minikube_user }}"
 
-- name: Render systemd service
+- name: Render minikube_api systemd service
   ansible.builtin.template:
     src: systemd/minikube_api.service.j2
     dest: "/etc/systemd/system/minikube_api.service"
+    mode: "0644"
+  notify: Systemd_daemon_reload
+
+- name: Render minikube_tunnel systemd service
+  ansible.builtin.template:
+    src: systemd/minikube_tunnel.service.j2
+    dest: "/etc/systemd/system/minikube_tunnel.service"
     mode: "0644"
   notify: Systemd_daemon_reload
 
@@ -47,6 +54,12 @@
 - name: Start minikube_api service
   ansible.builtin.systemd_service:
     name: minikube_api
+    state: started
+    enabled: true
+
+- name: Start minikube_tunnel service
+  ansible.builtin.systemd_service:
+    name: minikube_tunnel
     state: started
     enabled: true
 

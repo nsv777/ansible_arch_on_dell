@@ -1,0 +1,27 @@
+[Unit]
+Description=Minikube Tunnel
+Documentation=https://minikube.sigs.k8s.io/docs/handbook/accessing/
+Wants=network-online.target
+After=network-online.target minikube_api.service
+
+# Optional: If you have a service for starting minikube, you can add it here
+# After=network-online.target minikube-start.service
+# Requires=minikube-start.service
+
+[Service]
+User={{ minikube_user }}
+
+# !! IMPORTANT: Set the HOME environment variable so minikube can find its config.
+Environment="HOME=/home/{{ minikube_user }}"
+
+# Set Type to simple, as the command stays in the foreground.
+Type=simple
+
+ExecStart=/usr/bin/minikube tunnel --alsologtostderr
+
+# Restart the service if it fails.
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
