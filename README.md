@@ -3,7 +3,7 @@
 
 #### Prerequisite collection install
 ```sh
-ansible-galaxy collection install kewlfft.aur
+ansible-galaxy collection install -r requirements.yml
 ```
 
 Configure pacman and install ansible_aur:
