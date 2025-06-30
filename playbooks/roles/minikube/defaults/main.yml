@@ -5,6 +5,7 @@ minikube_start_cmdline: >
   minikube start --container-runtime=containerd
   --cpus='3'
   --apiserver-ips={{ ansible_default_ipv4.address }}
-  --mount=true --mount-string='/home/transmission-daemon/downloads:/home/transmission-daemon/downloads'
+  --mount=true
+  --mount-string='/home/transmission-daemon/downloads:/home/transmission-daemon/downloads;/home/k8s_pvs/pv_nextcloud_conf:/home/k8s_pvs/pv_nextcloud_conf'
 # Experimental, as it contains TCPRoute
 minikube_gateway_api_crds_url: https://github.com/kubernetes-sigs/gateway-api/releases/latest/download/experimental-install.yaml
