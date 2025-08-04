@@ -5,19 +5,16 @@
     state: directory
     mode: "0755"
 
-
 - name: Clone the python script repo
   ansible.builtin.git:
     repo: 'https://github.com/nsv777/random_wallpaper_url.git'
     version: "{{ wallpaper_changer_git_tag }}"
     dest: "$HOME/{{ wallpaper_changer_script_location }}/random_wallpaper_url"
 
-
 - name: Install packages
   ansible.builtin.include_role:
     name: install_packages
     vars_from: wallpaper_changer
-
 
 - name: Generate script from template
   ansible.builtin.template:
@@ -25,15 +22,10 @@
     dest: "$HOME/{{ wallpaper_changer_script_location }}/wallpaper_changer.sh"
     mode: "0755"
 
-
 - name: "Create venv {{ wallpaper_changer_venv_location }}"
   ansible.builtin.pip:
     requirements: "$HOME/{{ wallpaper_changer_script_location }}/random_wallpaper_url/requirements.txt"
     virtualenv: "{{ wallpaper_changer_venv_location }}"
-    virtualenv_python: python3
-  vars:
-    ansible_python_interpreter: /usr/bin/python3
-
 
 - name: "Create systemd unit directory {{ wallpaper_changer_systemd_unit_dir }}"
   ansible.builtin.file:
@@ -48,14 +40,12 @@
     mode: "0644"
   notify: Systemd_daemon_reload
 
-
 - name: "Create systemd timer {{ wallpaper_changer_systemd_service_name }}"
   ansible.builtin.template:
     src: systemd/wallpaper_changer.timer.j2
     dest: "{{ wallpaper_changer_systemd_unit_dir }}/{{ wallpaper_changer_systemd_service_name }}.timer"
     mode: "0644"
   notify: Systemd_daemon_reload
-
 
 - name: Flush handlers to reload systemd config
   ansible.builtin.meta: flush_handlers

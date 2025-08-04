@@ -1,5 +1,5 @@
 ---
-wallpaper_changer_git_tag: "2023-07-29"
+wallpaper_changer_git_tag: "master"
 wallpaper_changer_script_location: "Documents/scripts/wallpaper_changer"
 wallpaper_changer_systemd_service_name: "wallpaper-changer"
 wallpaper_changer_systemd_unit_dir: "$HOME/.config/systemd/user"
