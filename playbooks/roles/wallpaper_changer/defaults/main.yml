@@ -1,6 +1,8 @@
 ---
 wallpaper_changer_git_tag: "master"
-wallpaper_changer_script_location: "Documents/scripts/wallpaper_changer"
+wallpaper_changer_base_dir: "Documents/scripts/wallpaper_changer"
 wallpaper_changer_systemd_service_name: "wallpaper-changer"
-wallpaper_changer_systemd_unit_dir: "$HOME/.config/systemd/user"
-wallpaper_changer_venv_location: "$HOME/{{ wallpaper_changer_script_location }}/venv"
+wallpaper_changer_systemd_unit_dir: ".config/systemd/user"
+wallpaper_changer_venv: "{{ wallpaper_changer_base_dir }}/venv"
+wallpaper_changer_gsettings_parameter: >-
+  {% if ansible_distribution == 'Archlinux' %}org.cinnamon.desktop.background{% else %}org.gnome.desktop.background{% endif %}

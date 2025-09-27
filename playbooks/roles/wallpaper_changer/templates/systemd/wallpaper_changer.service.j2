@@ -2,8 +2,11 @@
 Description=Download and set random wallpaper
 
 [Service]
-WorkingDirectory=%h/{{ wallpaper_changer_script_location }}
-ExecStart=%h/{{ wallpaper_changer_script_location }}/wallpaper_changer.sh
+WorkingDirectory=%h/{{ wallpaper_changer_base_dir }}
+ExecStart=%h/{{ wallpaper_changer_base_dir }}/wallpaper_changer.sh \
+    %h/{{ wallpaper_changer_venv }}/bin/python \
+    %h/{{ wallpaper_changer_base_dir }}/random_wallpaper_url/random_wallpaper_url.py \
+    {{ wallpaper_changer_gsettings_parameter }}
 Type=oneshot
 
 [Install]
