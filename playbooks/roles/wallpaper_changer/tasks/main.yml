@@ -22,7 +22,7 @@
     dest: "$HOME/{{ wallpaper_changer_base_dir }}"
     mode: "0755"
 
-- name: "Create venv {{ wallpaper_changer_venv }}"
+- name: "Create venv {{ wallpaper_changer_venv }}"  # noqa: package-latest
   ansible.builtin.pip:
     requirements: "$HOME/{{ wallpaper_changer_base_dir }}/random_wallpaper_url/requirements.txt"
     virtualenv: "$HOME/{{ wallpaper_changer_venv }}"
