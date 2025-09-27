@@ -23,10 +23,11 @@ wget -q --limit-rate=50k -O "${tempfile}" "${WALLPAPER_URL}"
 file_type=$(file --brief --mime-type "${tempfile}" | cut -d '/' -f2)
 # Rename temp file accordingly
 wallpaper_file="${wallpaper_file_prefix}.${file_type}"
-mv "${tempfile}" "${wallpaper_file}"
-
-#PID=$(pgrep -f 'gnome-session' | head -n1)
-#export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | cut -d= -f2-)
+cp "${tempfile}" "${wallpaper_file}"
 
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+# Forcing wallpaper refresh, otherwise the wallpaper stays the same even if the file has changed
+gsettings set "$GSETTINGS_WALLPAPER_PARAMETER" picture-uri "file://${tempfile}"
 gsettings set "$GSETTINGS_WALLPAPER_PARAMETER" picture-uri "file://${wallpaper_file}"
+
+rm -f "${tempfile}"
