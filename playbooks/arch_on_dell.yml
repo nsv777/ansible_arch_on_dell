@@ -44,6 +44,9 @@
     - role: kubeseal
       tags: kubeseal
       become: true
+    - role: bluetooth_reset
+      tags: bluetooth_reset
+      become: true
 
 - name: Configure ip forward
   hosts: laptop

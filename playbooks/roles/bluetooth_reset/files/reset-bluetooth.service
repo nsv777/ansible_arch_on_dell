@@ -1,0 +1,11 @@
+[Unit]
+Description=Reset Bluetooth module
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStartPre=modprobe -r btusb
+ExecStart=modprobe btusb
+
+[Install]
+WantedBy=graphical.target
