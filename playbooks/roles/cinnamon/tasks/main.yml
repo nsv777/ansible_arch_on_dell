@@ -1,12 +1,14 @@
 ---
-- name: Install Cinnamon on Arch
+- name: Install cinnamon
   ansible.builtin.include_tasks:
-    file: do_install_cinnamon.yml
-  when: arch in ansible_distribution
+    file: "install_cinnamon_{{ ansible_facts.distribution | lower }}.yml"
+    apply:
+      tags:
+        - cinnamon
+        - install
   tags:
-    - install
     - cinnamon
-
+    - install
 
 - name: Create scripts directory
   ansible.builtin.file:

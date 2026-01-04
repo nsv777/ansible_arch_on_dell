@@ -1,7 +1,7 @@
 ---
 cinnamon_config:
   - key: /org/cinnamon/active-display-scale
-    value: 1
+    value: 2
   - key: /org/cinnamon/alttab-switcher-delay
     value: 100
   - key: /org/cinnamon/desktop-effects
@@ -10,6 +10,9 @@ cinnamon_config:
     value: 'false'
   - key: /org/cinnamon/desktop-effects-on-menus
     value: 'false'
+  # Set Caps Lock as layout switch button
+  - key: /org/cinnamon/desktop/input-sources/xkb-options
+    value: "['grp:caps_toggle', 'caps:none']"
   - key: /org/cinnamon/show-media-keys-osd
     value: "'small'"
   - key: /org/cinnamon/startup-animation
@@ -23,17 +26,17 @@ cinnamon_config:
   - key: /org/cinnamon/desktop/interface/gtk-theme
     value: "'Adwaita'"
   - key: /org/cinnamon/desktop/interface/icon-theme
-    value: "'Faenza-Darkest'"
+    value: "'Faenza'"
   - key: /org/cinnamon/desktop/interface/cursor-size
-    value: 22
+    value: 24
   - key: /org/cinnamon/desktop/interface/cursor-theme
-    value: "'capitaine-cursors'"
+    value: "'capitaine-cursors-light'"
   - key: /org/cinnamon/desktop/interface/keyboard-layout-prefer-variant-names
     value: 'true'
   - key: /org/cinnamon/desktop/interface/keyboard-layout-use-upper
     value: 'true'
   - key: /org/cinnamon/desktop/privacy/recent-files-max-age
-    value: -1
+    value: 180
   - key: /org/cinnamon/desktop/privacy/remember-recent-files
     value: 'true'
   - key: /org/cinnamon/desktop/wm/preferences/action-scroll-titlebar
@@ -42,32 +45,31 @@ cinnamon_config:
     value: 30
   - key: /org/cinnamon/desktop/wm/preferences/titlebar-font
     value: "'Sans Bold 8'"
+  # controls how the Muffin window manager (Cinnamon's compositor) synchronizes window drawing with monitor's refresh rate
   - key: /org/cinnamon/muffin/sync-method
-    value: "'none'"
+    value: "'swap_throttling'"
   - key: /org/cinnamon/muffin/desktop-effects
     value: 'false'
   - key: /org/cinnamon/muffin/unredirect-fullscreen-windows
     value: 'true'
-  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
-    value: 'true'
-  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
-    value: 'true'
-  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-acceleration
-    value: 1.0
-  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
-    value: 1
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-acceleration
-    value: 'true'
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-threshold
-    value: 'false'
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/disable-while-typing
-    value: 'false'
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/horizontal-scrolling
-    value: 'true'
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-acceleration
-    value: 6.5696721311475406
-  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-threshold
-    value: 1
+#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
+#    value: 'true'
+#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-acceleration
+#    value: 1.0
+#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
+#    value: 1
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-acceleration
+#    value: 'true'
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-threshold
+#    value: 'false'
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/disable-while-typing
+#    value: 'false'
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/horizontal-scrolling
+#    value: 'true'
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-acceleration
+#    value: 6.5696721311475406
+#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-threshold
+#    value: 1
   - key: /org/cinnamon/settings-daemon/plugins/xsettings/menus-have-icons
     value: 'true'
   - key: /org/cinnamon/sounds/login-enabled
@@ -75,7 +77,7 @@ cinnamon_config:
   - key: /org/cinnamon/sounds/logout-enabled
     value: 'false'
   - key: /org/cinnamon/sounds/notification-enabled
-    value: 'true'
+    value: 'false'
   - key: /org/cinnamon/desktop/notifications/bottom-notifications
     value: 'true'
   - key: /org/cinnamon/theme/name
@@ -87,7 +89,7 @@ cinnamon_config:
   - key: /org/gnome/libgnomekbd/keyboard/layouts
     value: "['us', 'ru']"
   - key: /org/gnome/libgnomekbd/keyboard/options
-    value: "['grp\tgrp:alt_shift_toggle']"
+    value: "['grp\tgrp:caps_toggle', 'grp_led\tgrp_led:caps']"
   - key: /org/nemo/compact-view/default-zoom-level
     value: "'small'"
   - key: /org/nemo/icon-view/default-zoom-level
@@ -122,24 +124,24 @@ cinnamon_config:
     value: "'geany'"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name
     value: "'geany'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
-    value: "['<Shift><Super>c']"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
-    value: "'steam-native steam://rungameid/730'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
-    value: "'CS GO'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
-    value: "['<Primary><Shift><Super>m']"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/command
-    value: "'$HOME/scripts/monitor_is_back.sh'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/name
-    value: "'Monitor is back'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/binding
-    value: "['<Shift><Super>b']"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/command
-    value: "'tor-browser'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/name
-    value: "'Tor Browser'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
+  #    value: "['<Shift><Super>c']"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
+  #    value: "'steam-native steam://rungameid/730'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
+  #    value: "'CS GO'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
+  #    value: "['<Primary><Shift><Super>m']"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/command
+  #    value: "'$HOME/scripts/monitor_is_back.sh'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/name
+  #    value: "'Monitor is back'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/binding
+  #    value: "['<Shift><Super>b']"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/command
+  #    value: "'tor-browser'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/name
+  #    value: "'Tor Browser'"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/binding
     value: "['Calculator']"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/command
@@ -147,4 +149,4 @@ cinnamon_config:
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/name
     value: "'calc'"
   - key: /org/cinnamon/desktop/keybindings/custom-list
-    value: "['custom0', 'custom1', 'custom2', 'custom3', 'custom4']"
+    value: "['custom0', 'custom4']"

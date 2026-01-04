@@ -1,0 +1,19 @@
+---
+- name: Install cinnamon
+  become: true
+  become_user: "{{ aur_user }}"
+  kewlfft.aur.aur:
+    name:
+      - adwaita-icon-theme
+      - bluez
+      - capitaine-cursors
+      - cinnamon
+      - faenza-icon-theme
+      - file-roller
+      - galculator
+      - nemo
+      - nemo-fileroller
+      - network-manager-applet
+      - p7zip
+      - unrar
+      - xclip
