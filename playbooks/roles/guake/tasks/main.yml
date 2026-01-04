@@ -1,11 +1,7 @@
 ---
-- name: Install guake on Arch
+- name: Install guake
   ansible.builtin.include_tasks:
-    file: do_install_guake.yml
-  when: arch in ansible_distribution
-  tags:
-    - install
-    - guake
+    file: "install_guake_{{ ansible_facts.distribution | lower }}.yml"
 
 
 - name: Configure guake
@@ -14,6 +10,3 @@
     value: "{{ item.value }}"
     state: present
   with_items: "{{ guake_config }}"
-  tags:
-    - configure
-    - guake

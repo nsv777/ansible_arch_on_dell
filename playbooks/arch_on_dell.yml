@@ -24,6 +24,7 @@
     - role: cinnamon
     - role: geany
     - role: guake
+      tags: guake
     - role: deadbeef
     - role: filezilla
     - role: lightdm

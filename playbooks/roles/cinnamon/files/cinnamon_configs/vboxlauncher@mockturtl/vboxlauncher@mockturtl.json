@@ -1,9 +1,0 @@
-{
-    "autoUpdate": {
-        "type": "checkbox",
-        "default": false,
-        "description": "Auto update (slow)",
-        "value": false
-    },
-    "__md5__": "1623bfc03770436d35e83835b5bad884"
-}

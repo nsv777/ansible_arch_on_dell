@@ -2,8 +2,8 @@
 - name: Install guake
   kewlfft.aur.aur:
     name:
-      - guake
       - adwaita-icon-theme
+      - guake
       - ttf-hack
   become: true
   become_user: "{{ aur_user }}"
