@@ -14,15 +14,6 @@
     - role: docker
       become: true
 
-- name: server part
-  hosts: server
-  become: true
-  tags: server
-  roles:
-    - role: minikube
-#    - role: argocd
-#      tags: argocd
-
 - name: laptop part
   hosts: laptop
   roles:
@@ -35,6 +26,9 @@
     - role: guake
     - role: deadbeef
     - role: filezilla
+    - role: lightdm
+      become: true
+      tags: lightdm
     - role: wallpaper_changer
       tags: wallpaper_changer
     - role: twitch_curses

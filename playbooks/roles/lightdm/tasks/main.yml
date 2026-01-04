@@ -9,9 +9,6 @@
       - gnome-backgrounds
   become: true
   become_user: "{{ aur_user }}"
-  tags:
-    - install
-    - lightdm
 
 
 - name: Copy config
@@ -20,8 +17,7 @@
     dest: /etc/lightdm/
     mode: "0644"
   tags:
-    - configure
-    - lightdm
+    - lightdm_config
 
 
 - name: Enable service and ensure it is not masked
