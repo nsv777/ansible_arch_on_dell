@@ -18,6 +18,9 @@
 - name: laptop part
   hosts: laptop
   roles:
+    - role: intel_driver
+      become: true
+      tags: intel_driver
     - role: usb_mouse_on_boot
     - role: pulseaudio_hdmi_fix
 #    - role: install_ansible_aur
