@@ -17,12 +17,11 @@
 
 
 - name: Add the user to sudo
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/11-install-aur_builder
-    line: "{{ aur_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
-    create: true
-    mode: "0600"
-    validate: 'visudo -cf %s'
+  community.general.sudoers:
+    name: 11-install-aur_builder
+    user: "{{ aur_user }}"
+    commands: /usr/bin/pacman
+    nopassword: true
   become: true
   tags:
     - aur_builder
