@@ -4,5 +4,3 @@
   roles:
     - sudoers
     - configure_pacman
-# Looks like the role below is deprecated - we can now just download required collection
-#    - install_ansible_aur
