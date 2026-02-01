@@ -1,4 +1,4 @@
 ---
 - name: Install console utilities on Arch
   ansible.builtin.include_tasks:
-    file: "{{ ansible_distribution | lower }}_install_console_utilities.yml"
+    file: "{{ ansible_facts['distribution'] | lower }}_install_console_utilities.yml"

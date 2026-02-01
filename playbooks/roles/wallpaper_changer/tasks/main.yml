@@ -14,7 +14,7 @@
 - name: Install packages
   ansible.builtin.include_role:
     name: install_packages
-    vars_from: wallpaper_changer
+    vars_from: "{{ role_name }}"
 
 - name: Copy shell script
   ansible.builtin.copy:

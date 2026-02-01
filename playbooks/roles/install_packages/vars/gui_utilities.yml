@@ -1,0 +1,11 @@
+---
+install_packages_arch:
+  aur:
+    - gnome-screenshot
+    - gpicview-gtk3
+    - libreoffice-fresh
+    - nextcloud-client
+    - pinta
+    - remmina
+    - slack-desktop
+    - pycharm

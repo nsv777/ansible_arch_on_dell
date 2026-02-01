@@ -15,6 +15,7 @@
     fstype: tmpfs
     state: ephemeral
   become: true
+  changed_when: false
 
 - name: Mount tmpfs to pacman cache directory
   ansible.posix.mount:
@@ -23,6 +24,7 @@
     fstype: tmpfs
     state: ephemeral
   become: true
+  changed_when: false
 
 - name: Install packages
   kewlfft.aur.aur:
@@ -38,9 +40,11 @@
     path: /var/tmp/aur_builder/.cache
     state: unmounted
   become: true
+  changed_when: false
 
 - name: Unmount tmpfs from pacman cache directory
   ansible.posix.mount:
     path: /var/cache/pacman/pkg
     state: unmounted
   become: true
+  changed_when: false

@@ -2,7 +2,7 @@
 - name: Install twitch-curses on Arch
   ansible.builtin.include_tasks:
     file: do_install_twitch-curses.yml
-  when: arch in ansible_distribution
+  when: arch in ansible_facts['distribution']
   tags:
     - install_twitch_curses
     - twitch_curses

@@ -37,6 +37,10 @@ cinnamon_config:
     value: 'true'
   - key: /org/cinnamon/desktop/privacy/recent-files-max-age
     value: 180
+  - key: /org/cinnamon/desktop/privacy/remove-old-temp-files
+    value: 'true'
+  - key: /org/cinnamon/desktop/privacy/remove-old-trash-files
+    value: 'true'
   - key: /org/cinnamon/desktop/privacy/remember-recent-files
     value: 'true'
   - key: /org/cinnamon/desktop/wm/preferences/action-scroll-titlebar
@@ -45,11 +49,9 @@ cinnamon_config:
     value: 30
   - key: /org/cinnamon/desktop/wm/preferences/titlebar-font
     value: "'Sans Bold 8'"
-  # controls how the Muffin window manager (Cinnamon's compositor) synchronizes window drawing with monitor's refresh rate
-  - key: /org/cinnamon/muffin/sync-method
-    value: "'swap_throttling'"
-  - key: /org/cinnamon/muffin/desktop-effects
-    value: 'false'
+  # Si está activada, las ventanas nuevas que inicialmente tienen el tamaño de la pantalla, se maximizan
+  - key: /org/cinnamon/muffin/auto-maximize
+    value: 'true'
   - key: /org/cinnamon/muffin/unredirect-fullscreen-windows
     value: 'true'
 #  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
@@ -124,12 +126,12 @@ cinnamon_config:
     value: "'geany'"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name
     value: "'geany'"
-  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
-  #    value: "['<Shift><Super>c']"
-  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
-  #    value: "'steam-native steam://rungameid/730'"
-  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
-  #    value: "'CS GO'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
+    value: "['F12']"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
+    value: "'guake-toggle'"
+  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
+    value: "'guake-toggle'"
   #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
   #    value: "['<Primary><Shift><Super>m']"
   #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/command
@@ -149,4 +151,4 @@ cinnamon_config:
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/name
     value: "'calc'"
   - key: /org/cinnamon/desktop/keybindings/custom-list
-    value: "['custom0', 'custom4']"
+    value: "['custom0', 'custom1', 'custom4']"

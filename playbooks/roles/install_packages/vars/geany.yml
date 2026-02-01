@@ -1,8 +1,9 @@
 ---
 install_packages_ubuntu:
   apt:
-    - wget
+    - geany
 install_packages_arch:
   aur:
-    - python-virtualenv
-    - wget
+    - geany
+    - geany-themes
+    - ttf-hack

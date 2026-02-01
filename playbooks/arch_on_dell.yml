@@ -17,27 +17,28 @@
 
 - name: laptop part
   hosts: laptop
+  tags: laptop
+  tasks:
+    - name: run setup
+      setup:
   roles:
     - role: intel_driver
       become: true
       tags: intel_driver
-    - role: usb_mouse_on_boot
     - role: pulseaudio_hdmi_fix
-#    - role: install_ansible_aur
-#    - role: install_packages
     - role: cinnamon
     - role: geany
+      tags: geany
     - role: guake
       tags: guake
     - role: deadbeef
-    - role: filezilla
     - role: lightdm
       become: true
       tags: lightdm
     - role: wallpaper_changer
       tags: wallpaper_changer
-    - role: twitch_curses
-    - role: install_graphic_utilities
+    - role: install_packages
+      vars_from: gui_utilities.yml
     - role: firefox
       tags: firefox
     - role: kubeseal

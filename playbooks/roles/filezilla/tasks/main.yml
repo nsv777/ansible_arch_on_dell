@@ -2,7 +2,7 @@
 - name: Install filezilla on Arch
   ansible.builtin.include_tasks:
     file: do_install_filezilla.yml
-  when: arch in ansible_distribution
+  when: arch in ansible_facts['distribution']
   tags:
     - install_filezilla
     - filezilla
