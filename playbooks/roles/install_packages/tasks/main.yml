@@ -1,4 +1,4 @@
 ---
 - name: Install packages
   ansible.builtin.include_tasks:
-    file: "do_install_packages_{{ ansible_facts['distribution'] | lower }}.yml"
+    file: "do_{{ role_name }}_{{ ansible_facts['distribution'] | lower }}.yml"

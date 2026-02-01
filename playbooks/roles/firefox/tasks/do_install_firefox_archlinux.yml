@@ -1,5 +1,5 @@
 ---
-- name: Install firefox on Arch
-  kewlfft.aur.aur:
-    name: firefox
-  become: true
+- name: Install packages
+  ansible.builtin.include_role:
+    name: install_packages
+    vars_from: "{{ role_name }}"
