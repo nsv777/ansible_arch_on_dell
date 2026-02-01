@@ -1,0 +1,7 @@
+---
+locale_locale: en_US.UTF-8
+users:
+  - username: stan
+    password: "{{ vault_users_stan_password }}"
+    uid: 1000
+    groups: docker,wheel

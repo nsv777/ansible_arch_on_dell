@@ -1,0 +1,7 @@
+---
+- name: Mount mountpoints
+  ansible.posix.mount:
+    path:
+    src: none
+    fstype: tmpfs
+    state: ephemeral

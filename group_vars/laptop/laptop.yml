@@ -1,0 +1,11 @@
+---
+configure_pacman_multilib_enabled: true
+users:
+  - username: stan
+    password: "{{ vault_users_stan_password }}"
+    uid: 1000
+    groups: docker,wheel
+  - username: irina
+    password: "{{ vault_users_irina_password }}"
+    uid: 1002
+    groups: docker,wheel

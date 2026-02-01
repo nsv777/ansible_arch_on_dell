@@ -4,16 +4,19 @@
   tags: common
   roles:
     - role: create_aur_user
+    - role: console_utilities
+    - role: docker
+      become: true
+    - role: users
+      become: true
     - role: locale
     - role: configure_pacman
       tags: configure_pacman
+    - role: sudoers
     - role: systemd
     - role: install_yay
     - role: paccache
     - role: vim
-    - role: console_utilities
-    - role: docker
-      become: true
 
 - name: laptop part
   hosts: laptop

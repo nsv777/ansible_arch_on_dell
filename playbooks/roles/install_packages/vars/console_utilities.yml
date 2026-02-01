@@ -1,0 +1,14 @@
+---
+install_packages_arch:
+  aur:
+    - docker
+    - docker-compose
+    - htop
+    - lshw
+    - man-db
+    - mc
+    - nmap
+    - rsync
+    - screen
+    - wget
+    - xz
