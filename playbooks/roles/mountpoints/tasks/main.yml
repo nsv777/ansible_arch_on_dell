@@ -1,1 +1,15 @@
 ---
+- name: Install packages
+  ansible.builtin.include_tasks:
+    file: "do_install_packages_{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: Mount mountpoints
+  ansible.posix.mount:
+    path: "{{ mountpoint.path }}"
+    src: "{{ mountpoint.src }}"
+    fstype: "{{ mountpoint.fstype }}"
+    opts: "{{ mountpoint.opts | default('defaults') }}"
+    state: mounted
+  loop: "{{ mountpoints }}"
+  loop_control:
+    loop_var: mountpoint

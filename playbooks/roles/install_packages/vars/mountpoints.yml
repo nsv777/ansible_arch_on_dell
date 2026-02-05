@@ -1,0 +1,6 @@
+---
+install_packages_arch:
+  aur:
+    # - nfsidmap maybe?
+    - nfs-utils
+    - ntfs-3g

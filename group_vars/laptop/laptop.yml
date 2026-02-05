@@ -9,3 +9,24 @@ users:
     password: "{{ vault_users_irina_password }}"
     uid: 1002
     groups: docker,wheel
+
+mountpoints:
+  - path: /mnt/server-downloads
+    src: 192.168.1.128:/home/transmission-daemon/downloads
+    fstype: nfs4
+    opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
+  - path: /mnt/server-pics
+    src: 192.168.1.128:/home/pics
+    fstype: nfs4
+    opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
+  - path: /mnt/server-music
+    src: 192.168.1.128:/home/music
+    fstype: nfs4
+    opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
+  - path: /mnt/server-share
+    src: 192.168.1.128:/home/share
+    fstype: nfs4
+    opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
+  - path: /mnt/win10
+    src: UUID=861EF4671EF451A3
+    fstype: ntfs-3g

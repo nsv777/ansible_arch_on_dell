@@ -17,6 +17,9 @@
     - role: install_yay
     - role: paccache
     - role: vim
+    - role: mountpoints
+      become: true
+      tags: mountpoints
 
 - name: laptop part
   hosts: laptop
