@@ -31,7 +31,7 @@
     name: '{{ install_packages_arch.aur }}'
   become: true
   become_user: "{{ aur_user }}"
-  when: arch.aur is defined
+  when: install_packages_arch.aur is defined
   tags:
     - wallpaper
 
