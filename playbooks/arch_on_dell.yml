@@ -5,10 +5,13 @@
   roles:
     - role: create_aur_user
     - role: console_utilities
+      tags: console_utilities
     - role: docker
       become: true
+      tags: docker
     - role: users
       become: true
+      tags: users
     - role: locale
     - role: configure_pacman
       tags: configure_pacman
@@ -24,32 +27,30 @@
 - name: laptop part
   hosts: laptop
   tags: laptop
-  tasks:
-    - name: run setup
-      setup:
   roles:
     - role: intel_driver
       become: true
       tags: intel_driver
     - role: pulseaudio_hdmi_fix
+    - role: lightdm
+      become: true
+      tags: lightdm
     - role: cinnamon
+      tags: cinnamon
     - role: geany
       tags: geany
     - role: guake
       tags: guake
     - role: deadbeef
-    - role: lightdm
-      become: true
-      tags: lightdm
     - role: wallpaper_changer
       tags: wallpaper_changer
     - role: install_packages
       vars_from: gui_utilities.yml
     - role: firefox
       tags: firefox
-    - role: kubeseal
-      tags: kubeseal
-      become: true
+    # - role: kubeseal
+    #   tags: kubeseal
+    #   become: true
     - role: bluetooth_reset
       tags: bluetooth_reset
       become: true

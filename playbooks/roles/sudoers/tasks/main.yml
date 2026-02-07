@@ -3,6 +3,6 @@
   community.general.sudoers:
     name: 01-wheel
     group: wheel
-    command: ALL
+    commands: ALL
     nopassword: true
   become: true
