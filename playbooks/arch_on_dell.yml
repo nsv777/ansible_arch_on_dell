@@ -44,8 +44,7 @@
     - role: deadbeef
     - role: wallpaper_changer
       tags: wallpaper_changer
-    - role: install_packages
-      vars_from: gui_utilities.yml
+    - role: gui_utilities
     - role: firefox
       tags: firefox
     # - role: kubeseal
