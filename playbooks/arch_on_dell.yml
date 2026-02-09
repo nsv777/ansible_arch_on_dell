@@ -31,7 +31,7 @@
     - role: intel_driver
       become: true
       tags: intel_driver
-    - role: pulseaudio_hdmi_fix
+    # - role: pulseaudio_hdmi_fix
     - role: lightdm
       become: true
       tags: lightdm
@@ -51,9 +51,9 @@
     # - role: kubeseal
     #   tags: kubeseal
     #   become: true
-    - role: bluetooth_reset
-      tags: bluetooth_reset
-      become: true
+    # - role: bluetooth_reset
+    #   tags: bluetooth_reset
+    #   become: true
 
 - name: Configure ip forward
   hosts: laptop

@@ -4,14 +4,14 @@
     name: install_packages
     vars_from: "{{ role_name }}"
 
-- name: Create config directory
-  ansible.builtin.file:
-    path: $HOME/.config/deadbeef
-    state: directory
-    mode: "0755"
+# - name: Create config directory
+#   ansible.builtin.file:
+#     path: $HOME/.config/deadbeef
+#     state: directory
+#     mode: "0755"
 
-- name: Copy config
-  ansible.builtin.copy:
-    src: deadbeef/config
-    dest: $HOME/.config/deadbeef/
-    mode: "0644"
+# - name: Copy config
+#   ansible.builtin.copy:
+#     src: deadbeef/config
+#     dest: $HOME/.config/deadbeef/
+#     mode: "0644"

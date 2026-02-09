@@ -2,6 +2,7 @@
 - name: Install console utilities
   community.general.pacman:
     name:
+      - arch-install-scripts
       - docker
       - docker-compose
       - htop

@@ -6,6 +6,8 @@ cinnamon_config:
     value: 100
   - key: /org/cinnamon/desktop-effects
     value: 'false'
+  - key: /org/cinnamon/desktop/default-applications/calculator
+    value: "'galculator'"
   - key: /org/cinnamon/desktop-effects-on-dialogs
     value: 'false'
   - key: /org/cinnamon/desktop-effects-on-menus
@@ -25,8 +27,8 @@ cinnamon_config:
     value: 1
   - key: /org/cinnamon/desktop/interface/gtk-theme
     value: "'Adwaita'"
-  - key: /org/cinnamon/desktop/interface/icon-theme
-    value: "'Faenza'"
+  # - key: /org/cinnamon/desktop/interface/icon-theme
+  #   value: "'Faenza'"
   - key: /org/cinnamon/desktop/interface/cursor-size
     value: 24
   - key: /org/cinnamon/desktop/interface/cursor-theme
@@ -48,7 +50,7 @@ cinnamon_config:
   - key: /org/cinnamon/desktop/wm/preferences/min-window-opacity
     value: 30
   - key: /org/cinnamon/desktop/wm/preferences/titlebar-font
-    value: "'Sans Bold 8'"
+    value: "'Adwaita Sans Bold 8'"
   # Si está activada, las ventanas nuevas que inicialmente tienen el tamaño de la pantalla, se maximizan
   - key: /org/cinnamon/muffin/auto-maximize
     value: 'true'
@@ -126,14 +128,14 @@ cinnamon_config:
     value: "'geany'"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/name
     value: "'geany'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
-    value: "['F12']"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
-    value: "'guake-toggle'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
-    value: "'guake-toggle'"
-  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
-  #    value: "['<Primary><Shift><Super>m']"
+  # - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/binding
+  #   value: "['F12']"
+  # - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/command
+  #   value: "'guake-toggle'"
+  # - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom1/name
+  #   value: "'guake-toggle'"
+  # - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/binding
+  #   value: "['<Primary><Shift><Super>m']"
   #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/command
   #    value: "'$HOME/scripts/monitor_is_back.sh'"
   #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom2/name
@@ -144,11 +146,11 @@ cinnamon_config:
   #    value: "'tor-browser'"
   #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom3/name
   #    value: "'Tor Browser'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/binding
-    value: "['Calculator']"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/command
-    value: "'galculator'"
-  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/name
-    value: "'calc'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/binding
+  #    value: "['Calculator']"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/command
+  #    value: "'galculator'"
+  #  - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom4/name
+  #    value: "'calc'"
   - key: /org/cinnamon/desktop/keybindings/custom-list
-    value: "['custom0', 'custom1', 'custom4']"
+    value: "['custom0']"

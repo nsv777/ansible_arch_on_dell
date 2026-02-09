@@ -1,6 +1,7 @@
 ---
 install_packages_arch:
   aur:
+    - gnome-keyring
     - gnome-screenshot
     - gpicview-gtk3
     - libreoffice-fresh

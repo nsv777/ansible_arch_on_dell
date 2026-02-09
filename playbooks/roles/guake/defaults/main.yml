@@ -35,7 +35,7 @@ guake_config:
   - key: /org/guake/general/window-width
     value: 62
   - key: /org/guake/keybindings/global/show-hide
-    value: "'disabled'"
+    value: "'F12'"
   - key: /org/guake/keybindings/local/next-tab
     value: "'<Shift>Right'"
   - key: /org/guake/keybindings/local/previous-tab
