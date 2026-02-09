@@ -2,7 +2,7 @@
 - name: Create users
   ansible.builtin.user:
     name: "{{ user.username }}"
-    password: "{{ user.password | password_hash(salt=inventory_hostname) }}"
+    password: "{{ user.password | ansible.builtin.password_hash(salt=inventory_hostname) }}"
     uid: "{{ user.uid }}"
     groups: "{{ user.groups }}"
   loop: "{{ users }}"
