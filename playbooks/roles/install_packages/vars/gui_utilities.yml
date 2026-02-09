@@ -3,7 +3,7 @@ install_packages_arch:
   aur:
     - gnome-keyring
     - gnome-screenshot
-    - gpicview-gtk3
+    - gpicview
     - libreoffice-fresh
     - nextcloud-client
     - pinta
