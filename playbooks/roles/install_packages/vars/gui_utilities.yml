@@ -1,6 +1,7 @@
 ---
 install_packages_arch:
   aur:
+    - blueman
     - gnome-keyring
     - gnome-screenshot
     - gpicview
@@ -11,3 +12,4 @@ install_packages_arch:
     - slack-desktop
     - smplayer
     - pycharm
+    - transmission-qt
