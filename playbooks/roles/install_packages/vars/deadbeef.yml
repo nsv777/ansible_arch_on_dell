@@ -2,3 +2,4 @@
 install_packages_arch:
   aur:
     - deadbeef
+    - libmad  # for mp3 support
