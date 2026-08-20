@@ -1,0 +1,48 @@
+---
+- name: Install tofuutils repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - gnupg
+    state: present
+    update_cache: true
+
+- name: Download tofuutils repository signing key
+  ansible.builtin.get_url:
+    url: https://dl.cloudsmith.io/public/tofuutils/tenv/gpg.8ACD4386ADD982F6.key
+    dest: /usr/share/keyrings/tofuutils-tenv-archive-keyring.asc
+    owner: root
+    group: root
+    mode: "0644"
+  register: tenv_repository_key
+
+- name: Check tofuutils binary keyring
+  ansible.builtin.stat:
+    path: /usr/share/keyrings/tofuutils-tenv-archive-keyring.gpg
+  register: tenv_binary_keyring
+
+- name: Convert tofuutils signing key to a binary keyring
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --dearmor
+      - --yes
+      - --output
+      - /usr/share/keyrings/tofuutils-tenv-archive-keyring.gpg
+      - /usr/share/keyrings/tofuutils-tenv-archive-keyring.asc
+  when: tenv_repository_key.changed or not tenv_binary_keyring.stat.exists
+
+- name: Configure tofuutils tenv repository
+  ansible.builtin.template:
+    src: tofuutils-tenv.list.j2
+    dest: /etc/apt/sources.list.d/tofuutils-tenv.list
+    owner: root
+    group: root
+    mode: "0644"
+  register: tenv_repository
+
+- name: Install tenv
+  ansible.builtin.apt:
+    name: tenv
+    state: present
+    update_cache: "{{ tenv_repository.changed }}"

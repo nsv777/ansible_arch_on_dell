@@ -1,0 +1,7 @@
+---
+- name: Install tenv from the AUR
+  kewlfft.aur.aur:
+    name: tenv-bin
+    state: present
+  become: true
+  become_user: "{{ aur_user }}"

@@ -1,0 +1,26 @@
+# Use setuptools as the pip build backend for this dependency-only project.
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ansible-arch-on-dell"
+version = "0.1.0"
+description = "Ansible configuration for Arch Linux and Ubuntu laptops"
+readme = "README.md"
+dependencies = [
+    "ansible",
+    "passlib",
+]
+
+[dependency-groups]
+dev = [
+  "pre-commit",
+]
+
+[tool.setuptools]
+# Do not auto-discover the repository's top-level Ansible directories as Python packages.
+packages = []
+
+[tool.uv]
+package = false

@@ -28,6 +28,12 @@
   hosts: laptop
   tags: laptop
   roles:
+    # - role: kubeseal
+    #   tags: kubeseal
+    #   become: true
+    # - role: bluetooth_reset
+    #   tags: bluetooth_reset
+    #   become: true
     - role: intel_driver
       become: true
       tags: intel_driver
@@ -45,14 +51,11 @@
     - role: wallpaper_changer
       tags: wallpaper_changer
     - role: gui_utilities
+    - role: tenv
+      become: true
+      tags: tenv
     - role: firefox
       tags: firefox
-    # - role: kubeseal
-    #   tags: kubeseal
-    #   become: true
-    # - role: bluetooth_reset
-    #   tags: bluetooth_reset
-    #   become: true
 
 - name: Configure ip forward
   hosts: laptop
