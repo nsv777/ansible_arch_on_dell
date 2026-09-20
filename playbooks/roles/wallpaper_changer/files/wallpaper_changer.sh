@@ -8,7 +8,7 @@
 set -euo pipefail
 
 tempfile=$(mktemp)
-wallpaper_file_prefix="/var/tmp/background"
+wallpaper_file_prefix="/var/tmp/background_$(date +%s)"
 
 PYTHON_BINARY="${1:?Error: Python binary path is required as the first argument.}"
 SCRIPT_PATH="${2:?Error: Script path is required as the second argument.}"

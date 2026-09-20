@@ -56,6 +56,8 @@
       tags: tenv
     - role: firefox
       tags: firefox
+    - role: hyprland
+      tags: hyprland
 
 - name: Configure ip forward
   hosts: laptop

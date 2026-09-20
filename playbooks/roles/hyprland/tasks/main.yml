@@ -1,0 +1,45 @@
+---
+- name: Install packages
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - brightnessctl
+      - hypridle
+      - hyprland
+      - hyprland-per-window-layout
+      - hyprlock
+      - hyprpaper
+      - mako
+      - rofi
+      - waybar
+
+- name: Create config dirs
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0700"
+  loop:
+    - ~/.config/hypr
+    - ~/.config/waybar
+
+- name: Copy hypr config
+  ansible.builtin.copy:
+    src: config/hypr
+    dest: ~/.config/
+    directory_mode: "0700"
+    mode: "0600"
+
+- name: Copy waybar config
+  ansible.builtin.copy:
+    src: config/waybar
+    dest: ~/.config/
+    directory_mode: "0700"
+    mode: "0600"
+
+- name: Copy executables
+  ansible.builtin.copy:
+    src: local/bin
+    dest: ~/.local/
+    directory_mode: "0700"
+    mode: "0700"
