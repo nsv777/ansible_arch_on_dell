@@ -104,3 +104,4 @@ venv.bak/
 .mypy_cache/
 .idea/
 .vault_pass
+/uv.lock

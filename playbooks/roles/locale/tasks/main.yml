@@ -1,5 +1,5 @@
 ---
-- name: "/etc/locale.gen: uncomment locale {{ locale_locale }}"
+- name: "/etc/locale.gen: uncomment selected locale"
   ansible.builtin.replace:
     dest: /etc/locale.gen
     regexp: '^#{{ locale_locale }} UTF-8.*$'
@@ -9,10 +9,8 @@
   tags:
     - locale
 
-
 - name: Generate locales
   ansible.builtin.meta: flush_handlers
-
 
 - name: "Setting locale to {{ locale_locale }}"
   ansible.builtin.command: 'localectl set-locale LANG="{{ locale_locale }}"'
