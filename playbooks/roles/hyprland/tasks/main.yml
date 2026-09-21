@@ -1,4 +1,8 @@
 ---
+- name: Distribution-specific tasks
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"
+
 - name: Install packages
   become: true
   become_user: root
@@ -7,12 +11,11 @@
       - brightnessctl
       - hypridle
       - hyprland
-      - hyprland-per-window-layout
       - hyprlock
       - hyprpaper
-      - mako
       - rofi
       - waybar
+      - playerctl
 
 - name: Create config dirs
   ansible.builtin.file:

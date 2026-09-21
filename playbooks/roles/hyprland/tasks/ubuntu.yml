@@ -1,0 +1,43 @@
+---
+- name: Install deb822 repository support
+  ansible.builtin.apt:
+    name: python3-debian
+    state: present
+  become: true
+
+- name: Remove legacy hyprland PPA repository
+  ansible.builtin.file:
+    path: "/etc/apt/sources.list.d/ppa_cppiber_hyprland_{{ ansible_facts['distribution_release'] }}.list"
+    state: absent
+  notify: Update hyprland apt package cache
+  become: true
+
+- name: Add hyprland PPA repository
+  ansible.builtin.deb822_repository:
+    name: cppiber-hyprland
+    types:
+      - deb
+    uris:
+      - https://ppa.launchpadcontent.net/cppiber/hyprland/ubuntu
+    suites:
+      - "{{ ansible_facts['distribution_release'] }}"
+    components:
+      - main
+    signed_by: "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xA54D23B62FF3FCC76EFF71E8FDBAAA1CF0CCF48E"
+    state: present
+  notify: Update hyprland apt package cache
+  become: true
+
+- name: Install Ubuntu packages
+  ansible.builtin.apt:
+    name:
+      - cargo-1.91
+      - mako-notifier
+  become: true
+
+- name: Install hyprland-per-window-layout using cargo
+  community.general.cargo:
+    name: hyprland-per-window-layout
+    locked: true
+    path: ~/.local
+    executable: /usr/bin/cargo-1.91

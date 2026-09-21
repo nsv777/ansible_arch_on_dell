@@ -1,0 +1,6 @@
+---
+- name: Install Arch Linux packages
+  ansible.builtin.package:
+    name:
+      - hyprland-per-window-layout
+      - mako
