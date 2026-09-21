@@ -18,11 +18,11 @@
         "keyboard-state"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/window",
+        "hyprland/submap"
     ],
     "modules-right": [
         "hyprland/language",
-        "hyprland/submap",
 //        "mpd",
         "pulseaudio",
 //        "power-profiles-daemon",
