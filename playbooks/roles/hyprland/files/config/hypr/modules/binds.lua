@@ -89,10 +89,10 @@ hl.bind(altMod .. " + X", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
 
     -- Set repeating binds for resizing the active window.
-    hl.bind("D", hl.dsp.window.resize({ x = 100, y = 0, relative = true}), { repeating = true })
-    hl.bind("A", hl.dsp.window.resize({ x = -100, y = 0, relative = true}), { repeating = true })
-    hl.bind("W", hl.dsp.window.resize({ x = 0, y = 100, relative = true}), { repeating = true })
-    hl.bind("S", hl.dsp.window.resize({ x = 0, y = -100, relative = true}), { repeating = true })
+    hl.bind("right", hl.dsp.window.resize({ x = 100, y = 0, relative = true}), { repeating = true })
+    hl.bind("left", hl.dsp.window.resize({ x = -100, y = 0, relative = true}), { repeating = true })
+    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 100, relative = true}), { repeating = true })
+    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -100, relative = true}), { repeating = true })
 
     -- Use `reset` to go back to the global submap
     hl.bind("escape", hl.dsp.submap("reset"))
@@ -100,10 +100,10 @@ hl.define_submap("resize", function()
 end)
 
 -- Move/rearrange active window with Alt + Ctrl + Arrows
-hl.bind(mainMod .. " + CTRL + A", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. " + CTRL + D", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + CTRL + W", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.move({ direction = "down" }))
+hl.bind(altMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(altMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(altMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(altMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))
@@ -111,7 +111,7 @@ hl.bind("CONTROL + ALT + L", hl.dsp.exec_cmd("~/.local/bin/lock"))
 
 
 -- Cycle layouts for current workspace
-hl.bind(mainMod .. " + tab", function ()
+hl.bind(altMod .. " + tab", function ()
     local layouts   = { "scrolling", "dwindle", "master", "monocle" }
     local workspace = hl.get_active_workspace()
     if hl.get_active_special_workspace() then
