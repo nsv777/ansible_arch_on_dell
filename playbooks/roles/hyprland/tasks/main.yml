@@ -46,3 +46,6 @@
     dest: ~/.local/
     directory_mode: "0700"
     mode: "0700"
+
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
