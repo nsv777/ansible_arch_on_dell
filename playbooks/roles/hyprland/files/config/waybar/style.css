@@ -24,7 +24,7 @@
   /* fc-list :family | grep -i "jetbrains" */
   font-family: 'JetBrainsMono Nerd Font', 'Source Code Pro', sans-serif;
   /*font-family: 'Noto Serif Ahom', 'Source Code Pro', sans-serif;*/
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: 400;
   color: @base04;
   background: @base01;
@@ -54,7 +54,7 @@
   color: rgba(238, 46, 36, 1);
 }
 
-#mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray {
+#mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray {
   margin: 1;
   padding: 0 10px;
   background-color: @base02;

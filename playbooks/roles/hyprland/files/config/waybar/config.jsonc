@@ -13,6 +13,7 @@
         "cpu",
         "memory",
         "temperature",
+        "disk",
         "backlight",
         "keyboard-state"
     ],
@@ -129,6 +130,12 @@
     },
     "memory": {
         "format": "{}% "
+    },
+    "disk": {
+        "path": "/",
+        "interval": 30,
+        "unit": "GiB",
+        "format": "/: {percentage_free}% ({specific_free:.1f} GiB free)"
     },
     "temperature": {
         // "thermal-zone": 2,
