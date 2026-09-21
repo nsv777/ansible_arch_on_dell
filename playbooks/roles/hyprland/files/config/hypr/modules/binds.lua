@@ -3,28 +3,29 @@
 ---------------------
 
 -- xkbcli interactive-wayland
-local mainMod = "ALT" -- Main modifier
+local mainMod = "SUPER" -- Main modifier
+local altMod = "ALT" -- Alternative modifier
 
 local terminal = "foot"
 local fileManager = "nemo"
 local menu = "rofi -show run"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(altMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(altMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
-hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(altMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(altMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(altMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(altMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -39,12 +40,12 @@ hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
-hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(altMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(altMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(altMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind(altMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
@@ -63,10 +64,8 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 
--- Sets the split ratio so the active window takes 75% of the space
-hl.bind(mainMod .. " + Z", function()
-    hl.dispatch("splitratio", "exact 0.75")
-end)
+-- Set the active Dwindle split ratio to 0.75
+hl.bind(mainMod .. " + Z", hl.dsp.layout("splitratio 0.75 exact"))
 
 -- Resize active window with Alt + Shift + Arrows
 -- hl.bind(mainMod .. " + SHIFT + right", function() hl.dispatch("resizeactive", "40 0") end)
@@ -83,16 +82,16 @@ end)
 -- 	hl.bind("Return", hl.dsp.submap("reset"))
 -- end)
 -- Switch to a submap called `resize`.
-hl.bind(mainMod .. " + X", hl.dsp.submap("resize"))
+hl.bind(altMod .. " + X", hl.dsp.submap("resize"))
 
 -- Start a submap called "resize".
 hl.define_submap("resize", function()
 
     -- Set repeating binds for resizing the active window.
-    hl.bind("right", hl.dsp.window.resize({ x = 80, y = 0, relative = true}), { repeating = true })
-    hl.bind("left", hl.dsp.window.resize({ x = -80, y = 0, relative = true}), { repeating = true })
-    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 80, relative = true}), { repeating = true })
-    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -80, relative = true}), { repeating = true })
+    hl.bind("D", hl.dsp.window.resize({ x = 100, y = 0, relative = true}), { repeating = true })
+    hl.bind("A", hl.dsp.window.resize({ x = -100, y = 0, relative = true}), { repeating = true })
+    hl.bind("W", hl.dsp.window.resize({ x = 0, y = 100, relative = true}), { repeating = true })
+    hl.bind("S", hl.dsp.window.resize({ x = 0, y = -100, relative = true}), { repeating = true })
 
     -- Use `reset` to go back to the global submap
     hl.bind("escape", hl.dsp.submap("reset"))
@@ -100,10 +99,10 @@ hl.define_submap("resize", function()
 end)
 
 -- Move/rearrange active window with Alt + Ctrl + Arrows
-hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + CTRL + A", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + D", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + W", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))

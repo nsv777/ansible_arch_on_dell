@@ -17,16 +17,6 @@ require("modules.monitors")
 -- Or execute your favorite apps at launch like this:
 
 hl.on("hyprland.start", function ()
-  if hl.get_monitor("DP-1") ~= nil then
-        -- Force 4K mode first
-        hl.monitor({ output = "DP-1", mode = "3840x2160@60.00", position = "0x0", scale = 2 })
-        -- Then disable the laptop screen
-        hl.monitor({ output = "eDP-1", disabled = true })
-  end
---   if hl.get_monitor("DP-1") ~= nil then
---     hl.monitor({ output = "eDP-1", disabled = true })
---   end
-
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
   hl.exec_cmd("blueman-applet")
@@ -226,11 +216,11 @@ hl.gesture({
     action = "workspace"
 })
 
--- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
+-- hyprland devices
 hl.device({
-    name        = "epic-mouse-v1",
-    sensitivity = -0.5,
+    name        = "razer-razer-deathadder-essential-1",
+    sensitivity = -0.6,
 })
 
 
