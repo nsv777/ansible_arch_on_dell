@@ -199,6 +199,7 @@ hl.config({
         kb_model   = "",
         kb_options = "grp:caps_toggle",
         kb_rules   = "",
+        numlock_by_default = true,
 
         follow_mouse = 1,
 
