@@ -9,13 +9,14 @@
   ansible.builtin.package:
     name:
       - brightnessctl
+      - foot
       - hypridle
       - hyprland
       - hyprlock
       - hyprpaper
+      - playerctl
       - rofi
       - waybar
-      - playerctl
 
 - name: Create config dirs
   ansible.builtin.file:
