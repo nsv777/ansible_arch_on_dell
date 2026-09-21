@@ -8,12 +8,14 @@
   become_user: root
   ansible.builtin.package:
     name:
+      - blueman
       - brightnessctl
       - foot
       - hypridle
       - hyprland
       - hyprlock
       - hyprpaper
+      - pavucontrol
       - playerctl
       - rofi
       - waybar
