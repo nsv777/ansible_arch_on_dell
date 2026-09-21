@@ -7,7 +7,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces",
+        "ext/workspaces",
         "idle_inhibitor",
         "network",
         "cpu",
@@ -48,7 +48,7 @@
     //         "default": ""
     //     }
     // },
-     "hyprland/workspaces": {
+     "ext/workspaces": {
          "disable-scroll": true,
          "on-click": "activate",
          // "all-outputs": false,
@@ -119,8 +119,9 @@
     },
     "clock": {
         // "timezone": "America/New_York",
+        "format": "{:%Y-%m-%d %H:%M %Z}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%H:%M:%S}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -197,7 +198,7 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "hyprpwcenter"
     },
     "custom/media": {
         "format": "{icon} {text}",
