@@ -35,6 +35,7 @@
   ansible.builtin.apt:
     name:
       - cargo-1.91
+      - foot-themes
       - mako-notifier
   become: true
 

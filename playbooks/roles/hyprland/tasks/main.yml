@@ -41,6 +41,13 @@
     directory_mode: "0700"
     mode: "0600"
 
+- name: Copy foot config
+  ansible.builtin.copy:
+    src: config/foot
+    dest: ~/.config/
+    directory_mode: "0700"
+    mode: "0600"
+
 - name: Copy executables
   ansible.builtin.copy:
     src: local/bin
