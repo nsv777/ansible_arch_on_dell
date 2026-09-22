@@ -56,6 +56,8 @@
       tags: tenv
     - role: firefox
       tags: firefox
+    - role: insomnia
+      tags: insomnia
     - role: hyprland
       tags: hyprland
 

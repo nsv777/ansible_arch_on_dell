@@ -1,0 +1,7 @@
+---
+- name: Install Insomnia from the AUR
+  kewlfft.aur.aur:
+    name: insomnia-bin
+    state: present
+  become: true
+  become_user: "{{ aur_user }}"

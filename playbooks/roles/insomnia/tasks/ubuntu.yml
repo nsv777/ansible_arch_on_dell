@@ -1,0 +1,53 @@
+---
+- name: Install Kong Insomnia repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - gnupg
+    state: present
+    update_cache: true
+  become: true
+
+- name: Download Kong Insomnia repository signing key
+  ansible.builtin.get_url:
+    url: https://packages.konghq.com/public/insomnia/gpg.474B9148D779222B.key
+    dest: /usr/share/keyrings/kong-insomnia-archive-keyring.asc
+    owner: root
+    group: root
+    mode: "0644"
+  register: insomnia_repository_key
+  become: true
+
+- name: Check Kong Insomnia binary keyring
+  ansible.builtin.stat:
+    path: /usr/share/keyrings/kong-insomnia-archive-keyring.gpg
+  register: insomnia_binary_keyring
+  become: true
+
+- name: Convert Kong Insomnia signing key to a binary keyring
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --dearmor
+      - --yes
+      - --output
+      - /usr/share/keyrings/kong-insomnia-archive-keyring.gpg
+      - /usr/share/keyrings/kong-insomnia-archive-keyring.asc
+  when: insomnia_repository_key.changed or not insomnia_binary_keyring.stat.exists
+  become: true
+
+- name: Configure Kong Insomnia repository
+  ansible.builtin.template:
+    src: kong-insomnia.list.j2
+    dest: /etc/apt/sources.list.d/kong-insomnia.list
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: Install Insomnia
+  ansible.builtin.apt:
+    name: insomnia
+    state: present
+    update_cache: true
+  become: true
