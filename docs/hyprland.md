@@ -25,8 +25,12 @@ Mako configuration ignores expiry timeouts requested by applications.
 ## Hyprlock widget placement
 
 Use output-relative percentage positions for Hyprlock widgets that are placed
-beside one another. The keyboard-layout label is centered 9% to the right of
+beside one another. The keyboard-layout label is centered 6% to the right of
 the screen center, alongside the centered 15%-wide password field.
+
+Hyprlock does not apply Hyprland monitor scale to label fonts. The layout
+indicator has a font-size specific to each supported output: `42` on the Dell
+S2722QC at scale `1.67`, and `25` on the eDP-1 laptop panel at scale `1`.
 
 ## Wallpaper changer backend
 
