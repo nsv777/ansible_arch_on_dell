@@ -26,12 +26,16 @@ hl.bind(altMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(altMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(altMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(altMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + A",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + D", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + W",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + S",  hl.dsp.focus({ direction = "down" }))
 
 -- Move active window to a workspace with Alt + Shift + [0-9]
 for i = 1, 10 do
     local key = i % 10 -- 10 maps to key 0
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
-    hl.bind(altMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+    hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
 -- Example special workspace (scratchpad)

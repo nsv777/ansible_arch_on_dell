@@ -16,3 +16,8 @@ built-in output name `eDP-1`.
 
 The `Chimei Innolux Corporation 0x140A` panel uses scale `1`. Other built-in
 panel descriptions use automatic scaling.
+
+## Mako notification lifetime
+
+Mako notifications remain visible until the user left-clicks them. The shared
+Mako configuration ignores expiry timeouts requested by applications.
