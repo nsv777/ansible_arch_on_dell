@@ -22,10 +22,10 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
-hl.bind(altMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-hl.bind(altMod .. " + right", hl.dsp.focus({ direction = "right" }))
-hl.bind(altMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-hl.bind(altMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + A",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + D", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + W",    hl.dsp.focus({ direction = "up" }))
@@ -88,18 +88,19 @@ hl.bind(mainMod .. " + Z", hl.dsp.layout("splitratio 0.75 exact"))
 -- end)
 -- Switch to a submap called `resize`.
 hl.bind(altMod .. " + X", hl.dsp.submap("resize"))
+hl.bind(mainMod .. " + slash", hl.dsp.submap("resize"))
 
 -- Start a submap called "resize".
 hl.define_submap("resize", function()
 
     -- Set repeating binds for resizing the active window.
-    hl.bind("right", hl.dsp.window.resize({ x = 100, y = 0, relative = true}), { repeating = true })
-    hl.bind("left", hl.dsp.window.resize({ x = -100, y = 0, relative = true}), { repeating = true })
-    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 100, relative = true}), { repeating = true })
-    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -100, relative = true}), { repeating = true })
+    hl.bind("right", hl.dsp.window.resize({ x = 120, y = 0, relative = true}), { repeating = true })
+    hl.bind("left", hl.dsp.window.resize({ x = -120, y = 0, relative = true}), { repeating = true })
+    hl.bind("up", hl.dsp.window.resize({ x = 0, y = 120, relative = true}), { repeating = true })
+    hl.bind("down", hl.dsp.window.resize({ x = 0, y = -120, relative = true}), { repeating = true })
 
     -- Use `reset` to go back to the global submap
-    hl.bind("escape", hl.dsp.submap("reset"))
+    hl.bind("Return", hl.dsp.submap("reset"))
 
 end)
 
@@ -108,6 +109,10 @@ hl.bind(altMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(altMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(altMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
 hl.bind(altMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))
@@ -151,7 +156,7 @@ hl.on("keybinds.submap", function(name)
 			text = "c - reload\ne - exit\nr - reboot\ns - suspend\nS - poweroff\nl - lock",
 			duration = 4500,
 			color = "rgb(34E2E2)",
-			font_size = 18,
+			font_size = 16,
 		})
 	end
 end)

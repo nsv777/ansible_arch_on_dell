@@ -23,14 +23,14 @@
     ],
     "modules-right": [
         "hyprland/language",
-//        "mpd",
-        "pulseaudio",
-//        "power-profiles-daemon",
-        "battery",
-//        "battery#bat2",
-        "clock",
         "tray",
-        "custom/power"
+        //        "mpd",
+        "pulseaudio",
+        //        "power-profiles-daemon",
+        "battery",
+        //        "battery#bat2",
+        "clock"
+//        "custom/power"
     ],
     // Modules configuration
     // "sway/workspaces": {
