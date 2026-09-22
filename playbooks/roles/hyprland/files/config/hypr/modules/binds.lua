@@ -8,7 +8,7 @@ local altMod = "ALT" -- Alternative modifier
 
 local terminal = "foot"
 local fileManager = "nemo"
-local menu = "rofi -show run"
+local menu = "fuzzel"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(altMod .. " + Q", hl.dsp.exec_cmd(terminal))

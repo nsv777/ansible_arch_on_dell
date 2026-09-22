@@ -11,13 +11,13 @@
       - blueman
       - brightnessctl
       - foot
+      - fuzzel
       - hypridle
       - hyprland
       - hyprlock
       - hyprpaper
       - hyprpwcenter
       - playerctl
-      - rofi
       - waybar
 
 - name: Add current user to input group required by Waybar
@@ -34,6 +34,7 @@
     mode: "0700"
   loop:
     - ~/.config/foot
+    - ~/.config/fuzzel
     - ~/.config/hypr
     - ~/.config/mako
     - ~/.config/waybar
@@ -55,6 +56,13 @@
 - name: Copy foot config
   ansible.builtin.copy:
     src: config/foot
+    dest: ~/.config/
+    directory_mode: "0700"
+    mode: "0600"
+
+- name: Copy fuzzel config
+  ansible.builtin.copy:
+    src: config/fuzzel
     dest: ~/.config/
     directory_mode: "0700"
     mode: "0600"
