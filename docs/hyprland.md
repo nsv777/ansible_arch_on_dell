@@ -21,3 +21,18 @@ panel descriptions use automatic scaling.
 
 Mako notifications remain visible until the user left-clicks them. The shared
 Mako configuration ignores expiry timeouts requested by applications.
+
+## Hyprlock widget placement
+
+Use output-relative percentage positions for Hyprlock widgets that are placed
+beside one another. The keyboard-layout label is centered 9% to the right of
+the screen center, alongside the centered 15%-wide password field.
+
+## Wallpaper changer backend
+
+The wallpaper changer uses hyprpaper when a running Hyprland instance is
+available. It sets hyprpaper's fallback wallpaper, which covers outputs without
+a monitor-specific wallpaper. In other sessions, it uses the configured
+GSettings schema.
+
+Hyprpaper splash text is disabled in the managed `hyprpaper.conf`.
