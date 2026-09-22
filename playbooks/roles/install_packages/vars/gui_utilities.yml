@@ -6,10 +6,12 @@ install_packages_arch:
     - gnome-screenshot
     - gpicview
     - libreoffice-fresh
+    - mpv
+    - mpv-mpris
     - nextcloud-client
     - pinta
+    - pycharm
     - remmina
     - slack-desktop
     - smplayer
-    - pycharm
     - transmission-qt

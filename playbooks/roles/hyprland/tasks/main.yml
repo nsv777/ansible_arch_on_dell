@@ -20,6 +20,13 @@
       - rofi
       - waybar
 
+- name: Add current user to input group required by Waybar
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_facts['user_id'] }}"
+    groups: input
+    append: true
+
 - name: Create config dirs
   ansible.builtin.file:
     path: "{{ item }}"
