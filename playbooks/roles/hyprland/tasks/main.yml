@@ -52,6 +52,7 @@
     dest: ~/.config/
     directory_mode: "0700"
     mode: "0600"
+  notify: reload_waybar_config
 
 - name: Copy foot config
   ansible.builtin.copy:

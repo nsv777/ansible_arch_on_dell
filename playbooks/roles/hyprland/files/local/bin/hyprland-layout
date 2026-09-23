@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Print the tiling layout assigned to the active workspace for Waybar.
+hyprctl activeworkspace -j 2>/dev/null \
+  | sed -n 's/.*"tiledLayout"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+  | cut -c1-2

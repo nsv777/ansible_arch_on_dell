@@ -1,5 +1,13 @@
 # Hyprland decisions
 
+## Waybar workspace layout indicator
+
+The `custom/hyprland-layout` module displays the first two letters of the
+active workspace's `tiledLayout` (`dw`, `ma`, `sc`, or `mo`). It polls
+Hyprland's active-workspace JSON once per second and hides itself when no
+layout is available. This follows the per-workspace layout switched by
+`Alt+Tab`.
+
 ## External monitor identity
 
 Identify the Dell S2722QC by its EDID model instead of its DisplayPort connector.

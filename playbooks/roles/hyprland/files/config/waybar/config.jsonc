@@ -8,6 +8,7 @@
     // Choose the order of the modules
     "modules-left": [
         "ext/workspaces",
+        "custom/hyprland-layout",
         "idle_inhibitor",
         "network",
         "cpu",
@@ -76,6 +77,13 @@
             "locked": "",
             "unlocked": ""
         }
+     },
+    "custom/hyprland-layout": {
+        "exec": "$HOME/.local/bin/hyprland-layout",
+        "format": "{text}",
+        "tooltip-format": "Active workspace layout: {text}",
+        "interval": 1,
+        "hide-empty-text": true
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
