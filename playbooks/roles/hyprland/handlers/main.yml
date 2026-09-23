@@ -21,3 +21,12 @@
     cmd: pkill -SIGUSR2 -x waybar
   changed_when: false
   failed_when: false
+
+- name: restart_hypridle
+  ansible.builtin.command:
+    argv:
+      - hyprctl
+      - dispatch
+      - 'hl.dsp.exec_cmd("pkill -x hypridle; hypridle")'
+  changed_when: false
+  failed_when: false

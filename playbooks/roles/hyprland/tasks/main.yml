@@ -27,6 +27,12 @@
     groups: input
     append: true
 
+- name: Disable Hypridle user service
+  ansible.builtin.systemd_service:
+    name: hypridle.service
+    enabled: false
+    scope: user
+
 - name: Create config dirs
   ansible.builtin.file:
     path: "{{ item }}"
@@ -45,6 +51,7 @@
     dest: ~/.config/
     directory_mode: "0700"
     mode: "0600"
+  notify: restart_hypridle
 
 - name: Copy waybar config
   ansible.builtin.copy:

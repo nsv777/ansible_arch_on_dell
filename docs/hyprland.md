@@ -8,6 +8,18 @@ Hyprland's active-workspace JSON once per second and hides itself when no
 layout is available. This follows the per-workspace layout switched by
 `Alt+Tab`.
 
+## Hypridle startup
+
+Start Hypridle from the `hyprland.start` callback. Do not enable its user
+systemd service: GDM can start that service against its own Wayland compositor
+before Hyprland starts, causing Hypridle to fail because the idle protocol is
+not available. The callback starts it after Hyprland exposes the idle protocol.
+
+For lid-close suspend, use `loginctl lock-session` as Hypridle's
+`before_sleep_cmd`. This sends the D-Bus lock event to `lock_cmd`. Set
+`inhibit_sleep = 3` so logind waits until Hyprlock confirms that it owns the
+lock surface before suspending. Turn DPMS back on after wake.
+
 ## External monitor identity
 
 Identify the Dell S2722QC by its EDID model instead of its DisplayPort connector.
