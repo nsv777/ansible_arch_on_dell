@@ -226,9 +226,13 @@ hl.gesture({
 })
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
--- hyprland devices
+-- hyprctl devices
 hl.device({
     name        = "razer-razer-deathadder-essential-1",
+    sensitivity = -0.6,
+})
+hl.device({
+    name        = "razer-razer-deathadder-essential",
     sensitivity = -0.6,
 })
 
