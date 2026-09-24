@@ -9,6 +9,7 @@ local external_monitor_selector = "desc:Dell Inc. " .. external_monitor_model
 local internal_monitor_output = "eDP-1"
 local internal_monitor_scale_by_description = {
     ["Chimei Innolux Corporation 0x140A"] = 1,
+    ["Sharp Corporation 0x144A"] = 1.75,
 }
 
 local function is_external_monitor(monitor)
