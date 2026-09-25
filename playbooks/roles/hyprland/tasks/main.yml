@@ -42,7 +42,7 @@
     - ~/.config/foot
     - ~/.config/fuzzel
     - ~/.config/hypr
-    - ~/.config/mako
+    - ~/.config/swaync
     - ~/.config/waybar
 
 - name: Copy hypr config
@@ -75,13 +75,24 @@
     directory_mode: "0700"
     mode: "0600"
 
-- name: Copy mako config
+- name: Copy SwayNC config
   ansible.builtin.copy:
-    src: config/mako
+    src: config/swaync
     dest: ~/.config/
     directory_mode: "0700"
     mode: "0600"
-  notify: reload_mako_config
+
+- name: Remove Mako config
+  ansible.builtin.file:
+    path: ~/.config/mako
+    state: absent
+
+- name: Enable SwayNC user service
+  ansible.builtin.systemd_service:
+    name: swaync.service
+    enabled: true
+    state: started
+    scope: user
 
 - name: Copy executables
   ansible.builtin.copy:

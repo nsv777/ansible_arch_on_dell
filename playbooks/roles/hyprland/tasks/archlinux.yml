@@ -3,4 +3,10 @@
   ansible.builtin.package:
     name:
       - hyprland-per-window-layout
-      - mako
+      - swaync
+    state: present
+
+- name: Remove Mako
+  ansible.builtin.package:
+    name: mako
+    state: absent

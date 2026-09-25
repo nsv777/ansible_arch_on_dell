@@ -1,4 +1,0 @@
-# Keep all notifications visible until the user dismisses them.
-default-timeout=0
-ignore-timeout=1
-on-button-left=dismiss

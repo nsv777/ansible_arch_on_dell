@@ -36,7 +36,14 @@
     name:
       - cargo-1.91
       - foot-themes
-      - mako-notifier
+      - sway-notification-center
+    state: present
+  become: true
+
+- name: Remove Mako
+  ansible.builtin.apt:
+    name: mako-notifier
+    state: absent
   become: true
 
 - name: Install hyprland-per-window-layout using cargo
