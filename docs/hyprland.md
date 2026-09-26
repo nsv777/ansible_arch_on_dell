@@ -60,3 +60,11 @@ a monitor-specific wallpaper. In other sessions, it uses the configured
 GSettings schema.
 
 Hyprpaper splash text is disabled in the managed `hyprpaper.conf`.
+
+## Default wallpaper
+
+Disable Hyprland's default wallpaper (`misc:force_default_wallpaper = 0`).
+It draws anime mascot with random quote text on desktop. Use hyprpaper instead.
+Also set `misc:disable_splash_rendering = true` to kill small random quote text
+when no wallpaper layer covers background. Hyprpaper splash stays off in
+managed `hyprpaper.conf`.
