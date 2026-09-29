@@ -4,24 +4,33 @@
 
 -- xkbcli interactive-wayland
 local mainMod = "SUPER" -- Main modifier
-local altMod = "ALT" -- Alternative modifier
+local altMod = "CTRL + ALT" -- Alternative modifier
 
 local terminal = "foot"
-local fileManager = "nemo"
+local fileManager = "xdg-open /home"
+local textEditor = "geany"
 local menu = "fuzzel"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(altMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+-- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(altMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
+hl.bind(altMod .. " + G", hl.dsp.exec_cmd(textEditor))
+hl.bind(mainMod .. " + G", hl.dsp.exec_cmd(textEditor))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(altMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Move focus with mainMod + arrow keys
+hl.bind(altMod .. " + left",  hl.dsp.focus({ direction = "left" }))
+hl.bind(altMod .. " + right", hl.dsp.focus({ direction = "right" }))
+hl.bind(altMod .. " + up",    hl.dsp.focus({ direction = "up" }))
+hl.bind(altMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
@@ -69,8 +78,9 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 
--- Set the active Dwindle split ratio to 0.75
-hl.bind(mainMod .. " + Z", hl.dsp.layout("splitratio 0.75 exact"))
+-- Set the active Dwindle split ratio to 0.25
+hl.bind(mainMod .. " + period", hl.dsp.layout("splitratio 0.25 exact"))
+hl.bind(altMod .. " + period", hl.dsp.layout("splitratio 0.25 exact"))
 
 -- Resize active window with Alt + Shift + Arrows
 -- hl.bind(mainMod .. " + SHIFT + right", function() hl.dispatch("resizeactive", "40 0") end)
@@ -105,10 +115,10 @@ hl.define_submap("resize", function()
 end)
 
 -- Move/rearrange active window with Alt + Ctrl + Arrows
-hl.bind(altMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
-hl.bind(altMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(altMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
-hl.bind(altMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
+hl.bind(altMod .. " + Z + left", hl.dsp.window.move({ direction = "left" }))
+hl.bind(altMod .. " + Z + right", hl.dsp.window.move({ direction = "right" }))
+hl.bind(altMod .. " + Z + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(altMod .. " + Z + down", hl.dsp.window.move({ direction = "down" }))
 hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
@@ -116,7 +126,7 @@ hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))
-hl.bind("CONTROL + ALT + L", hl.dsp.exec_cmd("~/.local/bin/lock"))
+hl.bind(altMod .. " + L", hl.dsp.exec_cmd("~/.local/bin/lock"))
 
 
 -- Cycle layouts for current workspace
@@ -148,7 +158,7 @@ hl.bind(altMod .. " + tab", function ()
     end
 end)
 
-hl.bind("SUPER + escape", hl.dsp.submap("logout"))
+hl.bind(mainMod .. " + escape", hl.dsp.submap("logout"))
 
 hl.on("keybinds.submap", function(name)
 	if name == "logout" then
