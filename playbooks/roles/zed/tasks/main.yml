@@ -1,0 +1,16 @@
+---
+- name: Distribution-specific tasks
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: Create config directory
+  ansible.builtin.file:
+    path: ~/.config/zed
+    state: directory
+    mode: "0700"
+
+- name: Copy zed settings
+  ansible.builtin.copy:
+    src: zed/settings.json
+    dest: ~/.config/zed/settings.json
+    mode: "0644"

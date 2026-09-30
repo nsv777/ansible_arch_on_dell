@@ -1,0 +1,6 @@
+---
+- name: Install zed
+  ansible.builtin.package:
+    name: zed
+    state: present
+  become: true

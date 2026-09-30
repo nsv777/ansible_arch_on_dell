@@ -45,6 +45,8 @@
       tags: cinnamon
     - role: geany
       tags: geany
+    - role: zed
+      tags: zed
     - role: guake
       tags: guake
     - role: deadbeef
