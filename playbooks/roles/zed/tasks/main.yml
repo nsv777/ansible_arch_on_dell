@@ -13,4 +13,4 @@
   ansible.builtin.copy:
     src: zed/settings.json
     dest: ~/.config/zed/settings.json
-    mode: "0644"
+    mode: "0600"
