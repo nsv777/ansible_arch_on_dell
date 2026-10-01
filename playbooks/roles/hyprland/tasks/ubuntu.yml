@@ -36,7 +36,11 @@
     name:
       - cargo-1.91
       - foot-themes
+      - grim
+      - jq
+      - slurp
       - sway-notification-center
+      - wl-clipboard
     state: present
   become: true
 

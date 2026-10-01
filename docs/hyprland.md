@@ -61,6 +61,18 @@ GSettings schema.
 
 Hyprpaper splash text is disabled in the managed `hyprpaper.conf`.
 
+## Screenshots
+
+Use grimblast, vendored to `~/.local/bin/grimblast` (the role copies
+`files/local/bin` on every distribution). Its dependencies are installed
+per-distribution: `grim`, `slurp`, `wl-clipboard`, and `jq`.
+
+`SUPER + SHIFT + \` copies and saves the active window (`grimblast copysave
+active`); `SUPER + \` copies and saves all outputs (`grimblast copysave screen`).
+Both put the PNG on the clipboard and write it to the XDG Pictures directory
+(`XDG_SCREENSHOTS_DIR` if set). No `-n`, so grimblast runs without a desktop
+notification and libnotify is not required.
+
 ## Default wallpaper
 
 Disable Hyprland's default wallpaper (`misc:force_default_wallpaper = 0`).

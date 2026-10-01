@@ -2,8 +2,12 @@
 - name: Install Arch Linux packages
   ansible.builtin.package:
     name:
+      - grim
       - hyprland-per-window-layout
+      - jq
+      - slurp
       - swaync
+      - wl-clipboard
     state: present
 
 - name: Remove Mako

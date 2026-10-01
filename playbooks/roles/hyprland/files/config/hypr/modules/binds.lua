@@ -129,9 +129,13 @@ hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))
 hl.bind(altMod .. " + L", hl.dsp.exec_cmd("~/.local/bin/lock"))
 
+-- Screenshots
+hl.bind(mainMod .. " + SHIFT + backslash", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave active"))
+hl.bind(mainMod .. " + backslash", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave screen"))
+
 
 -- Cycle layouts for current workspace
-hl.bind(altMod .. " + tab", function ()
+local cycleLayout = function ()
     local layouts   = { "scrolling", "dwindle", "master", "monocle" }
     local workspace = hl.get_active_workspace()
     if hl.get_active_special_workspace() then
@@ -157,7 +161,9 @@ hl.bind(altMod .. " + tab", function ()
     else
         hl.workspace_rule({ workspace = "name:" .. tostring(workspace.name), layout = next_layout })
     end
-end)
+end
+hl.bind(altMod .. " + tab", cycleLayout)
+hl.bind(mainMod .. " + tab", cycleLayout)
 
 hl.bind(mainMod .. " + escape", hl.dsp.submap("logout"))
 
