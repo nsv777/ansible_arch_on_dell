@@ -14,3 +14,9 @@
     src: zed/settings.json
     dest: ~/.config/zed/settings.json
     mode: "0600"
+
+- name: Copy zed keymap
+  ansible.builtin.copy:
+    src: zed/keymap.json
+    dest: ~/.config/zed/keymap.json
+    mode: "0600"
