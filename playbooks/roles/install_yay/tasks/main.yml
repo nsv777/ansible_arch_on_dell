@@ -6,7 +6,7 @@
       - base-devel
   become: true
 
-- name: 'makepkg: disable debug packages'
+- name: "makepkg: disable debug packages"
   ansible.builtin.copy:
     src: disable_debug.conf
     dest: /etc/makepkg.conf.d/

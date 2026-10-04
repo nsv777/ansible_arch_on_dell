@@ -13,6 +13,6 @@
 - name: Update vim config
   ansible.builtin.lineinfile:
     path: /etc/vimrc
-    regexp: '^source.*\/vimrc\.local$'
-    line: 'source /etc/vimrc.local'
+    regexp: "^source.*\\/vimrc\\.local$"
+    line: "source /etc/vimrc.local"
   become: true

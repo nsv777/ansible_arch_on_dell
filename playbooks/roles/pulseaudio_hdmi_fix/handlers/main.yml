@@ -3,7 +3,6 @@
   ansible.builtin.command: pulseaudio --kill
   changed_when: false
 
-
 - name: Start_pulseaudio
   ansible.builtin.command: pulseaudio --start
   changed_when: false

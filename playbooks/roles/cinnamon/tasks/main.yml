@@ -20,7 +20,6 @@
     - cinnamon
     - scripts
 
-
 - name: Copy user scripts
   ansible.builtin.copy:
     src: user_scripts/
@@ -30,7 +29,6 @@
     - configure
     - cinnamon
     - scripts
-
 
 - name: Configure cinnamon
   community.general.dconf:
@@ -43,7 +41,6 @@
     - cinnamon
     - dconf
 
-
 - name: Create cinnamon config directory
   ansible.builtin.file:
     path: $HOME/.cinnamon/configs
@@ -52,7 +49,6 @@
   tags:
     - configure
     - cinnamon
-
 
 - name: Copy cinnamon configs
   ansible.builtin.copy:

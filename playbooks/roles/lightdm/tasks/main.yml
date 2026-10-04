@@ -9,7 +9,6 @@
   become: true
   become_user: "{{ aur_user }}"
 
-
 - name: Copy config
   ansible.builtin.copy:
     src: etc/lightdm/
@@ -17,7 +16,6 @@
     mode: "0644"
   tags:
     - lightdm_config
-
 
 - name: Enable service and ensure it is not masked
   ansible.builtin.systemd:

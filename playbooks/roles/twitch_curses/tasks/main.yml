@@ -7,7 +7,6 @@
     - install_twitch_curses
     - twitch_curses
 
-
 - name: Create streamlink config directory
   ansible.builtin.file:
     path: $HOME/.config/streamlink
@@ -16,7 +15,6 @@
   tags:
     - configure_streamlink
     - twitch_curses
-
 
 - name: Update streamlink config
   ansible.builtin.copy:

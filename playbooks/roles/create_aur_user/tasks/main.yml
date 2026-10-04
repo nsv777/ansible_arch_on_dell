@@ -15,7 +15,6 @@
   tags:
     - aur_builder
 
-
 - name: Add the user to sudo
   community.general.sudoers:
     name: 11-install-aur_builder
@@ -25,7 +24,6 @@
   become: true
   tags:
     - aur_builder
-
 
 - name: Add Tor Browser gpg key
   ansible.builtin.command: gpg --keyserver hkp://keys.openpgp.org:11371 --recv-keys 0xE53D989A9E2D47BF

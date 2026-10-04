@@ -10,7 +10,6 @@
   tags:
     - copy
 
-
 - name: Copy files
   ansible.builtin.copy:
     src: "{{ item.src }}"
@@ -34,7 +33,6 @@
   become: true
   tags:
     - copy
-
 
 - name: Enable service
   ansible.builtin.systemd:

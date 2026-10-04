@@ -3,7 +3,6 @@
   ansible.builtin.include_tasks:
     file: "install_guake_{{ ansible_facts.distribution | lower }}.yml"
 
-
 - name: Configure guake
   community.general.dconf:
     key: "{{ item.key }}"

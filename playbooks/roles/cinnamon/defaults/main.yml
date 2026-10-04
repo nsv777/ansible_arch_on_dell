@@ -5,24 +5,24 @@ cinnamon_config:
   - key: /org/cinnamon/alttab-switcher-delay
     value: 100
   - key: /org/cinnamon/desktop-effects
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/desktop/default-applications/calculator
     value: "'galculator'"
   - key: /org/cinnamon/desktop-effects-on-dialogs
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/desktop-effects-on-menus
-    value: 'false'
+    value: "false"
   # Set Caps Lock as layout switch button
   - key: /org/cinnamon/desktop/input-sources/xkb-options
     value: "['grp:caps_toggle', 'caps:none']"
   - key: /org/cinnamon/show-media-keys-osd
     value: "'small'"
   - key: /org/cinnamon/startup-animation
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/desktop/interface/clock-show-date
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/interface/clock-use-24h
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/interface/first-day-of-week
     value: 1
   - key: /org/cinnamon/desktop/interface/gtk-theme
@@ -34,17 +34,17 @@ cinnamon_config:
   - key: /org/cinnamon/desktop/interface/cursor-theme
     value: "'capitaine-cursors-light'"
   - key: /org/cinnamon/desktop/interface/keyboard-layout-prefer-variant-names
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/interface/keyboard-layout-use-upper
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/privacy/recent-files-max-age
     value: 180
   - key: /org/cinnamon/desktop/privacy/remove-old-temp-files
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/privacy/remove-old-trash-files
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/privacy/remember-recent-files
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/wm/preferences/action-scroll-titlebar
     value: "'shade'"
   - key: /org/cinnamon/desktop/wm/preferences/min-window-opacity
@@ -53,43 +53,43 @@ cinnamon_config:
     value: "'Adwaita Sans Bold 8'"
   # Si está activada, las ventanas nuevas que inicialmente tienen el tamaño de la pantalla, se maximizan
   - key: /org/cinnamon/muffin/auto-maximize
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/muffin/unredirect-fullscreen-windows
-    value: 'true'
-#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
-#    value: 'true'
-#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-acceleration
-#    value: 1.0
-#  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
-#    value: 1
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-acceleration
-#    value: 'true'
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-threshold
-#    value: 'false'
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/disable-while-typing
-#    value: 'false'
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/horizontal-scrolling
-#    value: 'true'
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-acceleration
-#    value: 6.5696721311475406
-#  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-threshold
-#    value: 1
+    value: "true"
+  #  - key: /org/cinnamon/settings-daemon/peripherals/mouse/custom-acceleration
+  #    value: 'true'
+  #  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-acceleration
+  #    value: 1.0
+  #  - key: /org/cinnamon/settings-daemon/peripherals/mouse/motion-threshold
+  #    value: 1
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-acceleration
+  #    value: 'true'
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/custom-threshold
+  #    value: 'false'
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/disable-while-typing
+  #    value: 'false'
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/horizontal-scrolling
+  #    value: 'true'
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-acceleration
+  #    value: 6.5696721311475406
+  #  - key: /org/cinnamon/settings-daemon/peripherals/touchpad/motion-threshold
+  #    value: 1
   - key: /org/cinnamon/settings-daemon/plugins/xsettings/menus-have-icons
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/sounds/login-enabled
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/sounds/logout-enabled
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/sounds/notification-enabled
-    value: 'false'
+    value: "false"
   - key: /org/cinnamon/desktop/notifications/bottom-notifications
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/theme/name
     value: "'Numix-Cinnamon'"
   - key: /org/gnome/libgnomekbd/desktop/default-group
     value: 0
   - key: /org/gnome/libgnomekbd/desktop/group-per-window
-    value: 'true'
+    value: "true"
   - key: /org/gnome/libgnomekbd/keyboard/layouts
     value: "['us', 'ru']"
   - key: /org/gnome/libgnomekbd/keyboard/options
@@ -99,29 +99,29 @@ cinnamon_config:
   - key: /org/nemo/icon-view/default-zoom-level
     value: "'small'"
   - key: /org/nemo/desktop/computer-icon-visible
-    value: 'true'
+    value: "true"
   - key: /org/nemo/desktop/home-icon-visible
-    value: 'true'
+    value: "true"
   - key: /org/nemo/desktop/trash-icon-visible
-    value: 'true'
+    value: "true"
   - key: /org/nemo/desktop/volumes-visible
-    value: 'true'
+    value: "true"
   - key: /org/nemo/preferences/confirm-trash
-    value: 'false'
+    value: "false"
   - key: /org/nemo/preferences/default-folder-viewer
     value: "'list-view'"
   - key: /org/nemo/preferences/executable-text-activation
     value: "'display'"
   - key: /org/nemo/preferences/show-home-icon-toolbar
-    value: 'true'
+    value: "true"
   - key: /org/nemo/preferences/show-location-entry
-    value: 'true'
+    value: "true"
   - key: /org/nemo/preferences/show-new-folder-icon-toolbar
-    value: 'true'
+    value: "true"
   - key: /org/nemo/preferences/show-open-in-terminal-toolbar
-    value: 'true'
+    value: "true"
   - key: /org/nemo/preferences/show-reload-icon-toolbar
-    value: 'true'
+    value: "true"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/binding
     value: "['<Shift><Super>g']"
   - key: /org/cinnamon/desktop/keybindings/custom-keybindings/custom0/command

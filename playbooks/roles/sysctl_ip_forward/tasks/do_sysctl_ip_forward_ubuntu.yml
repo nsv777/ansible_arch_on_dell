@@ -5,13 +5,11 @@
     state: directory
     mode: "0755"
 
-
 - name: Generate script from template
   ansible.builtin.template:
     src: sysctl_ip_forward.sh.j2
     dest: "$HOME/{{ sysctl_ip_forward_script_location }}/sysctl_ip_forward.sh"
     mode: "0755"
-
 
 - name: "Create systemd service {{ sysctl_ip_forward_systemd_service_name }}"
   ansible.builtin.template:
@@ -20,14 +18,12 @@
     mode: "0644"
   notify: systemd_daemon_reload
 
-
 - name: "Create systemd timer {{ sysctl_ip_forward_systemd_service_name }}"
   ansible.builtin.template:
     src: systemd/sysctl_ip_forward.timer.j2
     dest: "{{ sysctl_ip_forward_systemd_unit_dir }}/{{ sysctl_ip_forward_systemd_service_name }}.timer"
     mode: "0644"
   notify: systemd_daemon_reload
-
 
 - name: Flush handlers to reload systemd config
   ansible.builtin.meta: flush_handlers

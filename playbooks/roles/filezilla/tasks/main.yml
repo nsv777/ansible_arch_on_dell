@@ -7,7 +7,6 @@
     - install_filezilla
     - filezilla
 
-
 - name: Create config directory
   ansible.builtin.file:
     path: $HOME/.config/filezilla
@@ -16,7 +15,6 @@
   tags:
     - configure_filezilla
     - filezilla
-
 
 - name: Copy config
   ansible.builtin.copy:

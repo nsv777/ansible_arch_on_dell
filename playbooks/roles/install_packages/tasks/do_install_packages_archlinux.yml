@@ -28,7 +28,7 @@
 
 - name: Install packages
   kewlfft.aur.aur:
-    name: '{{ install_packages_arch.aur }}'
+    name: "{{ install_packages_arch.aur }}"
   become: true
   become_user: "{{ aur_user }}"
   when: install_packages_arch.aur is defined

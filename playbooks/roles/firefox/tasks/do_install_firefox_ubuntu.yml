@@ -5,14 +5,12 @@
     state: present
   become: true
 
-
 - name: Set apt priority to install firefox from apt repo
   ansible.builtin.copy:
     src: mozilla-firefox
     dest: /etc/apt/preferences.d/mozilla-firefox
     mode: "0644"
   become: true
-
 
 - name: Install packages
   ansible.builtin.apt:

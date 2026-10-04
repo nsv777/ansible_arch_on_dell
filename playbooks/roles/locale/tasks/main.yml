@@ -2,8 +2,8 @@
 - name: "/etc/locale.gen: uncomment selected locale"
   ansible.builtin.replace:
     dest: /etc/locale.gen
-    regexp: '^#{{ locale_locale }} UTF-8.*$'
-    replace: '{{ locale_locale }} UTF-8'
+    regexp: "^#{{ locale_locale }} UTF-8.*$"
+    replace: "{{ locale_locale }} UTF-8"
   become: true
   notify: generate_locales
   tags:

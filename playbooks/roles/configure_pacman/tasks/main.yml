@@ -2,7 +2,7 @@
 - name: Enable Spain mirror in /etc/pacman.d/mirrorlist
   ansible.builtin.replace:
     path: /etc/pacman.d/mirrorlist
-    regexp: '^#Server = https:\/\/mirror\.es\.cdn-perfprod\.com\/archlinux\/\$repo\/os\/\$arch'
+    regexp: "^#Server = https:\\/\\/mirror\\.es\\.cdn-perfprod\\.com\\/archlinux\\/\\$repo\\/os\\/\\$arch"
     replace: Server = https://mirror.es.cdn-perfprod.com/archlinux/$repo/os/$arch
   become: true
   notify: update_pacman_cache
@@ -10,7 +10,6 @@
     - configure_pacman
     - pacman
     - config
-
 
 # - name: pacman.conf
 #   ansible.builtin.lineinfile:
@@ -32,7 +31,6 @@
 #         line: '[multilib]'
 #       - regexp:
 
-
 - name: pacman.conf
   ansible.builtin.template:
     src: etc/pacman.conf.j2
@@ -46,7 +44,6 @@
     - configure_pacman
     - pacman
     - config
-
 
 - name: Flush handlers now
   ansible.builtin.meta: flush_handlers

@@ -3,8 +3,8 @@
 - name: Configure pulseaudio
   ansible.builtin.lineinfile:
     path: /etc/pulse/daemon.conf
-    regexp: '^default-sample-rate = 48000$'
-    insertafter: '^; default-sample-rate = .*'
+    regexp: "^default-sample-rate = 48000$"
+    insertafter: "^; default-sample-rate = .*"
     line: default-sample-rate = 48000
   become: true
   notify:

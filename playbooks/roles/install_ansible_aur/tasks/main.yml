@@ -9,7 +9,7 @@
 
 - name: Clone git repo
   ansible.builtin.git:
-    repo: 'https://aur.archlinux.org/ansible-aur-git.git'
+    repo: "https://aur.archlinux.org/ansible-aur-git.git"
     dest: /tmp/ansible_aur_git
     version: master
     depth: 1

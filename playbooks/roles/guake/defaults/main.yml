@@ -3,35 +3,35 @@ guake_config:
   - key: /org/guake/general/display-tab-names
     value: 1
   - key: /org/guake/general/gtk-prefer-dark-theme
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/gtk-theme-name
     value: "'Adwaita'"
   - key: /org/guake/general/hide-tabs-if-one-tab
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/infinite-history
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/max-tab-name-length
     value: 50
   - key: /org/guake/general/quick-open-command-line
     value: "'geany %(file_path)s'"
   - key: /org/guake/general/start-at-login
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/tab-close-buttons
-    value: 'false'
+    value: "false"
   - key: /org/guake/general/use-audible-bell
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/use-default-font
-    value: 'false'
+    value: "false"
   - key: /org/guake/general/use-popup
-    value: 'false'
+    value: "false"
   - key: /org/guake/general/use-trayicon
-    value: 'false'
+    value: "false"
   - key: /org/guake/general/window-halignment
     value: 2
   - key: /org/guake/general/window-height
     value: 81
   - key: /org/guake/general/window-losefocus
-    value: 'true'
+    value: "true"
   - key: /org/guake/general/window-width
     value: 62
   - key: /org/guake/keybindings/global/show-hide
