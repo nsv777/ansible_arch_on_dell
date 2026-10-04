@@ -50,6 +50,7 @@
     - role: wallpaper_changer
       tags: wallpaper_changer
     - role: gui_utilities
+      tags: gui_utilities
     - role: tenv
       become: true
       tags: tenv
