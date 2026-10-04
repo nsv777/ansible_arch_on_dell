@@ -20,9 +20,6 @@
     - role: install_yay
     - role: paccache
     - role: vim
-    - role: mountpoints
-      become: true
-      tags: mountpoints
 
 - name: laptop part
   hosts: laptop
@@ -38,11 +35,11 @@
       become: true
       tags: intel_driver
     # - role: pulseaudio_hdmi_fix
-    - role: lightdm
-      become: true
-      tags: lightdm
-    - role: cinnamon
-      tags: cinnamon
+    # - role: lightdm
+    #   become: true
+    #   tags: lightdm
+    # - role: cinnamon
+    #   tags: cinnamon
     - role: geany
       tags: geany
     - role: zed
@@ -62,6 +59,9 @@
       tags: insomnia
     - role: hyprland
       tags: hyprland
+    - role: mountpoints
+      become: true
+      tags: mountpoints
 
 - name: Configure ip forward
   hosts: laptop

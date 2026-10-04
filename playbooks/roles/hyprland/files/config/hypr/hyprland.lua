@@ -267,14 +267,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name  = "float-gnome-calculator",
-    match = { class = "^org\\.gnome\\.Calculator$" },
+    name  = "float-calculator",
+    match = { class = "^(org\\.gnome\\.Calculator|[Gg]alculator)$" },
 
     float    = true,
     move     = { "(monitor_w-window_w)", "(monitor_h-window_h)*0.5" },
-    size     = { 420, 600 },
-    min_size = { 420, 600 },
-    max_size = { 420, 600 },
+    size     = { 400, 550 },
+    min_size = { 400, 550 },
+    max_size = { 400, 550 },
 })
 
 require("modules.binds")

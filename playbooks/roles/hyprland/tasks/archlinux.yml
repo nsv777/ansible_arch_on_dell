@@ -9,8 +9,10 @@
       - swaync
       - wl-clipboard
     state: present
+  become: true
 
 - name: Remove Mako
   ansible.builtin.package:
     name: mako
     state: absent
+  become: true
