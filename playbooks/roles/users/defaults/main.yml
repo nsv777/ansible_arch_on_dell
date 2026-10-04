@@ -4,4 +4,4 @@
 #     password: asdasd
 #     groups: docker,wheel
 #     uid: 1000
-users: []
+users: []  # noqa: var-naming[no-role-prefix]

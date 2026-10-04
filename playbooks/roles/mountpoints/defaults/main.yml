@@ -4,4 +4,4 @@
 #     src: 192.168.1.128:/home/transmission-daemon/downloads
 #     fstype: nfs4
 #     opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
-mountpoints: []
+mountpoints: []  # noqa: var-naming[no-role-prefix]

@@ -31,6 +31,7 @@
       - /usr/share/keyrings/tofuutils-tenv-archive-keyring.gpg
       - /usr/share/keyrings/tofuutils-tenv-archive-keyring.asc
   when: tenv_repository_key.changed or not tenv_binary_keyring.stat.exists
+  changed_when: false
 
 - name: Configure tofuutils tenv repository
   ansible.builtin.template:

@@ -35,6 +35,7 @@
       - /usr/share/keyrings/kong-insomnia-archive-keyring.asc
   when: insomnia_repository_key.changed or not insomnia_binary_keyring.stat.exists
   become: true
+  changed_when: false
 
 - name: Configure Kong Insomnia repository
   ansible.builtin.template:
