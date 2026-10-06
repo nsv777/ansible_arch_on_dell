@@ -277,4 +277,12 @@ hl.window_rule({
     max_size = { 400, 550 },
 })
 
+hl.window_rule({
+    name  = "float-zoom-annotate-toolbar",
+    match = { class = "zoom", title = "annotate_toolbar" },
+
+    float = true,
+    size  = { 50, 50 },
+})
+
 require("modules.binds")
