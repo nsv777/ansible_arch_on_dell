@@ -45,7 +45,7 @@ hl.monitor({
     output   = external_monitor_selector,
     mode     = "3840x2160@60.00",
     position = "0x0",
-    scale    = 1.75,
+    scale    = 1.67,
 })
 
 configure_connected_internal_monitor()
