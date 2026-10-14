@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "unified",
   "auto_update": false,
   "cli_default_open_behavior": "existing_window",
   "cursor_animation": {
@@ -48,7 +49,7 @@
   },
   "base_keymap": "JetBrains",
   "ui_font_size": 16,
-  "buffer_font_size": 15,
+  "buffer_font_size": 14.0,
   "buffer_font_weight": 500,
   "theme": {
     "mode": "system",
@@ -67,4 +68,11 @@
   "status_bar": {
     "line_endings_button": true,
   },
+  "prettier": {
+    "allowed": true,
+  },
+  "terminal": {
+    "font_size": 14.0,
+    "font_family": "Hack",
+  }
 }
