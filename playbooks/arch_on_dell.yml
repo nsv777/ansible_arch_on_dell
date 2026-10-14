@@ -35,9 +35,9 @@
       become: true
       tags: intel_driver
     # - role: pulseaudio_hdmi_fix
-    # - role: lightdm
-    #   become: true
-    #   tags: lightdm
+    - role: ly
+      become: true
+      tags: ly
     # - role: cinnamon
     #   tags: cinnamon
     - role: geany
