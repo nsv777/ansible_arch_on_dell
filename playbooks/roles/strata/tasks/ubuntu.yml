@@ -1,0 +1,32 @@
+---
+- name: Install strata runtime dependencies
+  ansible.builtin.apt:
+    name:
+      - bubblewrap
+      - desktop-file-utils
+      - ffmpeg
+      - ffmpegthumbnailer
+      - fontconfig
+      - gstreamer1.0-tools
+      - gstreamer1.0-libav
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - libgtk-4-1
+      - libgtksourceview-5-0
+      - gvfs-daemons
+      - libpoppler-glib8
+      - util-linux
+      - xdg-desktop-portal
+      - xdg-utils
+    state: present
+    update_cache: true
+  become: true
+
+- name: Allow unprivileged user namespaces for the preview sandbox
+  ansible.posix.sysctl:
+    name: kernel.apparmor_restrict_unprivileged_userns
+    value: "0"
+    sysctl_file: /etc/sysctl.d/99-strata-userns.conf
+    sysctl_set: true
+    reload: true
+  become: true

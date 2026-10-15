@@ -1,0 +1,121 @@
+---
+- name: Verify strata supports the operating system
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] in ["Archlinux", "Ubuntu"]
+    fail_msg: >-
+      The strata role supports Arch Linux and Ubuntu only, not
+      {{ ansible_facts["distribution"] }}.
+
+- name: Verify strata supports the architecture
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["architecture"] in strata_arch_targets
+    fail_msg: >-
+      Strata has no prebuilt release for {{ ansible_facts["architecture"] }}.
+
+- name: Determine strata release target
+  ansible.builtin.set_fact:
+    strata_target: "{{ strata_arch_targets[ansible_facts['architecture']] }}"
+
+- name: Gather the current user's home directory
+  ansible.builtin.setup:
+    filter: ansible_user_dir
+
+- name: Install strata dependencies for the operating system
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: Create strata directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ ansible_facts['user_dir'] }}/.cache/strata"
+    - "{{ ansible_facts['user_dir'] }}/.local/bin"
+    - "{{ ansible_facts['user_dir'] }}/.local/share/applications"
+    - "{{ ansible_facts['user_dir'] }}/.local/share/dbus-1/services"
+    - "{{ ansible_facts['user_dir'] }}/.local/share/icons/hicolor/scalable/apps"
+    - "{{ ansible_facts['user_dir'] }}/.config/strata"
+
+- name: Download strata release archive
+  ansible.builtin.get_url:
+    url: "https://github.com/lgse/strata/releases/download/v{{ strata_version }}/strata-{{ strata_version }}-{{ strata_target }}.tar.gz"
+    dest: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}.tar.gz"
+    checksum: "{{ strata_checksums[ansible_facts['architecture']] }}"
+    mode: "0644"
+
+- name: Extract strata release archive
+  ansible.builtin.unarchive:
+    src: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}.tar.gz"
+    dest: "{{ ansible_facts['user_dir'] }}/.cache/strata"
+    remote_src: true
+    creates: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}/strata"
+
+- name: Install strata binary
+  ansible.builtin.copy:
+    src: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}/strata"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/bin/strata"
+    mode: "0755"
+    remote_src: true
+
+- name: Install strata application icon
+  ansible.builtin.copy:
+    src: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}/io.github.lgse.Strata.svg"
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/icons/hicolor/scalable/apps/io.github.lgse.Strata.svg"
+    mode: "0644"
+    remote_src: true
+
+- name: Install strata desktop entry
+  ansible.builtin.template:
+    src: io.github.lgse.Strata.desktop.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/applications/io.github.lgse.Strata.desktop"
+    mode: "0644"
+
+- name: Install strata settings
+  ansible.builtin.template:
+    src: settings.toml.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.config/strata/settings.toml"
+    mode: "0600"
+
+- name: Find conflicting FileManager1 services
+  ansible.builtin.find:
+    paths: "{{ ansible_facts['user_dir'] }}/.local/share/dbus-1/services"
+    patterns: "*.service"
+    contains: "Name=org.freedesktop.FileManager1"
+  register: strata_conflicting_services
+
+- name: Remove conflicting FileManager1 services
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ strata_conflicting_services.files }}"
+  when: item.path | basename != "io.github.lgse.Strata.FileManager1.service"
+
+- name: Install strata FileManager1 service
+  ansible.builtin.template:
+    src: io.github.lgse.Strata.FileManager1.service.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/dbus-1/services/io.github.lgse.Strata.FileManager1.service"
+    mode: "0644"
+
+- name: Install strata as the system file chooser
+  ansible.builtin.command:
+    cmd: "{{ ansible_facts['user_dir'] }}/.local/bin/strata --install-portal"
+  changed_when: false
+
+- name: Update desktop database
+  ansible.builtin.command:
+    cmd: "update-desktop-database {{ ansible_facts['user_dir'] }}/.local/share/applications"
+  changed_when: false
+
+- name: Update icon cache
+  ansible.builtin.command:
+    cmd: "gtk-update-icon-cache -qtf {{ ansible_facts['user_dir'] }}/.local/share/icons/hicolor"
+  changed_when: false
+  failed_when: false
+
+- name: Set strata as default directory handler
+  ansible.builtin.command:
+    cmd: "xdg-mime default io.github.lgse.Strata.desktop inode/directory"
+  changed_when: false

@@ -58,6 +58,11 @@
       tags: firefox
     - role: insomnia
       tags: insomnia
+    - role: yazi
+      become: true
+      tags: yazi
+    - role: strata
+      tags: strata
     - role: hyprland
       tags: hyprland
     - role: mountpoints

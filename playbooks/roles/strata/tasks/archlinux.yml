@@ -1,0 +1,21 @@
+---
+- name: Install strata runtime dependencies
+  community.general.pacman:
+    name:
+      - bubblewrap
+      - desktop-file-utils
+      - ffmpeg
+      - ffmpegthumbnailer
+      - fontconfig
+      - gstreamer
+      - gst-libav
+      - gst-plugins-base
+      - gst-plugins-good
+      - gtk4
+      - gtksourceview5
+      - gvfs
+      - poppler-glib
+      - xdg-desktop-portal
+      - xdg-utils
+    state: present
+  become: true

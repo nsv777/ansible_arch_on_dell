@@ -1,0 +1,6 @@
+---
+- name: Install yazi from Snap
+  community.general.snap:
+    name: yazi
+    classic: true
+    state: present

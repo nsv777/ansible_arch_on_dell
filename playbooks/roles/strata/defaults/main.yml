@@ -1,0 +1,8 @@
+---
+strata_version: "1.0.0"
+strata_arch_targets:
+  x86_64: x86_64-unknown-linux-gnu
+  aarch64: aarch64-unknown-linux-gnu
+strata_checksums:
+  x86_64: sha256:e15095a201165132a88032df15ecbeab795a13d6cacc4ebb943e276c35ff492e
+  aarch64: sha256:c89d6631f5f4a7b194bd7ba46108b5a3088f2d4823539e3af38c3022e32d1bd0

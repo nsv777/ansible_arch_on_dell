@@ -1,0 +1,5 @@
+---
+- name: Install yazi
+  ansible.builtin.package:
+    name: yazi
+    state: present
