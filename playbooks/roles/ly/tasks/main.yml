@@ -1,0 +1,43 @@
+---
+- name: Install ly
+  ansible.builtin.package:
+    name:
+      - ly
+
+- name: Enable ly@tty2 service
+  ansible.builtin.systemd:
+    name: ly@tty2.service
+    enabled: true
+
+- name: Disable getty@tty2 service
+  ansible.builtin.systemd:
+    name: getty@tty2.service
+    enabled: false
+
+# - name: Enable animation
+#   community.general.ini_file:
+#     path: /etc/ly/config.ini
+#     option: animation
+#     value: doom
+#     create: false
+
+- name: Enable numlock
+  community.general.ini_file:
+    path: /etc/ly/config.ini
+    option: numlock
+    value: "true"
+    create: false
+
+- name: Hide borders
+  community.general.ini_file:
+    path: /etc/ly/config.ini
+    option: hide_borders
+    value: "true"
+    create: false
+
+- name: Switch to Spanish
+  community.general.ini_file:
+    path: /etc/ly/config.ini
+    option: lang
+    value: es
+    create: false
