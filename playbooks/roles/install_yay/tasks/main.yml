@@ -20,3 +20,10 @@
     use: makepkg
   become: true
   become_user: "{{ aur_user }}"
+
+- name: "yay: configure defaults"
+  ansible.builtin.copy:
+    src: yay_config.json
+    dest: "{{ ansible_facts['user_dir'] }}/.config/yay/config.json"
+    mode: "0644"
+  become: true
