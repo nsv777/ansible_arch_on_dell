@@ -74,5 +74,12 @@
   "terminal": {
     "font_size": 13.0,
     "font_family": "Hack",
+    "working_directory": "current_project_directory",
+    "detect_venv": {
+      "on": {
+        "directories": [".venv", "venv"],
+        "activate_script": "default",
+      },
+    },
   }
 }

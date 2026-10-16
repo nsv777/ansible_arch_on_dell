@@ -34,6 +34,8 @@
 - name: Install Ubuntu packages
   ansible.builtin.apt:
     name:
+      - alsa-topology-conf
+      - alsa-ucm-conf
       - cargo-1.91
       - foot-themes
       - grim

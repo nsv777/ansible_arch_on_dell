@@ -80,3 +80,9 @@ It draws anime mascot with random quote text on desktop. Use hyprpaper instead.
 Also set `misc:disable_splash_rendering = true` to kill small random quote text
 when no wallpaper layer covers background. Hyprpaper splash stays off in
 managed `hyprpaper.conf`.
+
+## SOF HDMI/DisplayPort audio on Ubuntu
+
+Install `alsa-ucm-conf` and `alsa-topology-conf` on Ubuntu so PipeWire and
+WirePlumber load the ALSA Use Case Manager (`HiFi`) profile for Intel SOF
+(`sof-hda-dsp`) controllers and expose HDMI/DisplayPort audio sinks.
