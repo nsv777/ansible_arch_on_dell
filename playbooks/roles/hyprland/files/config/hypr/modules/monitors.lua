@@ -8,8 +8,10 @@ local external_monitor_model = "DELL S2722QC"
 local external_monitor_selector = "desc:Dell Inc. " .. external_monitor_model
 local internal_monitor_output = "eDP-1"
 local internal_monitor_scale_by_description = {
+    -- Lenovo ThinkPad
     ["Chimei Innolux Corporation 0x140A"] = 1,
-    ["Sharp Corporation 0x144A"] = 1.75,
+    -- Dell XPS 13
+    ["Sharp Corporation 0x144A"] = 1.67,
 }
 
 local function is_external_monitor(monitor)
