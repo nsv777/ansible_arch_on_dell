@@ -26,6 +26,10 @@
   ansible.builtin.include_tasks:
     file: "{{ ansible_facts['distribution'] | lower }}.yml"
 
+- name: Gather installed package versions
+  ansible.builtin.package_facts:
+    manager: auto
+
 - name: Create strata directories
   ansible.builtin.file:
     path: "{{ item }}"
@@ -67,6 +71,54 @@
     mode: "0644"
     remote_src: true
 
+- name: Install system portal metadata for xdg-desktop-portal before 1.20.1
+  ansible.builtin.copy:
+    src: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}/portal/strata.portal"
+    dest: /usr/share/xdg-desktop-portal/portals/strata.portal
+    mode: "0644"
+    remote_src: true
+  become: true
+  when: >-
+    ansible_facts.packages["xdg-desktop-portal"][0].version
+    is version("1.20.1", "<", version_type="loose")
+
+- name: Record system portal metadata as role-managed
+  ansible.builtin.copy:
+    content: managed by the strata role
+    dest: /usr/share/xdg-desktop-portal/portals/.strata.portal.ansible_arch_on_dell
+    mode: "0644"
+  become: true
+  when: >-
+    ansible_facts.packages["xdg-desktop-portal"][0].version
+    is version("1.20.1", "<", version_type="loose")
+
+- name: Check for role-managed system portal metadata
+  ansible.builtin.stat:
+    path: /usr/share/xdg-desktop-portal/portals/.strata.portal.ansible_arch_on_dell
+  register: strata_system_portal_marker
+
+- name: Remove obsolete role-managed system portal metadata
+  ansible.builtin.file:
+    path: /usr/share/xdg-desktop-portal/portals/strata.portal
+    state: absent
+  become: true
+  when:
+    - >-
+      ansible_facts.packages["xdg-desktop-portal"][0].version
+      is version("1.20.1", ">=", version_type="loose")
+    - strata_system_portal_marker.stat.exists
+
+- name: Remove obsolete system portal metadata marker
+  ansible.builtin.file:
+    path: /usr/share/xdg-desktop-portal/portals/.strata.portal.ansible_arch_on_dell
+    state: absent
+  become: true
+  when:
+    - >-
+      ansible_facts.packages["xdg-desktop-portal"][0].version
+      is version("1.20.1", ">=", version_type="loose")
+    - strata_system_portal_marker.stat.exists
+
 - name: Install strata desktop entry
   ansible.builtin.template:
     src: io.github.lgse.Strata.desktop.j2
@@ -102,7 +154,77 @@
 - name: Install strata as the system file chooser
   ansible.builtin.command:
     cmd: "{{ ansible_facts['user_dir'] }}/.local/bin/strata --install-portal"
+    creates: "{{ ansible_facts['user_dir'] }}/.local/share/strata/portal-install/state.toml"
   changed_when: false
+
+- name: Read strata portal installation state
+  ansible.builtin.slurp:
+    src: "{{ ansible_facts['user_dir'] }}/.local/share/strata/portal-install/state.toml"
+  register: strata_portal_install_state
+
+- name: Determine strata portal configuration
+  ansible.builtin.set_fact:
+    strata_portal_config_name: >-
+      {{
+        strata_portal_install_state.content
+        | b64decode
+        | regex_findall('(?m)^target_name = "([^"]+)"$')
+        | first
+      }}
+
+- name: Use only strata for FileChooser with xdg-desktop-portal before 1.19
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_facts['user_dir'] }}/.config/xdg-desktop-portal/{{ strata_portal_config_name }}"
+    regexp: '^org\.freedesktop\.impl\.portal\.FileChooser='
+    line: org.freedesktop.impl.portal.FileChooser=strata;
+    mode: "0600"
+  register: strata_legacy_portal_config
+  when: >-
+    ansible_facts.packages["xdg-desktop-portal"][0].version
+    is version("1.19", "<", version_type="loose")
+
+- name: Restart xdg-desktop-portal after legacy preference change
+  ansible.builtin.systemd_service:
+    name: xdg-desktop-portal.service
+    scope: user
+    state: restarted
+  when:
+    - strata_legacy_portal_config is not skipped
+    - strata_legacy_portal_config is changed
+
+- name: Record legacy FileChooser override
+  ansible.builtin.copy:
+    content: managed by the strata role
+    dest: "{{ ansible_facts['user_dir'] }}/.local/share/strata/portal-install/ansible-legacy-file-chooser"
+    mode: "0600"
+  when: >-
+    ansible_facts.packages["xdg-desktop-portal"][0].version
+    is version("1.19", "<", version_type="loose")
+
+- name: Check for legacy FileChooser override
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/strata/portal-install/ansible-legacy-file-chooser"
+  register: strata_legacy_portal_marker
+
+- name: Restore strata FileChooser fallbacks after xdg-desktop-portal upgrade
+  ansible.builtin.command:
+    cmd: "{{ ansible_facts['user_dir'] }}/.local/bin/strata --install-portal"
+  changed_when: true
+  when:
+    - >-
+      ansible_facts.packages["xdg-desktop-portal"][0].version
+      is version("1.19", ">=", version_type="loose")
+    - strata_legacy_portal_marker.stat.exists
+
+- name: Remove legacy FileChooser override marker
+  ansible.builtin.file:
+    path: "{{ ansible_facts['user_dir'] }}/.local/share/strata/portal-install/ansible-legacy-file-chooser"
+    state: absent
+  when:
+    - >-
+      ansible_facts.packages["xdg-desktop-portal"][0].version
+      is version("1.19", ">=", version_type="loose")
+    - strata_legacy_portal_marker.stat.exists
 
 - name: Update desktop database
   ansible.builtin.command:

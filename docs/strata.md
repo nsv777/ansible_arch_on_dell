@@ -17,6 +17,14 @@ installation), pinned to a specific version.
   `inode/directory` handler.
 - Strata is registered as the XDG Desktop Portal FileChooser backend via
   `strata --install-portal`, so portal-aware apps use it for Open/Save dialogs.
+- `xdg-desktop-portal` versions before 1.20.1 do not discover per-user portal
+  metadata. On those systems, the role also installs `strata.portal` under
+  `/usr/share/xdg-desktop-portal/portals`; Strata's D-Bus service remains
+  per-user. Versions before 1.19 also treat the configured fallback list as an
+  unordered set, so the role selects only Strata for `FileChooser` there. After
+  an upgrade, the role removes only system metadata it previously marked as
+  managed and restores Strata's recorded fallback list without overwriting a
+  user-modified preference.
 
 Other distributions and architectures are rejected explicitly by the role.
 
