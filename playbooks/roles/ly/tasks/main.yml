@@ -21,6 +21,27 @@
 #     value: doom
 #     create: false
 
+- name: Download blackhole dur animation
+  ansible.builtin.get_url:
+    url: https://codeberg.org/fairyglade/ly-community/raw/branch/main/animations/dur/blackhole-smooth-240x67.dur
+    dest: /etc/ly/blackhole-smooth-240x67.dur
+    mode: "0644"
+    force: false
+
+- name: Enable dur_file animation
+  community.general.ini_file:
+    path: /etc/ly/config.ini
+    option: animation
+    value: dur_file
+    create: false
+
+- name: Set dur file path
+  community.general.ini_file:
+    path: /etc/ly/config.ini
+    option: dur_file_path
+    value: /etc/ly/blackhole-smooth-240x67.dur
+    create: false
+
 - name: Enable numlock
   community.general.ini_file:
     path: /etc/ly/config.ini
