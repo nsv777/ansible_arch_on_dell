@@ -1,0 +1,6 @@
+---
+- name: Install kubeseal
+  ansible.builtin.package:
+    name: kubeseal
+    state: present
+  become: true

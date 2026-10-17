@@ -16,3 +16,10 @@
     name: mako
     state: absent
   become: true
+
+- name: Install hyprsnap
+  become: true
+  become_user: "{{ aur_user }}"
+  kewlfft.aur.aur:
+    name:
+      - hyprsnap

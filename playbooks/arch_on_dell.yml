@@ -26,27 +26,18 @@
   hosts: laptop
   tags: laptop
   roles:
-    # - role: kubeseal
-    #   tags: kubeseal
-    #   become: true
-    # - role: bluetooth_reset
-    #   tags: bluetooth_reset
-    #   become: true
+    - role: kubeseal
+      tags: kubeseal
     - role: intel_driver
       become: true
       tags: intel_driver
-    # - role: pulseaudio_hdmi_fix
     - role: ly
       become: true
       tags: ly
-    # - role: cinnamon
-    #   tags: cinnamon
     - role: geany
       tags: geany
     - role: zed
       tags: zed
-    - role: guake
-      tags: guake
     - role: deadbeef
     - role: wallpaper_changer
       tags: wallpaper_changer

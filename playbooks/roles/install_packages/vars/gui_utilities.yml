@@ -3,7 +3,6 @@ install_packages_arch:
   aur:
     - blueman
     - gnome-keyring
-    - gnome-screenshot
     - gpicview
     - libreoffice-fresh
     - mpv

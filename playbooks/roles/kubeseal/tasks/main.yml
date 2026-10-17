@@ -1,10 +1,12 @@
 ---
-- name: Download kubeseal
-  ansible.builtin.unarchive:
-    src: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
-    dest: /usr/local/bin
-    extra_opts: kubeseal
-    remote_src: true
-    mode: "0755"
-    owner: root
-    group: root
+- name: Verify kubeseal supports the operating system
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] in ["Archlinux", "Ubuntu"]
+    fail_msg: >-
+      The kubeseal role supports Arch Linux and Ubuntu only, not
+      {{ ansible_facts["distribution"] }}.
+
+- name: Install kubeseal for the operating system
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"

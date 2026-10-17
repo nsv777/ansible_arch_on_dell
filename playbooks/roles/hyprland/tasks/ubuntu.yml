@@ -80,3 +80,10 @@
     cmd: "/tmp/install_nerd_font.sh install JetBrainsMono"
   args:
     creates: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
+
+- name: Install hyprsnap
+  become: true
+  become_user: root
+  ansible.builtin.package:
+    name:
+      - hyprsnap

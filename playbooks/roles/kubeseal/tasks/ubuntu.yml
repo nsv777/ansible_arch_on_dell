@@ -1,0 +1,14 @@
+---
+- name: Get latest kubeseal release
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/bitnami-labs/sealed-secrets/releases/latest
+    return_content: true
+  register: kubeseal_latest
+
+- name: Download kubeseal
+  ansible.builtin.unarchive:
+    src: "https://github.com/bitnami-labs/sealed-secrets/releases/download/{{ kubeseal_latest.json.tag_name }}/kubeseal-{{ kubeseal_latest.json.tag_name }}-linux-amd64.tar.gz"
+    dest: ~/.local/bin
+    extra_opts: kubeseal
+    remote_src: true
+    mode: "0700"
