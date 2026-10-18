@@ -130,8 +130,9 @@ hl.bind("F12", hl.dsp.exec_cmd("guake-toggle"))
 hl.bind(altMod .. " + L", hl.dsp.exec_cmd("~/.local/bin/lock"))
 
 -- Screenshots
+hl.bind("ALT + Print", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave active"))
 hl.bind("Print", hl.dsp.exec_cmd("hyprsnap"))
-hl.bind(mainMod .. " + SHIFT + backslash", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave active"))
+hl.bind(mainMod .. " + ALT + backslash", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave active"))
 hl.bind(mainMod .. " + backslash", hl.dsp.exec_cmd("~/.local/bin/grimblast copysave screen"))
 
 
