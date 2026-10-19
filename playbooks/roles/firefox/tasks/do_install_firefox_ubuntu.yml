@@ -1,11 +1,16 @@
 ---
-- name: Add firefox PPA repository into sources list
-  ansible.builtin.apt_repository:
-    repo: ppa:mozillateam/ppa
+- name: Add Mozilla apt repository
+  ansible.builtin.deb822_repository:
+    name: mozilla
+    types: deb
+    uris: https://packages.mozilla.org/apt
+    suites: mozilla
+    components: main
+    signed_by: https://packages.mozilla.org/apt/repo-signing-key.gpg
     state: present
   become: true
 
-- name: Set apt priority to install firefox from apt repo
+- name: Set apt priority to install firefox from Mozilla repo
   ansible.builtin.copy:
     src: mozilla-firefox
     dest: /etc/apt/preferences.d/mozilla-firefox

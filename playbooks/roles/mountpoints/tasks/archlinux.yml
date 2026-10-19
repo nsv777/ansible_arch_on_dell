@@ -1,0 +1,16 @@
+---
+- name: Install packages
+  ansible.builtin.include_role:
+    name: install_packages
+    vars_from: "{{ role_name }}"
+
+- name: Mount NTFS mountpoints
+  ansible.posix.mount:
+    path: "{{ mountpoint.path }}"
+    src: "{{ mountpoint.src }}"
+    fstype: "{{ mountpoint.fstype }}"
+    opts: "{{ mountpoint.opts | default('defaults') }}"
+    state: mounted
+  loop: "{{ mountpoints_ntfs }}"
+  loop_control:
+    loop_var: mountpoint

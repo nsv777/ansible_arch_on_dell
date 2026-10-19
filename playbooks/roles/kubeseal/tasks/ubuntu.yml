@@ -5,9 +5,13 @@
     return_content: true
   register: kubeseal_latest
 
+- name: Determine kubeseal version
+  ansible.builtin.set_fact:
+    kubeseal_ver: "{{ kubeseal_latest.json.tag_name | regex_replace('^v', '') }}"
+
 - name: Download kubeseal
   ansible.builtin.unarchive:
-    src: "https://github.com/bitnami-labs/sealed-secrets/releases/download/{{ kubeseal_latest.json.tag_name }}/kubeseal-{{ kubeseal_latest.json.tag_name }}-linux-amd64.tar.gz"
+    src: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_ver }}/kubeseal-{{ kubeseal_ver }}-linux-amd64.tar.gz"
     dest: ~/.local/bin
     extra_opts: kubeseal
     remote_src: true

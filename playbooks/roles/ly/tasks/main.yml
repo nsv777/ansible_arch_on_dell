@@ -1,64 +1,12 @@
 ---
-- name: Install ly
-  ansible.builtin.package:
-    name:
-      - ly
+- name: Verify role supports the operating system
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] in ["Archlinux", "Ubuntu"]
+    fail_msg: >-
+      The role supports Arch Linux and Ubuntu only, not
+      {{ ansible_facts["distribution"] }}.
 
-- name: Enable ly@tty2 service
-  ansible.builtin.systemd:
-    name: ly@tty2.service
-    enabled: true
-
-- name: Disable getty@tty2 service
-  ansible.builtin.systemd:
-    name: getty@tty2.service
-    enabled: false
-
-# - name: Enable animation
-#   community.general.ini_file:
-#     path: /etc/ly/config.ini
-#     option: animation
-#     value: doom
-#     create: false
-
-- name: Download blackhole dur animation
-  ansible.builtin.get_url:
-    url: https://codeberg.org/fairyglade/ly-community/raw/branch/main/animations/dur/blackhole-smooth-240x67.dur
-    dest: /etc/ly/blackhole-smooth-240x67.dur
-    mode: "0644"
-    force: false
-
-- name: Enable dur_file animation
-  community.general.ini_file:
-    path: /etc/ly/config.ini
-    option: animation
-    value: dur_file
-    create: false
-
-- name: Set dur file path
-  community.general.ini_file:
-    path: /etc/ly/config.ini
-    option: dur_file_path
-    value: /etc/ly/blackhole-smooth-240x67.dur
-    create: false
-
-- name: Enable numlock
-  community.general.ini_file:
-    path: /etc/ly/config.ini
-    option: numlock
-    value: "true"
-    create: false
-
-- name: Hide borders
-  community.general.ini_file:
-    path: /etc/ly/config.ini
-    option: hide_borders
-    value: "true"
-    create: false
-
-- name: Switch to Spanish
-  community.general.ini_file:
-    path: /etc/ly/config.ini
-    option: lang
-    value: es
-    create: false
+- name: Install for the operating system
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"

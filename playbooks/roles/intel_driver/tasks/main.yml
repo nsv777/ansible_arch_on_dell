@@ -1,9 +1,12 @@
 ---
-- name: Install packages
-  kewlfft.aur.aur:
-    name:
-      - mesa-amber
-      - libva-intel-driver
-      - libva-utils
-  become: true
-  become_user: "{{ aur_user }}"
+- name: Verify role supports the operating system
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] in ["Archlinux", "Ubuntu"]
+    fail_msg: >-
+      The role supports Arch Linux and Ubuntu only, not
+      {{ ansible_facts["distribution"] }}.
+
+- name: Install for the operating system
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"

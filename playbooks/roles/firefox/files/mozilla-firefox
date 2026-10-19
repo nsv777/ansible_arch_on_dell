@@ -1,3 +1,3 @@
-Package: *
-Pin: release o=LP-PPA-mozillateam
+Package: firefox*
+Pin: release o=namespaces/moz-fx-productdelivery-pr-38b5/repositories/mozilla
 Pin-Priority: 1001

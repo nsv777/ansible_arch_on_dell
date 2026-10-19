@@ -27,6 +27,7 @@ mountpoints:
     src: 192.168.1.128:/home/share
     fstype: nfs4
     opts: noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,x-systemd.idle-timeout=1min
+mountpoints_ntfs:
   - path: /mnt/win10
     src: UUID=861EF4671EF451A3
     fstype: ntfs-3g

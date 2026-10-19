@@ -82,8 +82,9 @@
     creates: "{{ ansible_facts.env.HOME }}/.local/share/fonts/NerdFonts"
 
 - name: Install hyprsnap
+  ansible.builtin.get_url:
+    url: "https://github.com/chpock/hyprsnap/releases/latest/download/hyprsnap"
+    dest: /usr/local/bin/hyprsnap
+    mode: "0755"
+    force: true
   become: true
-  become_user: root
-  ansible.builtin.package:
-    name:
-      - hyprsnap

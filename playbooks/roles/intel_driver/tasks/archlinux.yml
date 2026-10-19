@@ -1,0 +1,9 @@
+---
+- name: Install packages
+  kewlfft.aur.aur:
+    name:
+      - mesa-amber
+      - libva-intel-driver
+      - libva-utils
+  become: true
+  become_user: "{{ aur_user }}"
