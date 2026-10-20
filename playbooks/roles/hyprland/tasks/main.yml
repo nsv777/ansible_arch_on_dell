@@ -19,6 +19,7 @@
       - hyprpwcenter
       - playerctl
       - waybar
+      - wf-recorder
 
 - name: Add current user to input group required by Waybar
   become: true
