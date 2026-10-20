@@ -2,3 +2,19 @@
 - name: Install console utilities on Arch
   ansible.builtin.include_tasks:
     file: "{{ ansible_facts['distribution'] | lower }}_install_console_utilities.yml"
+
+- name: Install packages
+  ansible.builtin.package:
+    name:
+      - docker
+      - docker-compose
+      - htop
+      - lshw
+      - man-db
+      - mc
+      - nmap
+      - rsync
+      - screen
+      - wf-recorder  # screen recorder for wayland
+      - wget
+      - xz

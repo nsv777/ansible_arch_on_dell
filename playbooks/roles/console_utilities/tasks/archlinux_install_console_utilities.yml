@@ -1,17 +1,6 @@
 ---
 - name: Install console utilities
-  community.general.pacman:
+  community.general.package:
     name:
       - arch-install-scripts
-      - docker
-      - docker-compose
-      - htop
-      - lshw
-      - man-db
-      - mc
-      - nmap
-      - rsync
-      - screen
-      - wget
-      - xz
   become: true
