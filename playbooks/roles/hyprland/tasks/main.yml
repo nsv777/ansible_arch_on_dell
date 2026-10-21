@@ -82,10 +82,12 @@
     directory_mode: "0700"
     mode: "0600"
 
-- name: Remove Mako config
-  ansible.builtin.file:
-    path: ~/.config/mako
-    state: absent
+- name: Copy wireplumber config
+  ansible.builtin.copy:
+    src: config/wireplumber
+    dest: ~/.config/
+    directory_mode: "0700"
+    mode: "0600"
 
 - name: Enable SwayNC user service
   ansible.builtin.systemd_service:
