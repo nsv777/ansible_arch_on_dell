@@ -37,6 +37,30 @@ built-in output name `eDP-1`.
 The `Chimei Innolux Corporation 0x140A` panel uses scale `1`. Other built-in
 panel descriptions use automatic scaling.
 
+## External monitor mode application
+
+Pin the S2722QC to `3840x2160@60` at scale `1.67`, not `1.75`. Scales must
+produce integer logical pixels: `3840x2160 / 1.75 = 2194.29x1234.29` is
+invalid, so Hyprland replaces it with `1.6667` and shows an "invalid scale"
+notification. `1.67` snaps to the same clean divisor without the notification.
+
+The startup rule uses `preferred` and a `hyprland.start` timer re-applies the
+exact mode after `eDP-1` is disabled. Hyprland applies monitor rules while the
+internal panel is still enabled. If the 4K modeset fails in that state (dual 4K
+outputs on the iGPU, or a DisplayPort link that is not ready at cold boot), it
+falls back to the first mode that commits, usually `2560x1440`, and reports
+`failed to set any requested modes, falling back to mode ...`. It then records
+the requested rule as applied, so a later config pass with the same rule is
+skipped and the fallback persists for the whole session. Re-applying a rule
+with a different mode (a hard property) forces a real modeset once the internal
+panel is off. The same re-apply runs on `monitor.added` so hotplug behaves like
+cold boot.
+
+Re-enabling the internal panel after unplug rebuilds its `desc:` rule. A bare
+`{ output = "eDP-1", disabled = false }` rule uses the defaults (preferred
+mode, automatic scale) and would shadow the per-panel scale, because the last
+matching rule wins.
+
 ## Mako notification lifetime
 
 Mako notifications remain visible until the user left-clicks them. The shared

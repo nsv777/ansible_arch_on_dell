@@ -15,8 +15,7 @@
         "memory",
         // "temperature",
         "disk",
-        "backlight",
-        "keyboard-state"
+        "backlight"
     ],
     "modules-center": [
         "mpris"

@@ -3,10 +3,12 @@
 ------------------
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
--- hyprctl monitors
-local external_monitor_model = "DELL S2722QC"
+-- hyprctl monitors all
+local external_monitor_model    = "DELL S2722QC"
 local external_monitor_selector = "desc:Dell Inc. " .. external_monitor_model
-local internal_monitor_output = "eDP-1"
+local external_monitor_mode     = "3840x2160@60"
+local external_monitor_scale    = 1.67
+local internal_monitor_output   = "eDP-1"
 local internal_monitor_scale_by_description = {
     -- Lenovo ThinkPad
     ["Chimei Innolux Corporation 0x140A"] = 1,
@@ -43,14 +45,36 @@ local function use_external_monitor()
     set_internal_monitor_disabled(true)
 end
 
+local function apply_external_monitor_mode()
+    hl.monitor({
+        output   = external_monitor_selector,
+        mode     = external_monitor_mode,
+        position = "auto",
+        scale    = external_monitor_scale,
+    })
+end
+
+-- Hyprland applies monitor rules while eDP-1 is still enabled. A pinned
+-- 3840x2160 mode can fail in that state and silently fall back to 2560x1440,
+-- and Hyprland records the requested rule as applied, so no later config pass
+-- retries it. Re-apply the mode once eDP-1 is off; the different mode is a hard
+-- rule change, which forces a real modeset.
+local function pin_external_monitor_mode()
+    hl.timer(function()
+        local monitor = hl.get_monitor(external_monitor_selector)
+        if monitor == nil or monitor.width ~= 3840 or math.abs(monitor.refresh_rate - 60) > 1 then
+            apply_external_monitor_mode()
+        end
+    end, { timeout = 1500, type = "oneshot" })
+end
+
+-- Startup rule. The exact mode is pinned by pin_external_monitor_mode().
 hl.monitor({
     output   = external_monitor_selector,
-    mode     = "3840x2160@60.00",
-    position = "0x0",
-    scale    = 1.75,
+    mode     = "preferred",
+    position = "auto",
+    scale    = external_monitor_scale,
 })
-
-configure_connected_internal_monitor()
 
 -- External monitor
 hl.on("monitor.added", function(m)
@@ -58,21 +82,29 @@ hl.on("monitor.added", function(m)
         configure_internal_monitor(m)
     elseif is_external_monitor(m) then
         use_external_monitor()
+        pin_external_monitor_mode()
     end
 end)
 
 hl.on("hyprland.start", function()
     configure_connected_internal_monitor()
 
-    local monitor = hl.get_monitor(external_monitor_selector)
-    if monitor ~= nil then
+    if hl.get_monitor(external_monitor_selector) ~= nil then
         use_external_monitor()
+        pin_external_monitor_mode()
     end
 end)
 
 -- Re-enable the laptop screen if the external monitor is unplugged
 hl.on("monitor.removed", function(m)
-    if is_external_monitor(m) then
+    if not is_external_monitor(m) then
+        return
+    end
+
+    local internal = hl.get_monitor(internal_monitor_output)
+    if internal ~= nil then
+        configure_internal_monitor(internal)
+    else
         set_internal_monitor_disabled(false)
     end
 end)
