@@ -3,3 +3,9 @@
   ansible.builtin.include_role:
     name: install_packages
     vars_from: "{{ role_name }}"
+
+- name: Copy chromium config
+  ansible.builtin.copy:
+    src: config/chromium-flags.conf
+    dest: "$HOME/.config"
+    mode: "0644"
