@@ -8,6 +8,25 @@ Hyprland's active-workspace JSON once per second and hides itself when no
 layout is available. This follows the per-workspace layout switched by
 `Alt+Tab`.
 
+## Waybar startup and crash capture
+
+Waybar is started from `hyprland.start` through `~/.local/bin/waybar-supervisor`,
+not as a bare process. The supervisor restarts Waybar on exit while `Hyprland`
+runs, waits one second between attempts, resets the attempt counter after a run
+of at least 60 seconds, and stops after 30 attempts that keep failing. Waybar's
+stderr is appended to `~/.local/state/waybar.log`, because a bare
+`hl.exec_cmd("waybar")` leaves no trace of a crash and the bar stays dead until
+the next session. Keep the loop in the script, not inline in `autostart.lua`.
+
+## Live config deployment
+
+Never deploy a live file with `install`: it unlinks the destination and creates a
+new inode. Hyprland watches each config file by inode and reloads on any event,
+so it can reload in the window where the file is gone, fail with `module
+modules.<name> not found`, and trip emergency mode because `hyprland.lua` aborted
+before `require("modules.binds")`. Use `cp` (in-place rewrite) or an atomic
+rename; Ansible's `copy` module already writes atomically.
+
 ## Hypridle startup
 
 Start Hypridle from the `hyprland.start` callback. Do not enable its user

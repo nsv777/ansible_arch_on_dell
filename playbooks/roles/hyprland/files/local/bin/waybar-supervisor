@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Keep Waybar alive while Hyprland runs and capture its stderr for crash
+# diagnosis. Reset the attempt counter after a run of at least 60 seconds and
+# stop after 30 consecutive fast failures.
+set -u
+
+log="${XDG_STATE_HOME:-$HOME/.local/state}/waybar.log"
+attempts=0
+
+while pgrep -x Hyprland >/dev/null; do
+    started=$(date +%s)
+    waybar 2>>"$log"
+    if (( $(date +%s) - started >= 60 )); then
+        attempts=0
+    fi
+    attempts=$((attempts + 1))
+    if (( attempts > 30 )); then
+        break
+    fi
+    sleep 1
+done
