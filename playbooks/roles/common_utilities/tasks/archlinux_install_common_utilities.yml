@@ -1,5 +1,5 @@
 ---
-- name: Install console utilities
+- name: Install common utilities
   community.general.package:
     name:
       - arch-install-scripts

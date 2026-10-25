@@ -4,8 +4,8 @@
   tags: common
   roles:
     - role: create_aur_user
-    - role: console_utilities
-      tags: console_utilities
+    - role: common_utilities
+      tags: common_utilities
     - role: docker
       become: true
       tags: docker
@@ -41,8 +41,8 @@
     - role: deadbeef
     - role: wallpaper_changer
       tags: wallpaper_changer
-    - role: gui_utilities
-      tags: gui_utilities
+    - role: laptop_utilities
+      tags: laptop_utilities
     - role: tenv
       become: true
       tags: tenv

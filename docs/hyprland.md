@@ -18,6 +18,11 @@ stderr is appended to `~/.local/state/waybar.log`, because a bare
 `hl.exec_cmd("waybar")` leaves no trace of a crash and the bar stays dead until
 the next session. Keep the loop in the script, not inline in `autostart.lua`.
 
+Call scripts in `~/.local/bin` by their explicit `~/.local/bin/...` path from
+Hyprland config. `PATH` gains that directory only in `~/.bashrc`, which never
+runs when Ly launches Hyprland, so a bare script name fails silently while
+`/usr/bin` commands keep working.
+
 ## Live config deployment
 
 Never deploy a live file with `install`: it unlinks the destination and creates a

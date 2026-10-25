@@ -11,7 +11,8 @@ hl.on("hyprland.start", function ()
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
   -- Keep Waybar alive and capture its stderr for crash diagnosis.
-  hl.exec_cmd("waybar-supervisor")
+  -- Absolute path: ~/.local/bin is not in the session PATH.
+  hl.exec_cmd("~/.local/bin/waybar-supervisor")
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("blueman-applet")
   hl.exec_cmd("pgrep -x hypridle >/dev/null || hypridle")

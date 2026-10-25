@@ -1,0 +1,17 @@
+---
+extends: default
+
+rules:
+  comments:
+    min-spaces-from-content: 1  # yamllint defaults to 2, ansible-lint defaults to 1
+  comments-indentation: false  # ansible-lint requires this rule to be disabled
+  braces:
+    min-spaces-inside: 0  # ansible-lint requires exactly one space maximum inside braces
+    max-spaces-inside: 1
+  octal-values:
+    forbid-implicit-octal: true  # ansible-lint requires explicit octal (0o) values
+    forbid-explicit-octal: true
+  line-length:
+    max: 160  # yamllint defaults to 80, ansible-lint defaults to 160
+
+ignore: 'vault*.y*ml'
