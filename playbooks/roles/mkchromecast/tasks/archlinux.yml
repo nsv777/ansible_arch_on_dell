@@ -1,0 +1,11 @@
+---
+- name: Install mkchromecast runtime dependencies
+  community.general.pacman:
+    name:
+      - git
+      - python-flask
+      - python-netifaces
+      - python-psutil
+      - python-pychromecast
+    state: present
+  become: true

@@ -1,0 +1,7 @@
+---
+mkchromecast_repo: "https://github.com/muammar/mkchromecast.git"
+mkchromecast_version: "master"
+mkchromecast_base_dir: "Documents/scripts"
+mkchromecast_src_dir: "{{ ansible_facts['user_dir'] }}/{{ mkchromecast_base_dir }}/mkchromecast"
+mkchromecast_bin: "{{ ansible_facts['user_dir'] }}/.local/bin/mkchromecast"
+mkchromecast_patch: "{{ role_path }}/files/mkchromecast-play-timeout.patch"

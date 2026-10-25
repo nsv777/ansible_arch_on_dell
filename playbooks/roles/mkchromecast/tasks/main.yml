@@ -1,0 +1,79 @@
+---
+- name: Verify mkchromecast supports the operating system
+  ansible.builtin.assert:
+    that:
+      - ansible_facts["distribution"] in ["Archlinux", "Ubuntu"]
+    fail_msg: >-
+      The mkchromecast role supports Arch Linux and Ubuntu only, not
+      {{ ansible_facts["distribution"] }}.
+
+- name: Install mkchromecast dependencies for the operating system
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: Create mkchromecast parent directory
+  ansible.builtin.file:
+    path: "{{ mkchromecast_src_dir | dirname }}"
+    state: directory
+    mode: "0755"
+
+# The git module refuses to work on a tree with local modifications, so the
+# patch has to come off before every clone/update and go back on afterwards.
+# Both command tasks are net-neutral: revert plus reapply leaves the tree in
+# the same state, hence changed_when false on both.
+- name: Check whether mkchromecast is already cloned
+  ansible.builtin.stat:
+    path: "{{ mkchromecast_src_dir }}/.git"
+  register: mkchromecast_git_dir
+
+- name: Check whether the play-timeout patch is applied
+  ansible.builtin.command: "git apply --reverse --check {{ mkchromecast_patch }}"  # noqa: command-instead-of-module
+  args:
+    chdir: "{{ mkchromecast_src_dir }}"
+  register: mkchromecast_patch_check
+  when: mkchromecast_git_dir.stat.exists
+  changed_when: false
+  failed_when: false
+
+- name: Revert the play-timeout patch before updating
+  ansible.builtin.command: "git apply --reverse {{ mkchromecast_patch }}"  # noqa: command-instead-of-module
+  args:
+    chdir: "{{ mkchromecast_src_dir }}"
+  when:
+    - mkchromecast_git_dir.stat.exists
+    - mkchromecast_patch_check.rc | default(1) == 0
+  changed_when: false
+
+- name: Clone mkchromecast
+  ansible.builtin.git:
+    repo: "{{ mkchromecast_repo }}"
+    version: "{{ mkchromecast_version }}"
+    dest: "{{ mkchromecast_src_dir }}"
+
+- name: Check whether the play-timeout patch is applied after the update
+  ansible.builtin.command: "git apply --reverse --check {{ mkchromecast_patch }}"  # noqa: command-instead-of-module
+  args:
+    chdir: "{{ mkchromecast_src_dir }}"
+  register: mkchromecast_patch_check_after
+  changed_when: false
+  failed_when: false
+
+- name: Apply the play-timeout patch
+  ansible.builtin.command: "git apply {{ mkchromecast_patch }}"  # noqa: command-instead-of-module
+  args:
+    chdir: "{{ mkchromecast_src_dir }}"
+  when: mkchromecast_patch_check_after.rc != 0
+  changed_when: false
+
+- name: Create user bin directory
+  ansible.builtin.file:
+    path: "{{ mkchromecast_bin | dirname }}"
+    state: directory
+    mode: "0700"
+
+- name: Link mkchromecast into the user bin directory
+  ansible.builtin.file:
+    src: "{{ mkchromecast_src_dir }}/bin/mkchromecast"
+    dest: "{{ mkchromecast_bin }}"
+    state: link
+    force: true

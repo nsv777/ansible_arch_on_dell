@@ -1,0 +1,12 @@
+---
+- name: Install mkchromecast runtime dependencies
+  ansible.builtin.apt:
+    name:
+      - git
+      - python3-flask
+      - python3-netifaces
+      - python3-psutil
+      - python3-pychromecast
+    state: present
+    update_cache: true
+  become: true

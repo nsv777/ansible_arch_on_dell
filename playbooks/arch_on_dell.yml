@@ -43,6 +43,8 @@
       tags: wallpaper_changer
     - role: laptop_utilities
       tags: laptop_utilities
+    - role: mkchromecast
+      tags: mkchromecast
     - role: tenv
       become: true
       tags: tenv

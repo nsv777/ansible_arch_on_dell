@@ -1,0 +1,22 @@
+diff --git a/mkchromecast/cast.py b/mkchromecast/cast.py
+index f8707c4..26818af 100644
+--- a/mkchromecast/cast.py
++++ b/mkchromecast/cast.py
+@@ -345,7 +345,16 @@ class Casting:
+             # autoplay already started playback; nothing more to do.
+             pass
+         elif media_controller.is_active:
+-            media_controller.play()
++            # This play() is only a nudge: play_media(autoplay=True) has already
++            # been asked to start the stream. Some receivers accept the LOAD but
++            # never answer this command within pychromecast's timeout window, so
++            # losing that race must not abort the cast.
++            try:
++                media_controller.play()
++            except pychromecast.error.PyChromecastError as exc:
++                print(colors.warning(
++                    f"The cast device did not acknowledge play ({exc}). "
++                    "Continuing; autoplay should start the stream."))
+         else:
+             print(colors.warning(
+                 "The cast device did not establish a media session in time. "
