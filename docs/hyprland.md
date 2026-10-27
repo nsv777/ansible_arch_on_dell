@@ -134,3 +134,11 @@ managed `hyprpaper.conf`.
 Install `alsa-ucm-conf` and `alsa-topology-conf` on Ubuntu so PipeWire and
 WirePlumber load the ALSA Use Case Manager (`HiFi`) profile for Intel SOF
 (`sof-hda-dsp`) controllers and expose HDMI/DisplayPort audio sinks.
+
+## Foot URL detection
+
+`osc8-underline=always` in `[url]` keeps OSC-8 hyperlinks underlined outside
+URL mode, so they are visible before `Control+Shift+o`. Plain-text URLs are
+detected by foot's default regex; a link rendered only as display text with a
+hidden URL cannot be detected by any foot setting. Terminal-facing agents must
+print bare URLs instead of `[label](url)` Markdown links.

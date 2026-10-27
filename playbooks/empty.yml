@@ -1,7 +1,6 @@
 ---
 - name: Gather facts
   hosts: all
-  become: true
   tasks:
     - name: Show hostname
       ansible.builtin.debug:
