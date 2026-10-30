@@ -15,6 +15,11 @@
     "enabled": true,
   },
   "colorize_brackets": true,
+  "file_types": {
+    "Groovy": [
+      ".jenkinsfile",
+    ],
+  },
   "session": {
     "trust_all_worktrees": true,
   },
@@ -74,5 +79,16 @@
   "terminal": {
     "font_size": 13.0,
     "font_family": "Hack",
+  },
+  "lsp": {
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "disableSchemaDetection": [
+            "vars/*.yaml",
+          ],
+        },
+      },
+    },
   }
 }
