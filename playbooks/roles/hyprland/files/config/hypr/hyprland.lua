@@ -67,7 +67,7 @@ hl.config({
 
     decoration = {
         rounding       = 0,
-        rounding_power = 0,
+        rounding_power = 1.00,
 
         -- Keep windows opaque; dim unfocused windows slightly instead.
         active_opacity   = 1.0,
