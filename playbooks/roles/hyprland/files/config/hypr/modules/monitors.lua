@@ -76,6 +76,11 @@ hl.monitor({
     scale    = external_monitor_scale,
 })
 
+-- Config reloads re-run this file but do not fire the events below, so
+-- re-apply rules to monitors that are already connected. On cold start the
+-- monitor may not exist yet and the events handle it.
+configure_connected_internal_monitor()
+
 -- External monitor
 hl.on("monitor.added", function(m)
     if m.name == internal_monitor_output then
