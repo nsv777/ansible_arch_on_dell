@@ -278,6 +278,20 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name  = "zstray-workspace-10",
+    match = { class = "^ZSTray6$" },
+
+    workspace = "10",
+})
+
+hl.window_rule({
+    name  = "freelens-workspace-3",
+    match = { class = "^freelens$" },
+
+    workspace = "3",
+})
+
+hl.window_rule({
     name  = "float-zoom-annotate-toolbar",
     match = { class = "zoom", title = "annotate_toolbar" },
 
