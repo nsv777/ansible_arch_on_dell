@@ -9,3 +9,10 @@
     src: config/chromium-flags.conf
     dest: "$HOME/.config"
     mode: "0644"
+
+- name: Copy udev rules for Keychron/STM devices
+  ansible.builtin.copy:
+    src: udev/50-keychron.rules
+    dest: "/etc/udev/rules.d/50-keychron.rules"
+    mode: "0644"
+  become: true
