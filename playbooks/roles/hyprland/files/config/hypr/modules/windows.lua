@@ -79,14 +79,12 @@ hl.window_rule({
 
     float = true,
     size  = { 40, 40 },
-    workspace = "10",
 })
 
 hl.window_rule({
-    name  = "float-zoom-annotate-toolbar",
+    name  = "zoom-little-window",
     match = { class = "zoom", title = "Zoom Workplace" },
 
     float = true,
     size  = { 400, 80 },
-    workspace = "10",
 })
