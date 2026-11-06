@@ -16,3 +16,7 @@
     dest: "/etc/udev/rules.d/50-keychron.rules"
     mode: "0644"
   become: true
+  notify: reload_udev_rules
+
+- name: flush_handlers
+  ansible.builtin.meta: flush_handlers
