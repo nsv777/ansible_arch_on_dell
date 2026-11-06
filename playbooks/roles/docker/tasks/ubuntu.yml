@@ -1,0 +1,7 @@
+---
+- name: Install docker
+  ansible.builtin.package:
+    name:
+      - docker-ce
+      - docker-compose
+  notify: start_docker
