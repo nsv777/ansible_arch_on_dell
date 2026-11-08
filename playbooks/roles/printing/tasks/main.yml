@@ -1,0 +1,60 @@
+---
+- name: Install printing packages
+  ansible.builtin.include_tasks:
+    file: "do_{{ role_name }}_{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: Enable and start the cups service
+  ansible.builtin.systemd_service:
+    name: cups.service
+    enabled: true
+    state: started
+
+- name: Enable and start the avahi-daemon service
+  ansible.builtin.systemd_service:
+    name: avahi-daemon.service
+    enabled: true
+    state: started
+
+- name: Get users group members
+  ansible.builtin.getent:
+    database: group
+    key: users
+  register: users_group_info
+  changed_when: false
+  failed_when: false
+
+- name: Set users group members fact
+  ansible.builtin.set_fact:
+    users_group_members: "{{ users_group_info.ansible_facts.getent.users.members | default('') | split(',') | map('trim') | reject('equalto', '') | list }}"
+  when: users_group_info is not failed and users_group_info.ansible_facts.getent.users.members is defined
+
+- name: Get wheel group members
+  ansible.builtin.getent:
+    database: group
+    key: wheel
+  register: wheel_group_info
+  changed_when: false
+  failed_when: false
+
+- name: Set wheel group members fact
+  ansible.builtin.set_fact:
+    wheel_group_members: "{{ wheel_group_info.ansible_facts.getent.wheel.members | default('') | split(',') | map('trim') | reject('equalto', '') | list }}"
+  when: wheel_group_info is not failed and wheel_group_info.ansible_facts.getent.wheel.members is defined
+
+- name: Add members of users group to lp group
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: lp
+    append: true
+  become: true
+  loop: "{{ users_group_members | default([]) }}"
+  when: users_group_members | length > 0
+
+- name: Add members of wheel group to lp group
+  ansible.builtin.user:
+    name: "{{ item }}"
+    groups: lp
+    append: true
+  become: true
+  loop: "{{ wheel_group_members | default([]) }}"
+  when: wheel_group_members | length > 0

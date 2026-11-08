@@ -1,0 +1,17 @@
+---
+# Packages for printing installation
+
+# Ubuntu/Debian packages
+install_packages_ubuntu:
+  apt:
+    - cups
+    - cups-browsers
+    - avahi
+    - avahi-daemon
+
+# Arch Linux packages
+install_packages_arch:
+  aur:
+    - cups
+    - avahi
+    - avahi-daemon

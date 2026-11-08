@@ -1,4 +1,5 @@
 {
   "answerclean": "A",
-  "answerdiff": "N"
+  "answerdiff": "N",
+  "removemake": true
 }

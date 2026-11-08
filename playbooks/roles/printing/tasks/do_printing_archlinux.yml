@@ -1,0 +1,38 @@
+---
+# - name: Run the equivalent of "pacman -Syu" as a separate step
+#   community.general.pacman:
+#     update_cache: true
+#     upgrade: true
+#   become: true
+#   tags:
+#
+- name: Mount tmpfs to pacman cache directory
+  ansible.posix.mount:
+    path: "/var/cache/pacman/pkg"
+    src: none
+    fstype: tmpfs
+    state: ephemeral
+  become: true
+  changed_when: false
+
+- name: Unmount tmpfs from pacman cache directory
+  ansible.posix.mount:
+    path: "/var/tmp/{{ aur_user }}/.cache"
+    state: unmounted
+  become: true
+  changed_when: false
+
+- name: Install packages
+  kewlfft.aur.aur:
+    name: "{{ install_packages_arch.aur }}"
+  become: true
+  become_user: "{{ aur_user }}"
+  when: install_packages_arch.aur is defined
+  tags: [wallpaper]
+
+- name: Unmount tmpfs from pacman cache directory
+  ansible.posix.mount:
+    path: /var/cache/pacman/pkg
+    state: unmounted
+  become: true
+  changed_when: false

@@ -55,6 +55,9 @@
     - role: yazi
       become: true
       tags: yazi
+    - role: printing
+      become: true
+      tags: [printing]
     - role: strata
       tags: strata
     - role: hyprland
