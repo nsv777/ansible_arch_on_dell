@@ -1,24 +1,21 @@
 # Install Printing Packages
 
-Install CUPS (Common Unix Printing System), Avahi (ZeroConf), and HPLIP (HP Linux Imaging and Printing) on Ubuntu/Debian and Arch Linux systems.
+Install CUPS (Common Unix Printing System) and Avahi (ZeroConf) on Ubuntu and Arch Linux systems.
 
 ## Requirements
 
 - Ansible with appropriate permissions
-- Target system with either Ubuntu/Debian or Arch Linux
+- Target system with either Ubuntu or Arch Linux
 
 ## Packages Installed
 
-### Ubuntu/Debian
+### Ubuntu
 - `cups` - Common Unix Printing System
-- `cups-browsers` - Web browser support for CUPS
-- `avahi` - ZeroConf service discovery
-- `avahi-daemon` - Avahi daemon
+- `avahi-daemon` - ZeroConf service discovery
 
 ### Arch Linux
 - `cups` - Common Unix Printing System
 - `avahi` - ZeroConf service discovery
-- `avahi-daemon` - Avahi daemon
 
 ## Usage
 

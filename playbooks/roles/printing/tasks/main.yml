@@ -1,7 +1,9 @@
 ---
 - name: Install printing packages
-  ansible.builtin.include_tasks:
-    file: "do_{{ role_name }}_{{ ansible_facts['distribution'] | lower }}.yml"
+  ansible.builtin.package:
+    name: "{{ lookup('vars', 'printing_packages_' ~ (ansible_facts['distribution'] | lower)) }}"
+    state: present
+  become: true
 
 - name: Enable and start the cups service
   ansible.builtin.systemd_service:
@@ -15,46 +17,33 @@
     enabled: true
     state: started
 
-- name: Get users group members
+- name: Get groups
   ansible.builtin.getent:
     database: group
-    key: users
-  register: users_group_info
-  changed_when: false
-  failed_when: false
 
-- name: Set users group members fact
-  ansible.builtin.set_fact:
-    users_group_members: "{{ users_group_info.ansible_facts.getent.users.members | default('') | split(',') | map('trim') | reject('equalto', '') | list }}"
-  when: users_group_info is not failed and users_group_info.ansible_facts.getent.users.members is defined
-
-- name: Get wheel group members
+- name: Get users
   ansible.builtin.getent:
-    database: group
-    key: wheel
-  register: wheel_group_info
-  changed_when: false
-  failed_when: false
+    database: passwd
 
-- name: Set wheel group members fact
+- name: Initialize printing group members
   ansible.builtin.set_fact:
-    wheel_group_members: "{{ wheel_group_info.ansible_facts.getent.wheel.members | default('') | split(',') | map('trim') | reject('equalto', '') | list }}"
-  when: wheel_group_info is not failed and wheel_group_info.ansible_facts.getent.wheel.members is defined
+    printing_group_members: []
 
-- name: Add members of users group to lp group
+- name: Collect members of users and wheel groups
+  ansible.builtin.set_fact:
+    printing_group_members: >-
+      {{ printing_group_members | default([])
+         + (item.value[2] | default('') | split(',') | map('trim') | reject('equalto', '') | list)
+         + (ansible_facts.getent_passwd | dict2items | selectattr('value.2', 'equalto', item.value[1])
+            | map(attribute='key') | list) }}
+  loop: "{{ ansible_facts.getent_group | dict2items | selectattr('key', 'in', ['users', 'wheel']) | selectattr('value', 'ne', none) | list }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Add group members to lp group
   ansible.builtin.user:
     name: "{{ item }}"
     groups: lp
     append: true
   become: true
-  loop: "{{ users_group_members | default([]) }}"
-  when: users_group_members | length > 0
-
-- name: Add members of wheel group to lp group
-  ansible.builtin.user:
-    name: "{{ item }}"
-    groups: lp
-    append: true
-  become: true
-  loop: "{{ wheel_group_members | default([]) }}"
-  when: wheel_group_members | length > 0
+  loop: "{{ printing_group_members | unique | select('in', ansible_facts.getent_passwd.keys() | list) | list }}"

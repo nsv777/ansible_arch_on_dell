@@ -35,3 +35,10 @@ jobs:
         with:
           args: "-s --show-relpath --force-color"
           requirements_file: "requirements.yml"
+
+      - name: Test printing role
+        env:
+          ANSIBLE_ACTION_PLUGINS: ${{ github.workspace }}/tests/printing/action_plugins
+          ANSIBLE_LIBRARY: ${{ github.workspace }}/tests/printing/library
+          ANSIBLE_CACHE_PLUGIN: memory
+        run: ansible-playbook -i tests/printing/inventory.yml tests/printing/test.yml --check

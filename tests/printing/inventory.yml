@@ -1,0 +1,43 @@
+---
+all:
+  vars:
+    ansible_connection: local
+    ansible_become: false
+    printing_test_groups:
+      users: ["x", "100", "alice,bob,ghost"]
+      wheel: ["x", "10", "bob,dave"]
+    printing_test_passwd:
+      alice: ["x", "1001", "100", "Alice", "/home/alice", "/bin/bash"]
+      bob: ["x", "1002", "100", "Bob", "/home/bob", "/bin/bash"]
+      carol: ["x", "1003", "100", "Carol", "/home/carol", "/bin/bash"]
+      dave: ["x", "1004", "10", "Dave", "/home/dave", "/bin/bash"]
+      other: ["x", "1005", "200", "Other", "/home/other", "/bin/bash"]
+    printing_test_users: [alice, bob, carol, dave]
+  hosts:
+    ubuntu_printing:
+      printing_test_distribution: Ubuntu
+      printing_test_pkg_mgr: apt
+      printing_test_packages: [cups, avahi-daemon]
+    arch_printing:
+      printing_test_distribution: Archlinux
+      printing_test_pkg_mgr: pacman
+      printing_test_packages: [cups, avahi]
+    ubuntu_printing_override:
+      printing_test_distribution: Ubuntu
+      printing_test_pkg_mgr: apt
+      printing_packages_ubuntu: [custom-printing-package]
+      printing_test_packages: [custom-printing-package]
+    arch_printing_override:
+      printing_test_distribution: Archlinux
+      printing_test_pkg_mgr: pacman
+      printing_packages_archlinux: [custom-printing-package]
+      printing_test_packages: [custom-printing-package]
+    missing_groups:
+      printing_test_distribution: Ubuntu
+      printing_test_pkg_mgr: apt
+      printing_test_packages: [cups, avahi-daemon]
+      printing_test_groups:
+        users: null
+        wheel: ["x", "10", ""]
+      printing_test_passwd: {}
+      printing_test_users: []

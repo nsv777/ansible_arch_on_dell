@@ -1,0 +1,8 @@
+---
+printing_packages_ubuntu:
+  - cups
+  - avahi-daemon
+
+printing_packages_archlinux:
+  - cups
+  - avahi

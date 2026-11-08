@@ -1,0 +1,48 @@
+---
+# Run from the repository root:
+# ANSIBLE_ACTION_PLUGINS="$PWD/tests/printing/action_plugins" ANSIBLE_LIBRARY="$PWD/tests/printing/library" \
+#   ANSIBLE_CACHE_PLUGIN=memory ansible-playbook -i tests/printing/inventory.yml tests/printing/test.yml --check
+- name: Check printing requests without changing a host
+  hosts: all
+  gather_facts: false
+  pre_tasks:
+    - name: Set the simulated distribution
+      ansible.builtin.setup:
+    - name: Ensure module requests are intercepted
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['printing_test_mock'] | default(false)
+          - lookup('env', 'ANSIBLE_LIBRARY') == playbook_dir ~ '/library'
+  roles:
+    - role: printing
+  tasks:
+    - name: Verify the role does not refresh the package cache
+      ansible.builtin.assert:
+        that:
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.apt')
+            | selectattr('args.update_cache', 'defined') | selectattr('args.update_cache', 'equalto', true)
+            | list | length == 0
+    - name: Verify requested packages and users
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['printing_test_package'].name == printing_test_packages
+          - ansible_facts['printing_test_package'].state == 'present'
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.user')
+            | map(attribute='args.name') | sort == printing_test_users | sort
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.user')
+            | rejectattr('args.append', 'equalto', true) | list | length == 0
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.user')
+            | rejectattr('args.groups', 'equalto', 'lp') | list | length == 0
+    - name: Verify service requests
+      ansible.builtin.assert:
+        that:
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.systemd_service')
+            | map(attribute='args.name') | sort == ['avahi-daemon.service', 'cups.service']
+          - >-
+            ansible_facts['printing_test_requests'] | selectattr('action', 'equalto', 'ansible.builtin.systemd_service')
+            | rejectattr('args.state', 'equalto', 'started') | list | length == 0
