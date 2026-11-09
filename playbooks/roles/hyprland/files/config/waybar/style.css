@@ -55,7 +55,7 @@
 }
 
 #mode, #battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-hyprland-layout, #custom-notification, #custom-storage, #custom-updates, #clock, #temperature, #language, #window, #tray {
-  margin: 1;
+  margin: 1px;
   padding: 0 10px;
   background-color: @base02;
   border-radius: 2px;
