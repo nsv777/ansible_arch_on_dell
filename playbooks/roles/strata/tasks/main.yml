@@ -10,13 +10,9 @@
 - name: Verify strata supports the architecture
   ansible.builtin.assert:
     that:
-      - ansible_facts["architecture"] in strata_arch_targets
+      - ansible_facts["architecture"] == strata_arch
     fail_msg: >-
-      Strata has no prebuilt release for {{ ansible_facts["architecture"] }}.
-
-- name: Determine strata release target
-  ansible.builtin.set_fact:
-    strata_target: "{{ strata_arch_targets[ansible_facts['architecture']] }}"
+      The strata role supports x86_64 only, not {{ ansible_facts["architecture"] }}.
 
 - name: Gather the current user's home directory
   ansible.builtin.setup:
@@ -52,7 +48,7 @@
   ansible.builtin.get_url:
     url: "https://github.com/lgse/strata/releases/download/v{{ strata_version }}/strata-{{ strata_version }}-{{ strata_target }}.tar.gz"
     dest: "{{ ansible_facts['user_dir'] }}/.cache/strata/strata-{{ strata_version }}-{{ strata_target }}.tar.gz"
-    checksum: "{{ strata_checksums[ansible_facts['architecture']] }}"
+    checksum: "{{ strata_checksum }}"
     mode: "0644"
 
 - name: Extract strata release archive
