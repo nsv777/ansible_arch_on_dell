@@ -4,6 +4,7 @@ install_packages_arch:
     - blueman
     - gnome-keyring
     - gpicview
+    - ldns
     - libreoffice-fresh
     - mpv
     - mpv-mpris
@@ -15,3 +16,4 @@ install_packages_arch:
     - smplayer
     - transmission-qt
     - wf-recorder  # screen recorder for wayland
+    - whois
