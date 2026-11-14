@@ -103,5 +103,14 @@
     directory_mode: "0700"
     mode: "0700"
 
+- name: Copy DisplayPort link retrain helper
+  ansible.builtin.copy:
+    src: usr/local/sbin/
+    dest: /usr/local/sbin/
+    mode: "0755"
+    owner: root
+    group: root
+  become: true
+
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers

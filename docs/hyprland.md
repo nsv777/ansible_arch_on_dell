@@ -80,6 +80,20 @@ with a different mode (a hard property) forces a real modeset once the internal
 panel is off. The same re-apply runs on `monitor.added` so hotplug behaves like
 cold boot.
 
+A DisplayPort link trained below its maximum rate (after a dock coldplug or
+replug) silently rejects the `3840x2160@60` modeset at the DRM level: the
+kernel reports success, Hyprland stays on the fallback mode, and no log names
+the cause. Before re-applying the mode, `monitors.lua` runs the root-owned
+`/usr/local/sbin/dp-link-retrain` through passwordless wheel sudo. The helper
+writes the i915 `i915_dp_force_link_retrain` debugfs bit on every DP
+connector, i915 retrains the link at full rate, and the following modeset
+commits.
+
+The helper is i915-scoped. Both supported laptop classes use i915 (Dell XPS
+13 9350 Skylake, ThinkPad T14 Gen2 Tiger Lake). On any other DRM driver the
+retrain bit does not exist, the write fails, and the helper is a silent
+no-op; amdgpu hosts would need the `link_settings` debugfs path instead.
+
 Re-enabling the internal panel after unplug rebuilds its `desc:` rule. A bare
 `{ output = "eDP-1", disabled = false }` rule uses the defaults (preferred
 mode, automatic scale) and would shadow the per-panel scale, because the last

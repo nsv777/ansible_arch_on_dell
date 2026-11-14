@@ -1,0 +1,17 @@
+#!/bin/sh
+# Force an i915 DisplayPort link retrain on every DP connector.
+#
+# A DisplayPort link that trains below its maximum rate (for example after a
+# dock coldplug) silently rejects high-bandwidth modesets such as
+# 3840x2160@60 at the DRM level, and Hyprland falls back to a lower mode.
+# Writing the retrain bit makes i915 retrain the link at full rate, and the
+# next modeset commits.
+#
+# Called from Hyprland's monitors.lua via passwordless sudo (wheel is
+# NOPASSWD). Keep this side-effect free apart from the retrain.
+set -u
+
+for connector in /sys/kernel/debug/dri/*/DP-*; do
+    [ -d "$connector" ] || continue
+    echo 1 > "$connector/i915_dp_force_link_retrain" 2>/dev/null || true
+done

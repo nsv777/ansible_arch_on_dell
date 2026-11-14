@@ -63,6 +63,10 @@ local function pin_external_monitor_mode()
     hl.timer(function()
         local monitor = hl.get_monitor(external_monitor_selector)
         if monitor == nil or monitor.width ~= 3840 or math.abs(monitor.refresh_rate - 60) > 1 then
+            -- A DisplayPort link trained below its maximum rate rejects the
+            -- 4K modeset at the DRM level. Retrain it before retrying; the
+            -- root-owned helper is allowed by passwordless wheel sudo.
+            os.execute("sudo -n /usr/local/sbin/dp-link-retrain")
             apply_external_monitor_mode()
         end
     end, { timeout = 1500, type = "oneshot" })
