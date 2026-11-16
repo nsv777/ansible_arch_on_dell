@@ -8,7 +8,6 @@ install_packages_arch:
     - libreoffice-fresh
     - mpv
     - mpv-mpris
-    - npm  # for agent skills installation using npx
     - nextcloud-client
     - pinta
     - pycharm
@@ -27,7 +26,6 @@ install_packages_ubuntu:
     - libreoffice-writer
     - mpv
     - mpv-mpris
-    - npm  # for agent skills installation using npx
     - nextcloud-desktop
     - pinta
     - remmina
