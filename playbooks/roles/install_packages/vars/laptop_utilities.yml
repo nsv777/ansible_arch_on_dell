@@ -18,3 +18,20 @@ install_packages_arch:
     - transmission-qt
     - wf-recorder  # screen recorder for wayland
     - whois
+install_packages_ubuntu:
+  apt:
+    - blueman
+    - gnome-keyring
+    - ldnsutils
+    - libreoffice-calc
+    - libreoffice-writer
+    - mpv
+    - mpv-mpris
+    - npm  # for agent skills installation using npx
+    - nextcloud-desktop
+    - pinta
+    - remmina
+    - smplayer
+    - transmission-qt
+    - wf-recorder  # screen recorder for wayland
+    - whois

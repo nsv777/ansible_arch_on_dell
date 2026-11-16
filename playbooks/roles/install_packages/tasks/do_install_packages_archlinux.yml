@@ -1,13 +1,4 @@
 ---
-# - name: Run the equivalent of "pacman -Syu" as a separate step
-#   community.general.pacman:
-#     update_cache: true
-#     upgrade: true
-#   become: true
-#   tags:
-#     - update
-#     - upgrade
-
 - name: Mount tmpfs to yay cache directory
   ansible.posix.mount:
     path: "/var/tmp/{{ aur_user }}/.cache"
@@ -32,8 +23,6 @@
   become: true
   become_user: "{{ aur_user }}"
   when: install_packages_arch.aur is defined
-  tags:
-    - wallpaper
 
 - name: Unmount tmpfs from yay cache directory
   ansible.posix.mount:
