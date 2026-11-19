@@ -1,4 +1,7 @@
 ---
+install_packages_ubuntu:
+  apt:
+    - firefox
 install_packages_arch:
   aur:
     - firefox

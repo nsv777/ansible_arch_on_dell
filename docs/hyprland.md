@@ -149,6 +149,19 @@ Install `alsa-ucm-conf` and `alsa-topology-conf` on Ubuntu so PipeWire and
 WirePlumber load the ALSA Use Case Manager (`HiFi`) profile for Intel SOF
 (`sof-hda-dsp`) controllers and expose HDMI/DisplayPort audio sinks.
 
+## Backlight control on Ubuntu
+
+The `XF86MonBrightnessUp` and `XF86MonBrightnessDown` bindings call
+`brightnessctl`. Arch builds it with logind support and sets brightness through
+`org.freedesktop.login1.Session.SetBrightness`, so no group membership or
+writable sysfs file is needed (Dell XPS 13). Ubuntu's build lacks that support
+and writes `/sys/class/backlight/*/brightness` directly; its
+`90-brightnessctl.rules` grants write access to group `video` instead.
+
+The `laptop_utilities` role adds the current user to `video` on Ubuntu only.
+Without it the bindings fail with `Permission denied`. Group membership takes
+effect after re-login.
+
 ## Foot URL detection
 
 `osc8-underline=always` in `[url]` keeps OSC-8 hyperlinks underlined outside

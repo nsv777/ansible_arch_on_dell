@@ -1,4 +1,6 @@
 ---
+install_packages_ubuntu:
+  apt: []
 install_packages_arch:
   aur:
     - deadbeef

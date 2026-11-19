@@ -18,5 +18,10 @@
   become: true
   notify: reload_udev_rules
 
+- name: Ubuntu-specific tasks
+  ansible.builtin.include_tasks:
+    file: ubuntu.yml
+  when: ansible_facts['distribution'] == "Ubuntu"
+
 - name: flush_handlers
   ansible.builtin.meta: flush_handlers

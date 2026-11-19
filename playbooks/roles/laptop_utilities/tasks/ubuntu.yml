@@ -1,0 +1,8 @@
+---
+# Ubuntu's brightnessctl writes sysfs directly and needs video group access.
+- name: Add current user to video group for backlight write access
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_facts['user_id'] }}"
+    groups: video
+    append: true
