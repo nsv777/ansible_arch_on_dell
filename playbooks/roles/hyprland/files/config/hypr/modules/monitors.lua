@@ -41,49 +41,50 @@ local function set_internal_monitor_disabled(disabled)
     hl.monitor({ output = internal_monitor_output, disabled = disabled })
 end
 
-local function use_external_monitor()
-    set_internal_monitor_disabled(true)
-end
-
-local function apply_external_monitor_mode()
+local function apply_external_monitor_mode(mode)
     hl.monitor({
         output   = external_monitor_selector,
-        mode     = external_monitor_mode,
+        mode     = mode,
         position = "auto",
         scale    = external_monitor_scale,
     })
 end
 
--- Hyprland applies monitor rules while eDP-1 is still enabled. A pinned
--- 3840x2160 mode can fail in that state and silently fall back to 2560x1440,
--- and Hyprland records the requested rule as applied, so no later config pass
--- retries it. Re-apply the mode once eDP-1 is off; the different mode is a hard
--- rule change, which forces a real modeset.
+local external_retry_generation = 0
 local function pin_external_monitor_mode()
+    external_retry_generation = external_retry_generation + 1
+    local generation = external_retry_generation
     hl.timer(function()
+        -- Do not apply a timer from a previous connection to a replugged Dell.
+        if generation ~= external_retry_generation then
+            return
+        end
         local monitor = hl.get_monitor(external_monitor_selector)
-        if monitor == nil or monitor.width ~= 3840 or math.abs(monitor.refresh_rate - 60) > 1 then
-            -- A DisplayPort link trained below its maximum rate rejects the
-            -- 4K modeset at the DRM level. Retrain it before retrying; the
-            -- root-owned helper is allowed by passwordless wheel sudo.
+        if monitor ~= nil and (monitor.width ~= 3840 or monitor.height ~= 2160
+            or math.abs(monitor.refresh_rate - 60) > 1) then
+            -- Request an i915 link retrain before trying 4K60 again.
             os.execute("sudo -n /usr/local/sbin/dp-link-retrain")
-            apply_external_monitor_mode()
+            apply_external_monitor_mode(external_monitor_mode)
         end
     end, { timeout = 1500, type = "oneshot" })
 end
 
--- Startup rule. The exact mode is pinned by pin_external_monitor_mode().
-hl.monitor({
-    output   = external_monitor_selector,
-    mode     = "preferred",
-    position = "auto",
-    scale    = external_monitor_scale,
-})
+local function use_external_monitor()
+    set_internal_monitor_disabled(true)
+    -- A failed modeset can leave 4K60 cached as the requested rule even
+    -- after fallback. Reset to preferred so the timer submits a different
+    -- rule once eDP-1 is off, forcing a new modeset if needed.
+    apply_external_monitor_mode("preferred")
+    pin_external_monitor_mode()
+end
 
--- Config reloads re-run this file but do not fire the events below, so
--- re-apply rules to monitors that are already connected. On cold start the
--- monitor may not exist yet and the events handle it.
+-- Config reloads re-run this file without firing the startup/hotplug events.
 configure_connected_internal_monitor()
+if hl.get_monitor(external_monitor_selector) ~= nil then
+    use_external_monitor()
+else
+    apply_external_monitor_mode("preferred")
+end
 
 -- External monitor
 hl.on("monitor.added", function(m)
@@ -91,7 +92,6 @@ hl.on("monitor.added", function(m)
         configure_internal_monitor(m)
     elseif is_external_monitor(m) then
         use_external_monitor()
-        pin_external_monitor_mode()
     end
 end)
 
@@ -100,7 +100,6 @@ hl.on("hyprland.start", function()
 
     if hl.get_monitor(external_monitor_selector) ~= nil then
         use_external_monitor()
-        pin_external_monitor_mode()
     end
 end)
 
@@ -110,6 +109,7 @@ hl.on("monitor.removed", function(m)
         return
     end
 
+    external_retry_generation = external_retry_generation + 1
     local internal = hl.get_monitor(internal_monitor_output)
     if internal ~= nil then
         configure_internal_monitor(internal)

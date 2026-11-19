@@ -68,31 +68,21 @@ produce integer logical pixels: `3840x2160 / 1.75 = 2194.29x1234.29` is
 invalid, so Hyprland replaces it with `1.6667` and shows an "invalid scale"
 notification. `1.67` snaps to the same clean divisor without the notification.
 
-The startup rule uses `preferred` and a `hyprland.start` timer re-applies the
-exact mode after `eDP-1` is disabled. Hyprland applies monitor rules while the
-internal panel is still enabled. If the 4K modeset fails in that state (dual 4K
-outputs on the iGPU, or a DisplayPort link that is not ready at cold boot), it
-falls back to the first mode that commits, usually `2560x1440`, and reports
-`failed to set any requested modes, falling back to mode ...`. It then records
-the requested rule as applied, so a later config pass with the same rule is
-skipped and the fallback persists for the whole session. Re-applying a rule
-with a different mode (a hard property) forces a real modeset once the internal
-panel is off. The same re-apply runs on `monitor.added` so hotplug behaves like
-cold boot.
+If DRM rejects the 4K60 modeset while the internal panel is still on, Hyprland
+can fall back to `2560x1440` while keeping the original rule cached. Submitting
+that same rule again does not trigger a modeset, even after the internal panel
+is off.
 
-A DisplayPort link trained below its maximum rate (after a dock coldplug or
-replug) silently rejects the `3840x2160@60` modeset at the DRM level: the
-kernel reports success, Hyprland stays on the fallback mode, and no log names
-the cause. Before re-applying the mode, `monitors.lua` runs the root-owned
-`/usr/local/sbin/dp-link-retrain` through passwordless wheel sudo. The helper
-writes the i915 `i915_dp_force_link_retrain` debugfs bit on every DP
-connector, i915 retrains the link at full rate, and the following modeset
-commits.
+On startup, hotplug, or config reload with the Dell connected, disable `eDP-1`
+and reset the Dell rule to `preferred`. If it is still connected but not at 4K60
+after 1.5 seconds, request a DisplayPort link retrain and switch to the explicit
+`3840x2160@60` rule. The change from `preferred` to an explicit mode forces a
+new modeset. Skip the retry if the Dell is already at 4K60 or was unplugged.
 
-The helper is i915-scoped. Both supported laptop classes use i915 (Dell XPS
-13 9350 Skylake, ThinkPad T14 Gen2 Tiger Lake). On any other DRM driver the
-retrain bit does not exist, the write fails, and the helper is a silent
-no-op; amdgpu hosts would need the `link_settings` debugfs path instead.
+The root-owned `/usr/local/sbin/dp-link-retrain` helper uses passwordless wheel
+sudo and the i915 `i915_dp_force_link_retrain` debugfs entry. Both laptop models
+use i915 (Dell XPS 13 9350 Skylake, ThinkPad T14 Gen2 Intel Tiger Lake). Without
+that entry, the helper has no effect, but Hyprland still retries the modeset.
 
 Re-enabling the internal panel after unplug rebuilds its `desc:` rule. A bare
 `{ output = "eDP-1", disabled = false }` rule uses the defaults (preferred
