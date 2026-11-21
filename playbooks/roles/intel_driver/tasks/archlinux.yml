@@ -2,7 +2,7 @@
 - name: Install packages
   kewlfft.aur.aur:
     name:
-      - mesa-amber
+      - mesa
       - libva-intel-driver
       - libva-utils
   become: true
